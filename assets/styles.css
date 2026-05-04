@@ -238,8 +238,8 @@ summary:focus-visible {
 .principles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 1rem 0 5rem;
+  gap: clamp(1rem, 2vw, 1.6rem);
+  padding: 1.5rem 0 5rem;
 }
 
 .principles article,
@@ -255,19 +255,37 @@ summary:focus-visible {
 }
 
 .principles article {
-  padding: 1.1rem;
+  display: flex;
+  min-height: clamp(21rem, 26vw, 28rem);
+  flex-direction: column;
+  padding: clamp(1.35rem, 2vw, 1.8rem);
+  background: rgba(255, 250, 241, 0.58);
+  box-shadow: 0 10px 36px rgba(40, 28, 16, 0.055);
+}
+
+.principles h2 {
+  max-width: 9ch;
+  margin: 0.8rem 0 2rem;
+  font-size: clamp(2.9rem, 4.4vw, 5rem);
+  line-height: 0.9;
+}
+
+.principles p {
+  max-width: 34ch;
+  margin: auto 0 0;
+  color: #332b24;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.55;
 }
 
 .pill {
-  display: inline-grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 1rem;
-  border-radius: 50%;
-  background: var(--accent);
-  color: white;
+  display: block;
+  width: fit-content;
+  border-bottom: 2px solid rgba(29, 93, 84, 0.28);
+  color: var(--accent);
+  font-size: 0.82rem;
   font-weight: 900;
+  letter-spacing: 0.12em;
 }
 
 .model-section,
@@ -704,6 +722,10 @@ th {
   .comparison-grid,
   .limit-grid {
     grid-template-columns: 1fr;
+  }
+
+  .principles article {
+    min-height: 16rem;
   }
 
   .controls {
