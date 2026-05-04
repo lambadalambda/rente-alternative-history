@@ -2,13 +2,13 @@
 
 Stand: 2026-05-04
 
-Status: Erstinventar. Noch keine finale Extraktion, keine Modellrechnung.
+Status: Erstinventar mit erster PDF-Text-Extraktion für die allg.-RV-Cashflows. Noch keine finale Modellgrundlage.
 
 ## Geprüfte Quellen
 
 | Quelle | Status | Ergebnis |
 | --- | --- | --- |
-| `Rentenversicherung in Zeitreihen 2025` PDF | temporär heruntergeladen und stichprobenhaft per `pdftotext` geprüft | zentrale Quelle für Finanzdaten, Versicherte, Bemessungswerte, Demografie und Volkswirtschaft |
+| `Rentenversicherung in Zeitreihen 2025` PDF | per `scripts/build_drv_cashflows.py` herunterladbar, hashgeprüft und für die Tabellen 244-245 per `pdftotext -layout` extrahiert | zentrale Quelle für Finanzdaten, Versicherte, Bemessungswerte, Demografie und Volkswirtschaft |
 | `ZR_Historie.xlsx` | temporär heruntergeladen und Workbook-Struktur geprüft | nicht die Hauptquelle ab 1957; enthält ein Tabellenblatt für 1891-1956 |
 | Korrekturseiten | gefunden, aber noch nicht heruntergeladen | vor finaler Extraktion zwingend abgleichen |
 
@@ -86,10 +86,11 @@ Diese Arbeitsannahme steht in `assumptions/register.yaml` unter `PENSION-001`.
 
 - Korrekturseiten herunterladen und gegen Finanzdatentabellen prüfen.
 - Prüfen, ob es eine offizielle maschinenlesbare Fassung der 2025er Tabellen gibt.
-- Wenn nur PDF verfügbar ist, Tabellenextraktion mit dokumentiertem Verfahren und manueller Stichprobenkontrolle vorbereiten.
+- Wenn nur PDF verfügbar ist, Tabellenextraktion mit dokumentiertem Verfahren und manueller Stichprobenkontrolle vorbereiten. Für `Einnahmen allg. RV` und `Ausgaben allg. RV` existiert ein erster Skriptpfad.
 - Jede extrahierte Tabelle mit Inhaltsseite, Tabellenkopf, Fußnoten, Einheit und Gebietsstand speichern.
 - Rohdaten, Zwischenstände und finale Modellinputs getrennt halten.
 - Keine generierten Tabellen manuell nachbearbeiten.
+- Aktuelle Pipeline: `python3 scripts/build_drv_cashflows.py` erzeugt `data/extracted/drv/allgemeine-rv-cashflows.csv` und `data/website/allgemeine-rv-cashflows.json`.
 
 ## Offene Fragen
 

@@ -52,9 +52,9 @@ assumptions:
     category: geography
     status: open
     statement: "Gebietsstand der Cashflow-Reihe"
-    value: "Alte Bundesländer bis 1991; Insgesamt ab 1992, falls DRV-Tabelle diese Abgrenzung vorgibt"
+    value: "Aktuelle allg.-RV-Cashflow-Pipeline: Alte Bundesländer bis 1990; Insgesamt ab 1991, soweit in den DRV-Tabellen 244/245 ausgewiesen"
     evidence_type: model_assumption
-    rationale: "Die DRV-Finanzdaten weisen mehrfach diese Struktur aus; sie darf nicht unkommentiert als nahtlose gesamtdeutsche Reihe erscheinen."
+    rationale: "Die allg.-RV-Tabellen enthalten 1991 sowohl West-/Ost-Segmente als auch Insgesamt; die aktuelle Baseline wählt ab 1991 Insgesamt. Andere DRV-Tabellen nutzen teils Alte Bundesländer bis 1991 und Insgesamt ab 1992; der Bruch darf nicht unkommentiert als nahtlose Reihe erscheinen."
     alternatives:
       - "Westdeutschland 1957-1991 separat, gesamtdeutsch ab 1992 als Bruch"
       - "Nur westdeutsche historische Modellphase bis 1991"

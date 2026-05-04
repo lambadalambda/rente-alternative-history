@@ -27,5 +27,5 @@ Die historischen Finanzstroeme der gesetzlichen Rentenversicherung so modelliere
 
 - Der Claim, dass ein 5/5-Verzichtsdeal heute Rentenzahlungen aus Renditen decken koennte, muss als pruefbare Hypothese behandelt werden, nicht als Vorabfakt.
 - Arbeitsstand 2026-05-04: DRV-Finanzdaten im PDF `Rentenversicherung in Zeitreihen 2025` sind grob inventarisiert; `allgemeine RV` ist als erste Baseline gesetzt, `RV insgesamt` bleibt Vergleich.
-- Eine erste Prototyp-Baseline wurde erstellt; sie nutzt noch manuell rekonstruierte DRV-Stützjahre und lineare Interpolation.
+- Eine erste reproduzierbare PDF-Text-Extraktion wurde erstellt; sie erzeugt `data/extracted/drv/allgemeine-rv-cashflows.csv` und `data/website/allgemeine-rv-cashflows.json`.
 - Nutzerentscheidung 2026-05-04: Der Fondsaufbau basiert auf zusätzlichen Beiträgen und niedrigeren Rentenausgaben; Vergleichsgröße sind Rentenausgaben.

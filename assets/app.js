@@ -1,4 +1,4 @@
-const DATA_URL = "data/website/prototype-allgemeine-rv.json";
+const DATA_URL = "data/website/allgemeine-rv-cashflows.json";
 
 const presets = {
   mixed: { label: "Gemischtes Portfolio", returnRate: 4.0, costRate: 0.35 },
@@ -242,7 +242,7 @@ function render() {
   output.netKpi.textContent = formatMioAsMoney(last.investmentGainMioEur);
   output.coverageKpi.textContent = asPercent(last.returnCoverage * 100);
 
-  output.dataStatus.textContent = `Aktives Szenario: ${scenario.preset.label}, +${asPercent(scenario.contributionIncrease)} Beiträge, -${asPercent(scenario.pensionReduction)} Rentenausgaben, ${asPercent(scenario.returnRate - scenario.costRate)} nominale Nettorendite p.a.`;
+  output.dataStatus.textContent = `Aktives Szenario: ${scenario.preset.label}, Datenreihe ab ${rows[0].year}, +${asPercent(scenario.contributionIncrease)} Beiträge, -${asPercent(scenario.pensionReduction)} Rentenausgaben, ${asPercent(scenario.returnRate - scenario.costRate)} nominale Nettorendite p.a.`;
   output.chartSummary.textContent = `Im Jahr ${last.year} steht ein Fonds von ${formatMioAsMoney(last.fundMioEur)} einem kumulierten Aufbaupreis von ${formatMioAsMoney(last.cumulativeBuildCostMioEur)} gegenüber. Daraus ergeben sich ${formatMioAsMoney(last.investmentGainMioEur)} Kapitalertrag über den eingezahlten Verzicht hinaus. Die Modellrendite des Jahres deckt ${asPercent(last.returnCoverage * 100)} der Rentenausgaben dieses Jahres.`;
 
   renderChart(rows);

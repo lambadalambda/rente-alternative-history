@@ -22,7 +22,7 @@ Die zentrale These wird nicht vorausgesetzt. Das Projekt soll prüfen, ob und un
 
 ## Projektstatus
 
-Dieses Repository befindet sich in der Prototyp- und Recherchephase. Die erste Website ist bewusst frameworklos gebaut und statisch hostbar; Datenextraktion, Modelltests und historische Renditeserien folgen noch.
+Dieses Repository befindet sich in der Prototyp- und Recherchephase. Die erste Website ist bewusst frameworklos gebaut und statisch hostbar; eine erste DRV-PDF-Extraktion ist automatisiert, Modelltests und historische Renditeserien folgen noch.
 
 Die offenen Arbeitspakete liegen im repo-lokalen Issue-Tracker:
 
@@ -55,6 +55,7 @@ Aktuelle Planungsartefakte:
 - `assumptions/register.yaml`: versioniertes Register zentraler Annahmen und offener Entscheidungen.
 - `data/manifest.yaml`: Grundstruktur des Datenmanifests.
 - `meta/research/drv-zeitreihen-inventar.md`: erstes Inventar der DRV-Zeitreihenquelle.
+- `data/extracted/drv/README.md`: Reproduktionshinweise für die aktuelle DRV-Cashflow-Extraktion.
 
 ## Entwicklung
 
@@ -72,8 +73,23 @@ Einfache Syntaxchecks:
 
 ```bash
 node --check assets/app.js
-python3 -m json.tool data/website/prototype-allgemeine-rv.json >/dev/null
+python3 -m py_compile scripts/build_drv_cashflows.py
+python3 -m json.tool data/website/allgemeine-rv-cashflows.json >/dev/null
 ruby -e 'require "yaml"; YAML.load_file("assumptions/register.yaml"); YAML.load_file("data/manifest.yaml")'
+```
+
+DRV-Cashflow-Daten neu erzeugen:
+
+```bash
+python3 scripts/build_drv_cashflows.py
+```
+
+Voraussetzung: `pdftotext` aus Poppler oder Xpdf muss lokal verfügbar sein. Das Skript lädt die DRV-PDF nach `data/raw/drv/`, prüft den SHA-256-Hash, extrahiert die Tabellen `Einnahmen allg. RV` und `Ausgaben allg. RV` mit `pdftotext -layout` und schreibt die Zwischentabelle sowie die Website-Daten neu. Der Prüfmodus `--check` lädt bewusst keine Rohdaten nach; falls `data/raw/drv/rv_in_zeitreihen_2025.pdf` fehlt, zuerst den Rebuild ausführen.
+
+Vorhandene Pipeline-Artefakte prüfen, wenn der Roh-PDF-Download bereits vorhanden ist:
+
+```bash
+python3 scripts/build_drv_cashflows.py --check --no-download
 ```
 
 Ein Produktionsbuild ist für diese reine Static-Version nicht nötig; GitHub Pages kann den Repository-Root ausliefern. Später kann ein Build-Schritt ergänzt werden, sobald Datenextraktion, Modelltests und Accessibility-Checks automatisiert sind.

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rentenfonds 1957</title>
-    <meta name="description" content="Datenjournalistische Website über ein kontrafaktisches Rentenfonds-Modell ab 1957.">
+    <meta name="description" content="Datenjournalistische Website über ein kontrafaktisches Rentenfonds-Modell mit historischem Anker 1957 und aktueller Datenrechnung ab 1960.">
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
@@ -25,10 +25,10 @@
     <main id="inhalt">
       <section class="hero" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">Ein Renten-Gedankenexperiment ab 1957</p>
+          <p class="eyebrow">Historischer Anker 1957, Datenrechnung ab 1960</p>
           <h1>Die Rente wurde verteilt. Was, wenn sie auch Vermögen aufgebaut hätte?</h1>
           <p class="lead">
-            Die Rentenreform von 1957 war keine Naturgewalt, sondern eine politische Weichenstellung: sofort zahlbare Renten statt Kapitalstock. Diese Seite rechnet einen einfachen Deal durch: etwas höhere Beiträge, etwas niedrigere Renten, dafür ein öffentlicher Fonds über Jahrzehnte.
+            Die Rentenreform von 1957 war keine Naturgewalt, sondern eine politische Weichenstellung: sofort zahlbare Renten statt Kapitalstock. Die aktuelle Datenrechnung beginnt mit den verfügbaren DRV-Finanzstützjahren 1960 und rechnet einen einfachen Deal durch: etwas höhere Beiträge, etwas niedrigere Renten, dafür ein öffentlicher Fonds über Jahrzehnte.
           </p>
           <div class="hero-actions" aria-label="Schnelleinstieg">
             <a class="button primary" href="#modell">Jetzt gegenrechnen</a>
@@ -71,7 +71,7 @@
             Ändere Beitragsaufschlag, Rentenverzicht, Rendite und Kosten. Die Rechnung zeigt, welcher Kapitalstock entsteht und wie viel davon reiner Kapitalertrag ist.
           </p>
         </div>
-        <p class="method-label">Datenstand: DRV-Stützjahre, lineare Interpolation, konstante Renditeannahmen.</p>
+        <p class="method-label">Datenstand: DRV-PDF-Extraktion 1960-2024, lineare Interpolation, konstante Renditeannahmen.</p>
 
         <div class="model-grid">
           <form class="controls" aria-label="Szenario-Parameter">
@@ -117,7 +117,7 @@
 
             <details class="method-details">
               <summary>Was wird hier angenommen?</summary>
-              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Der Fonds wird in der Baseline aus 5 Prozent höheren Beiträgen und 5 Prozent niedrigeren Rentenausgaben finanziert. Fehlende Jahre werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen.</p>
+              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Die aktuelle Datenrechnung beginnt 1960; 1957-1959 sind noch nicht modelliert. Der Fonds wird in der Baseline aus 5 Prozent höheren Beiträgen und 5 Prozent niedrigeren Rentenausgaben finanziert. Lücken zwischen vorhandenen Stützjahren werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen.</p>
             </details>
           </form>
 
@@ -163,7 +163,7 @@
           <p class="eyebrow">Datenbasis</p>
           <h2 id="daten-title">Welche Zahlen in das Modell fließen</h2>
           <p>
-            Die aktuelle Rechnung nutzt rekonstruierte Stützjahre aus DRV-Zeitreihen zur allgemeinen RV und interpoliert fehlende Jahre. Das macht die Modelllogik sichtbar; die vollständige Extraktionspipeline kommt als nächster Schritt.
+            Die aktuelle Rechnung nutzt per Skript extrahierte Stützjahre aus DRV-Zeitreihen zur allgemeinen RV und interpoliert Lücken zwischen vorhandenen Stützjahren. Korrekturseiten und manuelle Stichprobenkontrollen stehen noch aus.
           </p>
         </div>
 
@@ -214,7 +214,7 @@
 
     <footer class="site-footer">
       <p>
-        Quellenbasis dieser Version: Deutsche Rentenversicherung, <em>Rentenversicherung in Zeitreihen 2025</em>, Tabellen „Einnahmen allg. RV“ und „Ausgaben allg. RV“, abgerufen am 04.05.2026. Website-Daten: `data/website/prototype-allgemeine-rv.json`.
+        Quellenbasis dieser Version: Deutsche Rentenversicherung, <em>Rentenversicherung in Zeitreihen 2025</em>, Tabellen „Einnahmen allg. RV“ und „Ausgaben allg. RV“, abgerufen am 04.05.2026. Website-Daten: `data/website/allgemeine-rv-cashflows.json`.
       </p>
       <p>Historisches Gedankenexperiment, keine Anlageberatung. Statische Website ohne Tracking, Cookies, externe Fonts oder CDN.</p>
     </footer>

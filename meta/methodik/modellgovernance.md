@@ -142,6 +142,6 @@ Vor Veröffentlichung von Modelloutputs sind mindestens diese Checks nötig:
 - Wie wird der Aufbaupfad definiert? Arbeitsannahme 2026-05-04: 5 Prozent höhere Beiträge auf Beitragseinnahmen plus 5 Prozent niedrigere Rentenausgaben.
 - Soll die Baseline `RV insgesamt` oder `allgemeine RV` verwenden? Arbeitsannahme 2026-05-04: `allgemeine RV` als erste Baseline, `RV insgesamt` als späterer Vergleich.
 - Welche Rentenausgaben sind die Vergleichsgröße: Rentenausgaben ohne KVdR/PVdR-Zuschüsse, Renten plus KVdR/PVdR oder Gesamtausgaben? Arbeitsannahme 2026-05-04: Rentenausgaben.
-- Wie wird der Bruch `Alte Bundesländer bis 1991` und `Insgesamt ab 1992` behandelt?
+- Wie werden Gebietsbrüche behandelt? Arbeitsstand 2026-05-04: Die aktuelle allg.-RV-Cashflow-Pipeline nutzt `Alte Bundesländer` bis 1990 und `Insgesamt` ab 1991; andere Tabellen können abweichen.
 - Welche Übergangsfinanzierung ist die konservative Baseline? Arbeitsannahme 2026-05-04: Keine Übergangsschuld in der Baseline; der Fonds wird aus zusätzlicher Beitragslast und Rentenverzicht finanziert.
 - Welche Investmentpolitik ist historisch plausibler als reine DAX/S&P-500-Rückblicke?

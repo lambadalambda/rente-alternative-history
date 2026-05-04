@@ -26,4 +26,4 @@ Sicherstellen, dass alle Daten, Annahmen und Berechnungen der Website nachvollzi
 ## Notes
 
 - Wenn Daten nicht frei weiterverbreitet werden duerfen, nur abgeleitete oder manuell nachbaubare Tabellen aufnehmen und die Beschraenkung nennen.
-- Arbeitsstand 2026-05-04: Prototypdatensatz `data/website/prototype-allgemeine-rv.json` ist im Manifest dokumentiert und als rekonstruierte, nicht finale Zahl markiert. Eine reproduzierbare Extraktionspipeline fehlt noch.
+- Arbeitsstand 2026-05-04: `scripts/build_drv_cashflows.py` lädt die DRV-PDF, prüft den SHA-256-Hash und erzeugt `data/extracted/drv/allgemeine-rv-cashflows.csv` sowie `data/website/allgemeine-rv-cashflows.json`. Korrekturseiten-Abgleich und Stichprobenkontrolle fehlen noch.
