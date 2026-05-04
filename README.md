@@ -73,7 +73,10 @@ Einfache Syntaxchecks:
 
 ```bash
 node --check assets/app.js
-python3 -m py_compile scripts/build_drv_cashflows.py
+node --check assets/model.js
+node --check scripts/test_model.js
+node scripts/test_model.js
+python3 -m py_compile scripts/build_drv_cashflows.py scripts/validate_aum_comparisons.py
 python3 scripts/validate_aum_comparisons.py
 python3 -m json.tool data/website/allgemeine-rv-cashflows.json >/dev/null
 python3 -m json.tool data/website/aum-comparisons.json >/dev/null
