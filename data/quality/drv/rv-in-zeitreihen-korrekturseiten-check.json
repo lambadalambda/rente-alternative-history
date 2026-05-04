@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "status": "checked_no_model_table_corrections",
+  "checkedAt": "2026-05-04",
+  "sourceDatasetId": "DRV_RV_ZEITREIHEN_2025_CORRECTIONS",
+  "sourceTitle": "Deutsche Rentenversicherung, Rentenversicherung in Zeitreihen - Korrekturseiten",
+  "landingPage": "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.html",
+  "pdfUrl": "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.pdf?__blob=publicationFile&v=3",
+  "retrievedAt": "2026-05-04",
+  "sourceSha256": "694241a0db255784d52f87e323b4d181b66799c7f7df4ba81eee18f936562552",
+  "method": "SHA-256-Prüfung der Korrekturseiten-PDF, Extraktion mit pdftotext -layout, Ermittlung der korrigierten Inhaltsseiten aus den Seitenfüßen und Abgleich gegen die modellierten Inhaltsseiten 244-245.",
+  "modeledTables": [
+    {
+      "contentPage": 244,
+      "pdfPage": 246,
+      "table": "Einnahmen allg. RV",
+      "variable": "Beiträge"
+    },
+    {
+      "contentPage": 245,
+      "pdfPage": 247,
+      "table": "Ausgaben allg. RV",
+      "variable": "Rentenausgaben"
+    }
+  ],
+  "correctedContentPages": [
+    {
+      "correctionPdfPage": 1,
+      "contentPage": 172,
+      "topic": "Rentenbestand nach Wohnort (Bundesland), Renten wegen Alters - Männer"
+    },
+    {
+      "correctionPdfPage": 2,
+      "contentPage": 173,
+      "topic": "Rentenbestand nach Wohnort (Bundesland), Renten wegen Alters - Männer, Fortsetzung"
+    },
+    {
+      "correctionPdfPage": 3,
+      "contentPage": 263,
+      "topic": "Bemessungswerte der RV, jährliche Höchstwerte an Entgeltpunkten"
+    }
+  ],
+  "result": {
+    "modelSourcePagesAffected": false,
+    "affectedModeledContentPages": [],
+    "modeledTableTitleMatchesInCorrectionText": [],
+    "note": "Die bekannten Korrekturseiten v=3 betreffen Inhaltsseiten 172, 173 und 263; die aktuelle allg.-RV-Cashflow-Pipeline nutzt Inhaltsseiten 244 und 245."
+  }
+}

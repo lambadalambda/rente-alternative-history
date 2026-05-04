@@ -21,6 +21,9 @@ LANDING_PAGE = "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/
 SOURCE_SHA256 = "f41ad3a1c398ac56ad5ac75898ba5c664aa1ef7e6ad98859cb2a622b6293ee07"
 CORRECTIONS_URL = "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.pdf?__blob=publicationFile&v=3"
 CORRECTIONS_LANDING_PAGE = "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.html"
+CORRECTIONS_SHA256 = "694241a0db255784d52f87e323b4d181b66799c7f7df4ba81eee18f936562552"
+CORRECTIONS_RETRIEVED_AT = "2026-05-04"
+CORRECTIONS_CHECKED_PAGES = [172, 173, 263]
 
 DEFAULT_SOURCE_PDF = ROOT / "data/raw/drv/rv_in_zeitreihen_2025.pdf"
 EXTRACTED_CSV = ROOT / "data/extracted/drv/allgemeine-rv-cashflows.csv"
@@ -236,7 +239,7 @@ def website_json_text(records: list[dict[str, object]]) -> str:
         "status": "generated_from_drv_pdf_text_extraction",
         "language": "de",
         "title": "Website-Daten: allgemeine RV, Beiträge und Rentenausgaben",
-        "warning": "Diese Datei ist generiert. Nicht manuell bearbeiten. Die Quelle ist die DRV-PDF-Publikation; Korrekturseiten sind noch nicht automatisiert abgeglichen. Die aktuelle Datenrechnung beginnt 1960; Lücken zwischen vorhandenen Stützjahren werden in der Website linear interpoliert.",
+        "warning": "Diese Datei ist generiert. Nicht manuell bearbeiten. Die Quelle ist die DRV-PDF-Publikation; die bekannten Korrekturseiten v=3 betreffen nach automatisiertem Hash- und Seitenabgleich nicht die Modellseiten 244-245. Die aktuelle Datenrechnung beginnt 1960; Lücken zwischen vorhandenen Stützjahren werden in der Website linear interpoliert.",
         "generatedBy": "scripts/build_drv_cashflows.py",
         "source": {
             "datasetId": "DRV_RV_ZEITREIHEN_2025_PDF",
@@ -252,7 +255,12 @@ def website_json_text(records: list[dict[str, object]]) -> str:
                 "datasetId": "DRV_RV_ZEITREIHEN_2025_CORRECTIONS",
                 "landingPage": CORRECTIONS_LANDING_PAGE,
                 "pdfUrl": CORRECTIONS_URL,
-                "status": "not_automatically_checked",
+                "retrievedAt": CORRECTIONS_RETRIEVED_AT,
+                "pdfSha256": CORRECTIONS_SHA256,
+                "status": "checked_no_model_table_corrections",
+                "checkedBy": "scripts/validate_drv_corrections.py",
+                "correctedContentPages": CORRECTIONS_CHECKED_PAGES,
+                "modelSourcePagesAffected": False,
             },
             "tables": [
                 {"page": 244, "title": "Einnahmen allg. RV", "variable": "Beiträge"},
@@ -263,7 +271,7 @@ def website_json_text(records: list[dict[str, object]]) -> str:
             "institution": "allgemeine RV",
             "geographyNote": "Alte Bundesländer bis 1990; ab 1991 Insgesamt, soweit in der geprüften Tabelle ausgewiesen.",
             "unit": "Mio. EUR, nominal",
-            "dataStatus": "amtliche Zahl aus PDF-Text-Extraktion; Korrekturseiten noch nicht geprüft",
+            "dataStatus": "amtliche Zahl aus PDF-Text-Extraktion; Korrekturseiten v=3 geprüft, keine Korrektur der Modellseiten 244-245",
         },
         "records": records,
     }

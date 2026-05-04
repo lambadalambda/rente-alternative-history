@@ -2,7 +2,7 @@
 
 Stand: 2026-05-04
 
-Status: Erstinventar mit erster PDF-Text-Extraktion für die allg.-RV-Cashflows. Noch keine finale Modellgrundlage.
+Status: Erstinventar mit erster PDF-Text-Extraktion für die allg.-RV-Cashflows und automatischem Korrekturseitencheck. Noch keine finale Modellgrundlage.
 
 ## Geprüfte Quellen
 
@@ -10,7 +10,7 @@ Status: Erstinventar mit erster PDF-Text-Extraktion für die allg.-RV-Cashflows.
 | --- | --- | --- |
 | `Rentenversicherung in Zeitreihen 2025` PDF | per `scripts/build_drv_cashflows.py` herunterladbar, hashgeprüft und für die Tabellen 244-245 per `pdftotext -layout` extrahiert | zentrale Quelle für Finanzdaten, Versicherte, Bemessungswerte, Demografie und Volkswirtschaft |
 | `ZR_Historie.xlsx` | temporär heruntergeladen und Workbook-Struktur geprüft | nicht die Hauptquelle ab 1957; enthält ein Tabellenblatt für 1891-1956 |
-| Korrekturseiten | gefunden, aber noch nicht heruntergeladen | vor finaler Extraktion zwingend abgleichen |
+| Korrekturseiten | per `scripts/validate_drv_corrections.py` herunterladbar, hashgeprüft und mit den Modellseiten 244-245 abgeglichen | korrigierte Inhaltsseiten 172, 173 und 263; keine Korrektur der aktuell modellierten Cashflow-Tabellen |
 
 PDF-Metadaten der geprüften Datei:
 
@@ -21,6 +21,16 @@ PDF-Metadaten der geprüften Datei:
 - Umfang: 338 PDF-Seiten
 - Datei ist laut DRV nicht barrierefrei
 - SHA-256 der temporär geprüften Datei: `f41ad3a1c398ac56ad5ac75898ba5c664aa1ef7e6ad98859cb2a622b6293ee07`
+
+Korrekturseiten der geprüften Datei:
+
+- Landingpage: https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.html
+- PDF: https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.pdf?__blob=publicationFile&v=3
+- Stand laut Manifest/Landingpage-Notiz: 16.12.2025
+- Umfang: 3 PDF-Seiten
+- SHA-256 der geprüften Datei: `694241a0db255784d52f87e323b4d181b66799c7f7df4ba81eee18f936562552`
+- Ergebnis: korrigierte Inhaltsseiten `172`, `173` und `263`; kein Schnitt mit den modellierten Inhaltsseiten `244` und `245`.
+- Qualitätsartefakt: `data/quality/drv/rv-in-zeitreihen-korrekturseiten-check.json`
 
 ## Wichtige Entdeckung zur XLSX-Datei
 
@@ -84,7 +94,7 @@ Diese Arbeitsannahme steht in `assumptions/register.yaml` unter `PENSION-001`.
 
 ## Extraktionsplan
 
-- Korrekturseiten herunterladen und gegen Finanzdatentabellen prüfen.
+- Korrekturseiten herunterladen und gegen Finanzdatentabellen prüfen. Für die aktuelle allg.-RV-Cashflow-Pipeline erledigt durch `python3 scripts/validate_drv_corrections.py`.
 - Prüfen, ob es eine offizielle maschinenlesbare Fassung der 2025er Tabellen gibt.
 - Wenn nur PDF verfügbar ist, Tabellenextraktion mit dokumentiertem Verfahren und manueller Stichprobenkontrolle vorbereiten. Für `Einnahmen allg. RV` und `Ausgaben allg. RV` existiert ein erster Skriptpfad mit dokumentierten Stichproben.
 - Jede extrahierte Tabelle mit Inhaltsseite, Tabellenkopf, Fußnoten, Einheit und Gebietsstand speichern.
@@ -92,6 +102,7 @@ Diese Arbeitsannahme steht in `assumptions/register.yaml` unter `PENSION-001`.
 - Keine generierten Tabellen manuell nachbearbeiten.
 - Aktuelle Pipeline: `python3 scripts/build_drv_cashflows.py` erzeugt `data/extracted/drv/allgemeine-rv-cashflows.csv` und `data/website/allgemeine-rv-cashflows.json`.
 - Aktuelle Stichprobenkontrolle: `data/quality/drv/allgemeine-rv-cashflow-spotchecks.json`, geprüft mit `python3 scripts/validate_drv_spotchecks.py`.
+- Aktueller Korrekturseitencheck: `data/quality/drv/rv-in-zeitreihen-korrekturseiten-check.json`, geprüft mit `python3 scripts/validate_drv_corrections.py`.
 
 ## Offene Fragen
 
