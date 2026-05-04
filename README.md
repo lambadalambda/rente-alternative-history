@@ -76,7 +76,8 @@ node --check assets/app.js
 node --check assets/model.js
 node --check scripts/test_model.js
 node scripts/test_model.js
-python3 -m py_compile scripts/build_drv_cashflows.py scripts/validate_aum_comparisons.py
+python3 -m py_compile scripts/build_drv_cashflows.py scripts/validate_aum_comparisons.py scripts/validate_drv_spotchecks.py
+python3 scripts/validate_drv_spotchecks.py
 python3 scripts/validate_aum_comparisons.py
 python3 -m json.tool data/website/allgemeine-rv-cashflows.json >/dev/null
 python3 -m json.tool data/website/aum-comparisons.json >/dev/null
@@ -96,6 +97,8 @@ Vorhandene Pipeline-Artefakte prüfen, wenn der Roh-PDF-Download bereits vorhand
 ```bash
 python3 scripts/build_drv_cashflows.py --check --no-download
 ```
+
+Manuelle DRV-Stichproben gegen die Originaltabellen liegen in `data/quality/drv/allgemeine-rv-cashflow-spotchecks.json` und werden mit `python3 scripts/validate_drv_spotchecks.py` gegen die extrahierte CSV und die Website-JSON geprüft.
 
 Ein Produktionsbuild ist für diese reine Static-Version nicht nötig; GitHub Pages kann den Repository-Root ausliefern. Später kann ein Build-Schritt ergänzt werden, sobald Datenextraktion, Modelltests und Accessibility-Checks automatisiert sind.
 

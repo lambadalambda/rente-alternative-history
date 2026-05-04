@@ -86,11 +86,12 @@ Diese Arbeitsannahme steht in `assumptions/register.yaml` unter `PENSION-001`.
 
 - Korrekturseiten herunterladen und gegen Finanzdatentabellen prüfen.
 - Prüfen, ob es eine offizielle maschinenlesbare Fassung der 2025er Tabellen gibt.
-- Wenn nur PDF verfügbar ist, Tabellenextraktion mit dokumentiertem Verfahren und manueller Stichprobenkontrolle vorbereiten. Für `Einnahmen allg. RV` und `Ausgaben allg. RV` existiert ein erster Skriptpfad.
+- Wenn nur PDF verfügbar ist, Tabellenextraktion mit dokumentiertem Verfahren und manueller Stichprobenkontrolle vorbereiten. Für `Einnahmen allg. RV` und `Ausgaben allg. RV` existiert ein erster Skriptpfad mit dokumentierten Stichproben.
 - Jede extrahierte Tabelle mit Inhaltsseite, Tabellenkopf, Fußnoten, Einheit und Gebietsstand speichern.
 - Rohdaten, Zwischenstände und finale Modellinputs getrennt halten.
 - Keine generierten Tabellen manuell nachbearbeiten.
 - Aktuelle Pipeline: `python3 scripts/build_drv_cashflows.py` erzeugt `data/extracted/drv/allgemeine-rv-cashflows.csv` und `data/website/allgemeine-rv-cashflows.json`.
+- Aktuelle Stichprobenkontrolle: `data/quality/drv/allgemeine-rv-cashflow-spotchecks.json`, geprüft mit `python3 scripts/validate_drv_spotchecks.py`.
 
 ## Offene Fragen
 

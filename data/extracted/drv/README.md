@@ -34,4 +34,4 @@ python3 scripts/build_drv_cashflows.py --check --no-download
 - Die DRV-Korrekturseiten sind noch nicht automatisiert abgeglichen.
 - Für `allgemeine RV` enthält die Tabelle keine durchgehenden Jahreswerte ab 1957. Die aktuelle Website-Datenrechnung beginnt 1960; Lücken zwischen vorhandenen Stützjahren werden linear interpoliert.
 - Die Baseline nutzt `Alte Bundesländer` bis 1990 und `Insgesamt` ab 1991. Neue Bundesländer werden nicht separat modelliert.
-- Die PDF-Extraktion ersetzt noch keine manuelle Stichprobenkontrolle gegen die Originalseiten.
+- Eine erste manuelle Stichprobenkontrolle liegt unter `data/quality/drv/allgemeine-rv-cashflow-spotchecks.json`; sie ersetzt noch keinen vollständigen Tabellen- und Korrekturseitenabgleich.

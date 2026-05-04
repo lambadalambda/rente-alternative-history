@@ -145,7 +145,7 @@ sources:
     nominal_or_real: "nominal"
     data_status: "amtliche_zahl_pdf_text_extraktion"
     license_or_usage_note: "Generiert aus frei herunterladbarer DRV-PDF; DRV-Nutzungshinweis und Weiterverbreitungsstatus noch prüfen"
-    trust_level: "mittel bis hoch; amtliche Quelle, aber PDF-Extraktion braucht noch Stichprobenkontrolle und Korrekturseiten-Abgleich"
+    trust_level: "mittel bis hoch; amtliche Quelle, erste manuelle Stichprobe vorhanden, vollständiger Tabellen- und Korrekturseiten-Abgleich fehlt noch"
     known_limitations:
       - "Korrekturseiten sind noch nicht automatisiert abgeglichen."
       - "PDF-Parser ist an die geprüfte PDF-Fassung und deren Seitenlayout gebunden."
@@ -157,6 +157,37 @@ sources:
     transformation_status: "generated_pdf_text_extraction"
     used_in_model: true
     related_assumption_ids: ["PENSION-001", "FLOW-001", "FLOW-002", "TRANS-001", "INV-001"]
+
+  - dataset_id: DRV_ALLG_RV_CASHFLOW_SPOTCHECKS_2026_05_04
+    title: "Stichprobenkontrolle: allgemeine RV, Beiträge und Rentenausgaben"
+    publisher: "Projektinterne Qualitätskontrolle auf Basis der DRV-PDF-Publikation"
+    source_url: "data/quality/drv/allgemeine-rv-cashflow-spotchecks.json"
+    source_dataset_id: "DRV_RV_ZEITREIHEN_2025_PDF"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "manuell geprüft am 2026-05-04 gegen DRV-PDF Stand 13.10.2025"
+    source_file_planned_path: "data/quality/drv/allgemeine-rv-cashflow-spotchecks.json"
+    raw_file_committed: true
+    data_years_covered: "Stichprobenjahre 1960, 1990, 1991, 2004, 2017, 2024"
+    geography: "Alte Bundesländer und Insgesamt gemäß ausgewählter Stichproben"
+    population_scope: "allgemeine RV"
+    variables:
+      - "Beiträge in Mio. EUR nominal"
+      - "Rentenausgaben in Mio. EUR nominal"
+    unit: "Mio. EUR"
+    currency: "EUR"
+    nominal_or_real: "nominal"
+    data_status: "qualitaetskontrolle_manuelle_stichprobe"
+    license_or_usage_note: "Enthält kurze PDF-Zeilenauszüge zur Prüfbarkeit; DRV-Nutzungshinweis und Zitierumfang vor Veröffentlichung prüfen"
+    trust_level: "mittel; prüft ausgewählte Zeilen, nicht die vollständige Tabelle"
+    known_limitations:
+      - "Kein vollständiger Tabellenabgleich."
+      - "Korrekturseiten sind nicht einbezogen."
+      - "Prüft nur die extrahierten Cashflow-Spalten, nicht alle Tabellenunterpositionen."
+    checksum_or_version: "git-tracked quality-control file"
+    transformation_status: "manual_spotcheck_quality_control"
+    used_in_model: false
+    used_in_website_context: false
+    related_assumption_ids: ["PENSION-001", "FLOW-001", "FLOW-002"]
 
   - dataset_id: BLACKROCK_AUM_2025_Q4
     title: "BlackRock Reports Full Year 2025 ... Fourth Quarter 2025 ..."
