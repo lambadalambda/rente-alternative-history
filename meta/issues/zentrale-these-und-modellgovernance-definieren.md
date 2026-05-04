@@ -21,3 +21,5 @@ Die Kernfrage des Projekts als falsifizierbare Modellhypothese festlegen, bevor 
 ## Notes
 
 - Ausgangsformulierung: "Wir prüfen, ob und unter welchen Annahmen eine seit 1957 aufgebaute Reserve spätere Rentenausgaben teilweise oder vollständig hätte finanzieren können."
+- Arbeitsstand 2026-05-04: Methodenentwurf in `meta/methodik/modellgovernance.md`, Annahmenregister in `assumptions/register.yaml`, Änderungslog in `assumptions/changelog.md`.
+- Issue bleibt offen, bis die offenen Baseline-Entscheidungen im Annahmenregister fachlich geprüft und entweder freigegeben oder explizit als Sensitivität markiert sind.

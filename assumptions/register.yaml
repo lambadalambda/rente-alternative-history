@@ -1,0 +1,236 @@
+schema_version: 1
+created_at: "2026-05-04"
+status: draft
+purpose: >-
+  Versioniertes Register zentraler Modellannahmen. Dieses Register enthält
+  noch keine freigegebenen Ergebnisannahmen; offene Einträge müssen vor der
+  ersten Modellrechnung entschieden oder als Sensitivität geführt werden.
+
+enums:
+  status:
+    - draft
+    - open
+    - proposed_baseline
+    - approved_baseline
+    - sensitivity_only
+    - rejected
+  evidence_type:
+    - historical_data
+    - reconstructed_data
+    - estimate
+    - model_assumption
+    - model_output
+    - interpretation
+
+assumptions:
+  - id: CLAIM-001
+    category: claim_governance
+    status: proposed_baseline
+    statement: "Primärfrage des Projekts"
+    value: "Wir prüfen, ob und unter welchen Annahmen eine seit 1957 aufgebaute Reserve spätere Rentenausgaben teilweise oder vollständig hätte finanzieren können."
+    evidence_type: model_assumption
+    rationale: "Verhindert, dass die 10-Prozent-Idee als bestätigter Ausgangsfakt erscheint."
+    alternatives: []
+    sensitivity_flag: false
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/zentrale-these-und-modellgovernance-definieren.md"
+
+  - id: SCOPE-001
+    category: historical_scope
+    status: proposed_baseline
+    statement: "Startjahr der Analyse"
+    value: 1957
+    unit: year
+    evidence_type: model_assumption
+    rationale: "Anker ist die Rentenreform 1957 und die dynamische Rente im Adenauer-Kontext."
+    alternatives: [1960, 1962]
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/historische-rentenstroeme-modellieren.md"
+
+  - id: SCOPE-002
+    category: geography
+    status: open
+    statement: "Gebietsstand der Cashflow-Reihe"
+    value: "Alte Bundesländer bis 1991; Insgesamt ab 1992, falls DRV-Tabelle diese Abgrenzung vorgibt"
+    evidence_type: model_assumption
+    rationale: "Die DRV-Finanzdaten weisen mehrfach diese Struktur aus; sie darf nicht unkommentiert als nahtlose gesamtdeutsche Reihe erscheinen."
+    alternatives:
+      - "Westdeutschland 1957-1991 separat, gesamtdeutsch ab 1992 als Bruch"
+      - "Nur westdeutsche historische Modellphase bis 1991"
+      - "Gesamtdeutsche Reihe mit expliziter Bruchkorrektur"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/historische-rentenstroeme-modellieren.md"
+
+  - id: PENSION-001
+    category: pension_scope
+    status: proposed_baseline
+    statement: "Institutionelle Baseline"
+    value: "allgemeine RV"
+    evidence_type: model_assumption
+    rationale: "Nutzerentscheidung vom 2026-05-04: allgemeine RV ist die erste Baseline, weil sie die normale gesetzliche Rentenversicherung für den Großteil der Beschäftigten abbildet und weniger Sonderlogik der Knappschaft enthält. RV insgesamt bleibt als späterer Vergleich relevant."
+    alternatives:
+      - "RV insgesamt"
+      - "allgemeine RV"
+      - "allgemeine RV plus separate KnV-Darstellung"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/historische-rentenstroeme-modellieren.md"
+
+  - id: FLOW-001
+    category: cashflow_base
+    status: proposed_baseline
+    statement: "Basis der hypothetischen Anlagequote"
+    value: "Beitragseinnahmen"
+    evidence_type: model_assumption
+    rationale: "Nutzerentscheidung vom 2026-05-04: Die Anlagequote soll auf Beiträge angewendet werden, nicht auf Bundeszuschüsse oder Gesamteinnahmen."
+    alternatives:
+      - "Beitragseinnahmen"
+      - "Gesamteinnahmen ohne Bundeszuschüsse"
+      - "Gesamteinnahmen inklusive Bundeszuschüsse"
+      - "Nur Pflichtbeiträge aus Erwerbsarbeit"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/historische-rentenstroeme-modellieren.md"
+
+  - id: FLOW-002
+    category: pension_outlay_base
+    status: proposed_baseline
+    statement: "Vergleichsgröße für Rentenzahlungen"
+    value: "Rentenausgaben"
+    evidence_type: model_assumption
+    rationale: "Nutzerentscheidung vom 2026-05-04: Vergleichsgröße sind Rentenausgaben, nicht Gesamtausgaben und nicht Renten plus KVdR/PVdR."
+    alternatives:
+      - "Rentenausgaben ohne KVdR/PVdR-Zuschüsse"
+      - "Rentenausgaben plus KVdR/PVdR"
+      - "Gesamtausgaben der RV"
+      - "Nur Altersrenten"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/historische-rentenstroeme-modellieren.md"
+
+  - id: TRANS-001
+    category: transition_financing
+    status: proposed_baseline
+    statement: "Finanzierung der entgangenen Umlageeinnahmen"
+    value:
+      interpretation: "relative Anteile an historischen Beitragseinnahmen, keine Beitragssatz-Prozentpunkte"
+      historical_contributions: 1.00
+      counterfactual_total_contributions: 1.05
+      payg_receives: 0.95
+      fund_receives: 0.10
+      additional_contributions: 0.05
+      diverted_from_payg: 0.05
+    evidence_type: model_assumption
+    rationale: "Nutzerentscheidung vom 2026-05-04: 5 Prozent höhere Beiträge plus 5 Prozent geringere Einzahlung in die Rentenkasse ergeben 10 Prozent Fondsbeitrag. Dadurch entsteht nur für 5 Prozent der historischen Beiträge eine Umlage-Finanzierungslücke, während 5 Prozent als zusätzliche Beitragslast modelliert werden."
+    alternatives:
+      - "Staatsschulden mit Bundesanleiherendite"
+      - "Höhere Beiträge"
+      - "Höhere Bundeszuschüsse/Steuern"
+      - "Geringere laufende Leistungen"
+      - "Nur Bruttorechnung, sichtbar als unvollständig markiert"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/uebergangskosten-und-fiskalischen-nettoeffekt-modellieren.md"
+
+  - id: INV-001
+    category: investment_policy
+    status: sensitivity_only
+    statement: "Hypothetische Anlagequote"
+    value: 0.10
+    unit: share_of_selected_cashflow
+    evidence_type: model_assumption
+    rationale: "Nutzerhypothese und zentrales Szenario; nicht als bestätigte optimale Quote behandeln."
+    alternatives: [0.01, 0.05, 0.15]
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/interaktives-szenario-modell-entwickeln.md"
+
+  - id: INV-002
+    category: investment_policy
+    status: open
+    statement: "Investmentpolitik der Baseline"
+    value: null
+    evidence_type: model_assumption
+    rationale: "Reine DAX/S&P-500-Rückblicke können Hindsight Bias erzeugen."
+    alternatives:
+      - "DAX-/deutsche Aktienrendite als Vergleichsrechnung"
+      - "S&P 500 Total Return als Vergleichsrechnung"
+      - "global diversifiziertes Aktienportfolio"
+      - "gemischtes Portfolio mit Bundesanleihen"
+      - "adverses Niedrigrendite-Szenario"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/historisch-plausible-investmentpolitik-definieren.md"
+
+  - id: RET-001
+    category: return_measurement
+    status: open
+    statement: "Renditebegriff"
+    value: null
+    evidence_type: model_assumption
+    rationale: "Price Return, Gross Total Return und Net Total Return führen über Jahrzehnte zu stark unterschiedlichen Ergebnissen."
+    alternatives:
+      - "Price Return"
+      - "Gross Total Return"
+      - "Net Total Return"
+      - "rekonstruierte Total-Return-Reihe"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/kapitalmarkt-backtesting-aufbauen.md"
+
+  - id: RET-002
+    category: currency_and_inflation
+    status: open
+    statement: "Nominal-/Real- und Währungsbehandlung"
+    value: null
+    evidence_type: model_assumption
+    rationale: "USD-Indexrenditen müssen für eine deutsche Rentenrechnung in DM/EUR und real/nominal eindeutig behandelt werden."
+    alternatives:
+      - "nominal DM/EUR"
+      - "real mit Destatis-Verbraucherpreisindex"
+      - "USD-Total-Return plus jährliche Wechselkursumrechnung"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/kapitalmarkt-backtesting-aufbauen.md"
+
+  - id: COST-001
+    category: implementation_costs
+    status: open
+    statement: "Kosten- und Steuerbehandlung"
+    value: null
+    evidence_type: model_assumption
+    rationale: "Verwaltungskosten, Quellensteuern und Fonds-/Transaktionskosten beeinflussen Langfristergebnisse wesentlich."
+    alternatives:
+      - "brutto vor Kosten/Steuern"
+      - "niedrige Kosten, steuerbefreiter Staatsfonds"
+      - "realistische Kosten und Quellensteuern"
+      - "konservative Hochkostenannahme"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/kapitalmarkt-backtesting-aufbauen.md"
+
+  - id: FISC-001
+    category: fiscal_position
+    status: proposed_baseline
+    statement: "Fiskalische Nettoposition muss neben Brutto-Fondsvermögen berichtet werden"
+    value: true
+    evidence_type: model_assumption
+    rationale: "Ein Bruttofonds ohne Übergangskosten kann politisch und fiskalisch irreführend sein."
+    alternatives: [false]
+    sensitivity_flag: false
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/uebergangskosten-und-fiskalischen-nettoeffekt-modellieren.md"
+
+  - id: DISPLAY-001
+    category: publication_language
+    status: proposed_baseline
+    statement: "Sichtbare Ergebnissprache"
+    value: "unter Annahme X ergibt sich Y"
+    evidence_type: interpretation
+    rationale: "Verhindert, dass kontrafaktische Outputs wie sichere historische Fakten klingen."
+    alternatives: []
+    sensitivity_flag: false
+    introduced_at: "2026-05-04"
+    issue_ref: "AGENTS.md"

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype_reconstructed_from_pdf_excerpt",
+  "createdAt": "2026-05-04",
+  "language": "de",
+  "title": "Prototypdaten: allgemeine RV, Beiträge und Rentenausgaben",
+  "warning": "Diese Datei ist ein UI-Prototypdatensatz, keine finale Modellgrundlage. Fehlende Jahre werden in der Website linear interpoliert und müssen vor einer Ergebnisveröffentlichung durch reproduzierbare Extraktion ersetzt werden.",
+  "source": {
+    "datasetId": "DRV_RV_ZEITREIHEN_2025_PDF",
+    "publisher": "Deutsche Rentenversicherung",
+    "title": "Rentenversicherung in Zeitreihen 2025",
+    "landingPage": "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen.html",
+    "pdfUrl": "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen.pdf?__blob=publicationFile&v=9",
+    "retrievedAt": "2026-05-04",
+    "pdfSha256": "f41ad3a1c398ac56ad5ac75898ba5c664aa1ef7e6ad98859cb2a622b6293ee07",
+    "tables": [
+      {
+        "page": 244,
+        "title": "Einnahmen allg. RV",
+        "variable": "Beiträge"
+      },
+      {
+        "page": 245,
+        "title": "Ausgaben allg. RV",
+        "variable": "Rentenausgaben"
+      }
+    ]
+  },
+  "scope": {
+    "institution": "allgemeine RV",
+    "geographyNote": "Alte Bundesländer bis 1990; ab 1991 verwendete Prototypreihe: Insgesamt, soweit in der geprüften Tabelle ausgewiesen.",
+    "unit": "Mio. EUR, nominal",
+    "dataStatus": "rekonstruierte Zahl aus PDF-Stichprobe"
+  },
+  "records": [
+    { "year": 1960, "scope": "Alte Bundesländer", "contributionsMioEur": 6894, "pensionOutlaysMioEur": 7286 },
+    { "year": 1965, "scope": "Alte Bundesländer", "contributionsMioEur": 11502, "pensionOutlaysMioEur": 11525 },
+    { "year": 1970, "scope": "Alte Bundesländer", "contributionsMioEur": 21673, "pensionOutlaysMioEur": 19630 },
+    { "year": 1975, "scope": "Alte Bundesländer", "contributionsMioEur": 38992, "pensionOutlaysMioEur": 37238 },
+    { "year": 1980, "scope": "Alte Bundesländer", "contributionsMioEur": 56858, "pensionOutlaysMioEur": 55921 },
+    { "year": 1985, "scope": "Alte Bundesländer", "contributionsMioEur": 70385, "pensionOutlaysMioEur": 72096 },
+    { "year": 1990, "scope": "Alte Bundesländer", "contributionsMioEur": 89433, "pensionOutlaysMioEur": 89923 },
+    { "year": 1991, "scope": "Insgesamt", "contributionsMioEur": 106822, "pensionOutlaysMioEur": 108942 },
+    { "year": 1995, "scope": "Insgesamt", "contributionsMioEur": 138199, "pensionOutlaysMioEur": 151004 },
+    { "year": 1996, "scope": "Insgesamt", "contributionsMioEur": 144499, "pensionOutlaysMioEur": 157005 },
+    { "year": 1997, "scope": "Insgesamt", "contributionsMioEur": 152059, "pensionOutlaysMioEur": 162397 },
+    { "year": 1998, "scope": "Insgesamt", "contributionsMioEur": 152277, "pensionOutlaysMioEur": 168001 },
+    { "year": 1999, "scope": "Insgesamt", "contributionsMioEur": 159160, "pensionOutlaysMioEur": 171775 },
+    { "year": 2000, "scope": "Insgesamt", "contributionsMioEur": 162165, "pensionOutlaysMioEur": 177751 },
+    { "year": 2001, "scope": "Insgesamt", "contributionsMioEur": 163580, "pensionOutlaysMioEur": 183344 },
+    { "year": 2002, "scope": "Insgesamt", "contributionsMioEur": 164426, "pensionOutlaysMioEur": 189747 },
+    { "year": 2003, "scope": "Insgesamt", "contributionsMioEur": 168386, "pensionOutlaysMioEur": 194864 },
+    { "year": 2004, "scope": "Insgesamt", "contributionsMioEur": 168378, "pensionOutlaysMioEur": 197450 },
+    { "year": 2005, "scope": "Insgesamt", "contributionsMioEur": 167980, "pensionOutlaysMioEur": 198812 },
+    { "year": 2006, "scope": "Insgesamt", "contributionsMioEur": 179476, "pensionOutlaysMioEur": 199423 },
+    { "year": 2007, "scope": "Insgesamt", "contributionsMioEur": 173772, "pensionOutlaysMioEur": 200658 },
+    { "year": 2008, "scope": "Insgesamt", "contributionsMioEur": 179089, "pensionOutlaysMioEur": 203162 },
+    { "year": 2009, "scope": "Insgesamt", "contributionsMioEur": 180649, "pensionOutlaysMioEur": 207642 },
+    { "year": 2010, "scope": "Insgesamt", "contributionsMioEur": 184404, "pensionOutlaysMioEur": 211042 },
+    { "year": 2011, "scope": "Insgesamt", "contributionsMioEur": 188999, "pensionOutlaysMioEur": 212200 },
+    { "year": 2012, "scope": "Insgesamt", "contributionsMioEur": 192889, "pensionOutlaysMioEur": 215999 },
+    { "year": 2013, "scope": "Insgesamt", "contributionsMioEur": 193576, "pensionOutlaysMioEur": 219084 },
+    { "year": 2014, "scope": "Insgesamt", "contributionsMioEur": 200938, "pensionOutlaysMioEur": 225752 },
+    { "year": 2015, "scope": "Insgesamt", "contributionsMioEur": 206636, "pensionOutlaysMioEur": 236187 },
+    { "year": 2016, "scope": "Insgesamt", "contributionsMioEur": 214779, "pensionOutlaysMioEur": 245671 },
+    { "year": 2017, "scope": "Insgesamt", "contributionsMioEur": 224635, "pensionOutlaysMioEur": 254925 },
+    { "year": 2018, "scope": "Insgesamt", "contributionsMioEur": 235869, "pensionOutlaysMioEur": 263008 },
+    { "year": 2019, "scope": "Insgesamt", "contributionsMioEur": 247406, "pensionOutlaysMioEur": 276964 },
+    { "year": 2020, "scope": "Insgesamt", "contributionsMioEur": 252192, "pensionOutlaysMioEur": 288980 },
+    { "year": 2021, "scope": "Insgesamt", "contributionsMioEur": 262103, "pensionOutlaysMioEur": 296017 },
+    { "year": 2022, "scope": "Insgesamt", "contributionsMioEur": 275089, "pensionOutlaysMioEur": 307818 },
+    { "year": 2023, "scope": "Insgesamt", "contributionsMioEur": 289110, "pensionOutlaysMioEur": 325029 },
+    { "year": 2024, "scope": "Insgesamt", "contributionsMioEur": 305336, "pensionOutlaysMioEur": 344351 }
+  ]
+}

@@ -26,3 +26,5 @@ Eine statisch hostbare Website-Struktur aufbauen, die Daten, Modell und Visualis
 ## Notes
 
 - JavaScript ist erlaubt; Serverabhängigkeit nach dem Build nicht.
+- Arbeitsstand 2026-05-04: Erste statische Website ohne Framework angelegt (`index.html`, `assets/styles.css`, `assets/app.js`, `.nojekyll`). Lokal mit `python3 -m http.server 4173` lauffähig; kein Produktionsbuild nötig.
+- Issue bleibt offen, bis Daten-Rebuild, Modelltests, Accessibility-Checks und Deployment-Konfiguration eingerichtet sind.

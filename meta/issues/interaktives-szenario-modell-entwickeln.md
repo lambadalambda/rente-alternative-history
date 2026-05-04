@@ -26,3 +26,5 @@ Ein interaktives Modell bereitstellen, mit dem Nutzerinnen und Nutzer Anlagequot
 ## Notes
 
 - Die Website soll nicht als Anlageberatung wirken, sondern als historisches und fiskalisches Gedankenexperiment.
+- Arbeitsstand 2026-05-04: Erste interaktive Modellwerkstatt mit Reglern für Fondsbeitrag, zusätzliche Beiträge, Rendite, Kosten und Übergangszins angelegt. Die Renditen sind ausdrücklich illustrative Konstanten, keine historischen Indexdaten.
+- Issue bleibt offen, bis echte historische Renditeserien, Presets per URL und vollständige Quellenrückführung angebunden sind.

@@ -21,3 +21,6 @@ Die Finanzierungslücke modellieren, die entsteht, wenn ein Teil der Rentenbeitr
 ## Notes
 
 - Dieses Thema ist zentral, weil das reale Umlagesystem historische Renten weiterzahlen musste.
+- Arbeitsstand 2026-05-04: `meta/methodik/modellgovernance.md` legt fest, dass jede Umleitung von Beiträgen entgangene Umlageeinnahmen, Ersatzfinanzierung, Zinskosten und fiskalische Nettoposition ausweisen muss.
+- Konkrete Übergangsfinanzierung ist noch offen und steht als `TRANS-001` in `assumptions/register.yaml`.
+- Nutzerentscheidung 2026-05-04: Bei historischen Beitragseinnahmen von 100 werden im Szenario 105 gezahlt, 95 gehen in die Umlage und 10 in den Fonds. Diese Annahme ist als relativer Beitragsanteil dokumentiert, nicht als Beitragssatz-Prozentpunkte.

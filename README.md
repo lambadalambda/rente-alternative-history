@@ -49,9 +49,34 @@ Rohquellen -> bereinigte Tabellen -> Annahmenregister -> Modelloutputs -> Websit
 
 Jede Datenquelle soll Herausgeber, URL, Abrufdatum, Lizenz-/Nutzungshinweis, Vertrauensniveau und bekannte Einschränkungen enthalten. Wenn Rohdaten nicht frei weiterverbreitet werden dürfen, werden stattdessen die exakten Reproduktionsschritte dokumentiert.
 
+Aktuelle Planungsartefakte:
+
+- `meta/methodik/modellgovernance.md`: Regeln für Claims, Falsifikation, Übergangskosten und Veröffentlichung.
+- `assumptions/register.yaml`: versioniertes Register zentraler Annahmen und offener Entscheidungen.
+- `data/manifest.yaml`: Grundstruktur des Datenmanifests.
+- `meta/research/drv-zeitreihen-inventar.md`: erstes Inventar der DRV-Zeitreihenquelle.
+
 ## Entwicklung
 
-Noch nicht eingerichtet. Sobald ein Stack gewählt ist, werden hier die Befehle für Entwicklung, Build, Test, Daten-Rebuild und GitHub-Pages-Deployment dokumentiert.
+Die erste Basiswebsite ist bewusst ohne Framework angelegt und kann direkt statisch gehostet werden.
+
+Lokal ansehen:
+
+```bash
+python3 -m http.server 4173
+```
+
+Danach im Browser öffnen: `http://localhost:4173/`
+
+Einfache Syntaxchecks:
+
+```bash
+node --check assets/app.js
+python3 -m json.tool data/website/prototype-allgemeine-rv.json >/dev/null
+ruby -e 'require "yaml"; YAML.load_file("assumptions/register.yaml"); YAML.load_file("data/manifest.yaml")'
+```
+
+Ein Produktionsbuild ist für diese reine Static-Version nicht nötig; GitHub Pages kann den Repository-Root ausliefern. Später kann ein Build-Schritt ergänzt werden, sobald Datenextraktion, Modelltests und Accessibility-Checks automatisiert sind.
 
 ## Korrekturen
 

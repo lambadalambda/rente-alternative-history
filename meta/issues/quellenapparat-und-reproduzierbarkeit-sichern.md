@@ -26,3 +26,4 @@ Sicherstellen, dass alle Daten, Annahmen und Berechnungen der Website nachvollzi
 ## Notes
 
 - Wenn Daten nicht frei weiterverbreitet werden duerfen, nur abgeleitete oder manuell nachbaubare Tabellen aufnehmen und die Beschraenkung nennen.
+- Arbeitsstand 2026-05-04: Prototypdatensatz `data/website/prototype-allgemeine-rv.json` ist im Manifest dokumentiert und als rekonstruierte, nicht finale Zahl markiert. Eine reproduzierbare Extraktionspipeline fehlt noch.

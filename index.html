@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rentenfonds 1957</title>
+    <meta name="description" content="Datenjournalistische Website über ein kontrafaktisches Rentenfonds-Modell ab 1957.">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="site-header" aria-label="Seitennavigation">
+      <a class="brand" href="#top" aria-label="Rentenfonds 1957 Start">
+        <span class="brand-mark" aria-hidden="true">57</span>
+        <span>Rentenfonds 1957</span>
+      </a>
+      <nav class="top-nav" aria-label="Hauptnavigation">
+        <a href="#modell">Rechner</a>
+        <a href="#daten">Daten</a>
+        <a href="#grenzen">Methodik</a>
+      </nav>
+    </header>
+
+    <main id="inhalt">
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Ein Renten-Gedankenexperiment ab 1957</p>
+          <h1>Die Rente wurde verteilt. Was, wenn sie auch Vermögen aufgebaut hätte?</h1>
+          <p class="lead">
+            Die Rentenreform von 1957 war keine Naturgewalt, sondern eine politische Weichenstellung: sofort zahlbare Renten statt Kapitalstock. Diese Seite rechnet den Zielkonflikt durch: Fondsvermögen, Umlage-Lücke und Netto nach Schulden.
+          </p>
+          <div class="hero-actions" aria-label="Schnelleinstieg">
+            <a class="button primary" href="#modell">Jetzt gegenrechnen</a>
+            <a class="button secondary" href="#grenzen">Methodik prüfen</a>
+          </div>
+        </div>
+
+        <aside class="thesis-card" aria-label="Zentrale Modelllogik">
+          <p class="card-kicker">Der unbequeme Teil</p>
+          <p class="card-number">Ein Fonds wächst nur, wenn vorher Geld fehlt.</p>
+          <p>
+            Darum zeigt diese Seite nicht nur das Fondsvermögen, sondern auch die Schuld, die durch umgeleitete Beiträge entsteht.
+          </p>
+        </aside>
+      </section>
+
+      <section class="principles" aria-label="Die einfache Idee">
+        <article>
+          <span class="pill">1</span>
+          <h2>Geld in den Fonds</h2>
+          <p>Baseline: Ein Teil der Beitragseinnahmen der allgemeinen Rentenversicherung wird langfristig angelegt.</p>
+        </article>
+        <article>
+          <span class="pill">2</span>
+          <h2>Geld fehlt in der Umlage</h2>
+          <p>Der Fonds ist nicht gratis. Was nicht in die Rentenkasse fließt, muss in der Übergangszeit ersetzt werden.</p>
+        </article>
+        <article>
+          <span class="pill">3</span>
+          <h2>Am Ende zählt Netto</h2>
+          <p>Eine große Fonds-Zahl ist nur die halbe Geschichte. Entscheidend ist Fondsvermögen minus Übergangsschuld.</p>
+        </article>
+      </section>
+
+      <section class="model-section" id="modell" aria-labelledby="modell-title">
+        <div class="section-heading">
+          <p class="eyebrow">Rechner</p>
+          <h2 id="modell-title">Dreh an den Annahmen und sieh, wann die Idee kippt</h2>
+          <p>
+            Ändere Fondsquote, Rendite, Kosten und Schuldenzins. Die Rechnung zeigt nicht nur das Fondsvermögen, sondern auch die Lücke, die durch umgeleitete Beiträge entsteht.
+          </p>
+        </div>
+        <p class="method-label">Datenstand: DRV-Stützjahre, lineare Interpolation, konstante Renditeannahmen.</p>
+
+        <div class="model-grid">
+          <form class="controls" aria-label="Szenario-Parameter">
+            <div class="control-group">
+              <label for="preset">Rendite-Preset</label>
+              <select id="preset" name="preset">
+                <option value="mixed">Gemischtes Portfolio</option>
+                <option value="world">Weltaktien-Vergleich</option>
+                <option value="sp500">S&P-500-Vergleich</option>
+                <option value="dax">DAX-Vergleich</option>
+                <option value="stress">Stressszenario</option>
+              </select>
+              <p class="field-note">Presets nutzen konstante Beispielrenditen; historische Indexreihen folgen.</p>
+            </div>
+
+            <div class="control-group">
+              <label for="investmentShare">Fondsbeitrag: <output id="investmentShareValue">10,0 %</output></label>
+              <input id="investmentShare" name="investmentShare" type="range" min="1" max="15" step="0.5" value="10">
+            </div>
+
+            <div class="control-group">
+              <label for="additionalShare">Davon zusätzliche Beiträge: <output id="additionalShareValue">5,0 %</output></label>
+              <input id="additionalShare" name="additionalShare" type="range" min="0" max="10" step="0.5" value="5">
+              <p class="field-note">Der nicht zusätzlich gezahlte Anteil ist der Preis des Fonds: Er fehlt in der Umlage.</p>
+            </div>
+
+            <div class="split-readout" aria-live="polite">
+              <span>Umlage bekommt</span>
+              <strong id="paygReadout">95,0 %</strong>
+              <span>Fonds bekommt</span>
+              <strong id="fundReadout">10,0 %</strong>
+            </div>
+
+            <div class="control-group">
+              <label for="returnRate">Nominale Jahresrendite vor Kosten: <output id="returnRateValue">5,0 %</output></label>
+              <input id="returnRate" name="returnRate" type="range" min="0" max="9" step="0.25" value="5">
+            </div>
+
+            <div class="control-group">
+              <label for="costRate">Kosten/Steuern p.a.: <output id="costRateValue">0,30 %</output></label>
+              <input id="costRate" name="costRate" type="range" min="0" max="1.5" step="0.05" value="0.3">
+            </div>
+
+            <div class="control-group">
+              <label for="debtRate">Zins auf Übergangslücke p.a.: <output id="debtRateValue">3,0 %</output></label>
+              <input id="debtRate" name="debtRate" type="range" min="0" max="7" step="0.25" value="3">
+            </div>
+
+            <details class="method-details">
+              <summary>Was wird hier angenommen?</summary>
+              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Fehlende Jahre werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen.</p>
+            </details>
+          </form>
+
+          <div class="results" aria-label="Szenario-Ergebnisse">
+            <div class="status-banner" id="dataStatus" role="status">Lade Modell ...</div>
+
+            <div class="kpi-grid">
+              <article class="kpi">
+                <span>Fondsvermögen 2024</span>
+                <strong id="fundKpi">-</strong>
+              </article>
+              <article class="kpi warning">
+                <span>Aufgelaufene Übergangsschuld</span>
+                <strong id="debtKpi">-</strong>
+              </article>
+              <article class="kpi">
+                <span>Netto nach Schulden</span>
+                <strong id="netKpi">-</strong>
+              </article>
+              <article class="kpi">
+                <span>Deckt Rentenausgaben 2024</span>
+                <strong id="coverageKpi">-</strong>
+              </article>
+            </div>
+
+            <figure class="chart-card">
+              <figcaption>
+                <strong>Wann überholt der Fonds die Übergangsschuld?</strong>
+                <span>Modellwerte in Mrd. Euro: nominal, interpolierte Beitragsdaten, konstante Rendite.</span>
+              </figcaption>
+              <svg id="fundChart" role="img" aria-labelledby="chartTitle chartDesc" viewBox="0 0 1000 420" preserveAspectRatio="none">
+                <title id="chartTitle">Zeitverlauf von Fondsvermögen, Übergangsschuld und Netto nach Schulden</title>
+                <desc id="chartDesc">Interaktive Liniengrafik. Eine Textzusammenfassung folgt direkt unter der Grafik.</desc>
+              </svg>
+              <p class="chart-summary" id="chartSummary" aria-live="polite">Noch keine Berechnung.</p>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="data-section" id="daten" aria-labelledby="daten-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Datenbasis</p>
+          <h2 id="daten-title">Welche Zahlen in das Modell fließen</h2>
+          <p>
+            Die aktuelle Rechnung nutzt rekonstruierte Stützjahre aus DRV-Zeitreihen zur allgemeinen RV und interpoliert fehlende Jahre. Das macht die Modelllogik sichtbar; die vollständige Extraktionspipeline kommt als nächster Schritt.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Ausgewählte Modelljahre der aktuellen Rechnung</caption>
+            <thead>
+              <tr>
+                <th scope="col">Jahr</th>
+                <th scope="col">Beiträge</th>
+                <th scope="col">Rentenausgaben</th>
+                <th scope="col">Fonds-Einzahlung</th>
+                <th scope="col">Umlage-Lücke</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="dataTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="limits" id="grenzen" aria-labelledby="grenzen-title">
+        <div>
+          <p class="eyebrow">Methodik & Grenzen</p>
+          <h2 id="grenzen-title">Was du dieser Rechnung glauben kannst — und was nicht</h2>
+        </div>
+        <div class="limit-grid">
+          <article>
+            <h3>Historische Daten</h3>
+            <p>Beiträge und Rentenausgaben stammen aus DRV-Zeitreihen zur allgemeinen RV. Die Werte sind nominal und quellennahe dokumentiert.</p>
+          </article>
+          <article>
+            <h3>Modellannahmen</h3>
+            <p>Fondsquote, Rendite, Kosten, Schuldenzins und Übergangsfinanzierung sind einstellbare Annahmen. Sie sind keine historischen Beobachtungen.</p>
+          </article>
+          <article>
+            <h3>Noch offen</h3>
+            <p>Historische DAX-, S&P-500- und Weltindex-Reihen, die Jahre 1957-1959, reale Werte und Lizenzprüfungen fehlen noch.</p>
+          </article>
+          <article>
+            <h3>Rote Linie</h3>
+            <p>Wer nur den Fonds zeigt, verkauft eine Erfolgsgeschichte. Wer nur die Lücke zeigt, beendet das Experiment zu früh. Diese Seite zeigt beides.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Quellenbasis dieser Version: Deutsche Rentenversicherung, <em>Rentenversicherung in Zeitreihen 2025</em>, Tabellen „Einnahmen allg. RV“ und „Ausgaben allg. RV“, abgerufen am 04.05.2026. Website-Daten: `data/website/prototype-allgemeine-rv.json`.
+      </p>
+      <p>Historisches Gedankenexperiment, keine Anlageberatung. Statische Website ohne Tracking, Cookies, externe Fonts oder CDN.</p>
+    </footer>
+
+    <script src="assets/app.js" defer></script>
+  </body>
+</html>

@@ -26,3 +26,5 @@ Klaeren, welche offiziellen und nachvollziehbaren Daten fuer die Alternativgesch
 ## Notes
 
 - Wichtige Kandidaten: Deutsche Rentenversicherung, Bundesministerium fuer Arbeit und Soziales, Statistisches Bundesamt, Bundesbank, OECD, FRED, Stooq, Yahoo Finance, MSCI/S&P/DAX-Indexanbieter.
+- Arbeitsstand 2026-05-04: Erstes Datenmanifest in `data/manifest.yaml`, Recherche in `meta/research/initiale-datenquellen-recherche.md`, DRV-Inventar in `meta/research/drv-zeitreihen-inventar.md`.
+- Issue bleibt offen, weil die Quellenliste noch nicht vollständig extrahiert, lizenzgeprüft und mit finalen Tabellen-/Serien-IDs versehen ist.

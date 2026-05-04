@@ -26,3 +26,6 @@ Die historischen Finanzstroeme der gesetzlichen Rentenversicherung so modelliere
 ## Notes
 
 - Der Claim, dass 10 Prozent Anlagequote heute Rentenzahlungen aus Renditen decken koennte, muss als pruefbare Hypothese behandelt werden, nicht als Vorabfakt.
+- Arbeitsstand 2026-05-04: DRV-Finanzdaten im PDF `Rentenversicherung in Zeitreihen 2025` sind grob inventarisiert; `allgemeine RV` ist als erste Baseline gesetzt, `RV insgesamt` bleibt Vergleich.
+- Eine Baseline-Rechnung wurde noch nicht erstellt.
+- Nutzerentscheidung 2026-05-04: Anlagequote basiert auf Beiträgen; Vergleichsgröße sind Rentenausgaben.

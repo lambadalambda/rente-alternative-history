@@ -1,0 +1,252 @@
+schema_version: 1
+created_at: "2026-05-04"
+status: draft
+purpose: >-
+  Quellen- und Datenmanifest. Rohdaten, transformierte Daten, Annahmen und
+  generierte Website-Daten bleiben getrennt. Dieses Manifest ist noch keine
+  vollständige Datensammlung.
+
+required_fields:
+  - dataset_id
+  - title
+  - publisher
+  - source_url
+  - retrieved_at
+  - source_version_or_date
+  - source_file_planned_path
+  - data_years_covered
+  - geography
+  - population_scope
+  - variables
+  - unit
+  - currency
+  - nominal_or_real
+  - data_status
+  - license_or_usage_note
+  - trust_level
+  - known_limitations
+  - checksum_or_version
+  - transformation_status
+  - used_in_model
+  - related_assumption_ids
+
+sources:
+  - dataset_id: DRV_RV_ZEITREIHEN_2025_PDF
+    title: "Rentenversicherung in Zeitreihen 2025"
+    publisher: "Deutsche Rentenversicherung"
+    source_url: "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen.pdf?__blob=publicationFile&v=9"
+    landing_page: "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen.html"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "Stand 13.10.2025; Auflage 31; Datenstand laut Landingpage Mitte Oktober 2025"
+    source_file_planned_path: "data/raw/drv/rv_in_zeitreihen_2025.pdf"
+    raw_file_committed: false
+    temporary_inspection_path: "/var/folders/8j/dz0ntd7n5x7dqzch0pbtnwfc0000gn/T/opencode/rente-drv/rv_in_zeitreihen.pdf"
+    data_years_covered: "je nach Tabelle; Finanzdaten u. a. ab 1960, Bundesmittel ab 1950, Rücklagen ab 1965/1972"
+    geography: "Alte Bundesländer bis 1991 in vielen Tabellen; Insgesamt ab 1992; einzelne Ost/West-Segmente"
+    population_scope: "Gesetzliche Rentenversicherung; teils RV insgesamt, teils allgemeine RV, teils KnV"
+    variables:
+      - "Einnahmen RV/allgemeine RV/KnV"
+      - "Ausgaben RV/allgemeine RV/KnV"
+      - "Renten ausgaben nach Rentenartengruppen"
+      - "Bundesmittel"
+      - "Nachhaltigkeitsrücklage und Bar-/Anlagevermögen"
+      - "KVdR/PVdR-Anteile"
+    unit: "Mio. Euro, Prozent, Monatsausgaben; je Tabelle"
+    currency: "Euro; historische DM-Werte laut Quelle zur Euro-Umrechnung vgl. Glossar"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "Nutzungshinweis der DRV noch prüfen; PDF ist frei herunterladbar, aber nicht automatisch frei redistribuierbar"
+    trust_level: "hoch"
+    known_limitations:
+      - "PDF ist nicht barrierefrei und nicht unmittelbar maschinenlesbar."
+      - "Korrekturseiten müssen vor Extraktion berücksichtigt werden."
+      - "Gebiets- und Definitionsbrüche sind tabellenweise zu dokumentieren."
+    checksum_or_version: "sha256:f41ad3a1c398ac56ad5ac75898ba5c664aa1ef7e6ad98859cb2a622b6293ee07"
+    transformation_status: "not_started"
+    used_in_model: false
+    related_assumption_ids: ["SCOPE-002", "PENSION-001", "FLOW-001", "FLOW-002"]
+
+  - dataset_id: DRV_RV_ZEITREIHEN_2025_CORRECTIONS
+    title: "Rentenversicherung in Zeitreihen - Korrekturseiten"
+    publisher: "Deutsche Rentenversicherung"
+    source_url: "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.pdf?__blob=publicationFile&v=3"
+    landing_page: "https://www.deutsche-rentenversicherung.de/SharedDocs/Downloads/DE/Statistiken-und-Berichte/statistikpublikationen/rv_in_zeitreihen_korrekturseiten.html"
+    retrieved_at: null
+    source_version_or_date: "Stand 16.12.2025 laut Landingpage"
+    source_file_planned_path: "data/raw/drv/rv_in_zeitreihen_korrekturseiten_2025.pdf"
+    raw_file_committed: false
+    data_years_covered: "Korrekturen zur Publikation 2025"
+    geography: "wie Hauptpublikation"
+    population_scope: "wie Hauptpublikation"
+    variables: []
+    unit: "je Korrektur"
+    currency: "je Korrektur"
+    nominal_or_real: "je Korrektur"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "Nutzungshinweis der DRV noch prüfen"
+    trust_level: "hoch"
+    known_limitations:
+      - "Muss vor finaler Extraktion mit Haupt-PDF abgeglichen werden."
+    checksum_or_version: null
+    transformation_status: "not_started"
+    used_in_model: false
+    related_assumption_ids: []
+
+  - dataset_id: DRV_HISTORISCHE_ZEITREIHE_XLSX_1891_1956
+    title: "Historische Zeitreihe"
+    publisher: "Deutsche Rentenversicherung / Statistikportal"
+    source_url: "https://statistik-rente.de/drv/extern/zeitreihen/rv_in_zeitreihen/documents/ZR_Historie.xlsx"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "nicht auf Dateiebene ermittelt"
+    source_file_planned_path: "data/raw/drv/ZR_Historie.xlsx"
+    raw_file_committed: false
+    temporary_inspection_path: "/var/folders/8j/dz0ntd7n5x7dqzch0pbtnwfc0000gn/T/opencode/rente-drv/ZR_Historie.xlsx"
+    data_years_covered: "1891-1956 laut Workbook-Titel und Tabellenkopf"
+    geography: "Reichsgebiet 1891-1938; Bundesgebiet 1949-1956"
+    population_scope: "Gesetzliche Rentenversicherung; historische Zweige"
+    variables:
+      - "Rentenbestand"
+      - "rechnerische Monatsrente"
+      - "Einnahmen"
+      - "Ausgaben"
+    unit: "nicht final inventarisiert"
+    currency: "historische Währungen / Euro-Umrechnung zu prüfen"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "Nutzungshinweis noch prüfen"
+    trust_level: "hoch für historischen Kontext; nicht Primärquelle für Modell ab 1957"
+    known_limitations:
+      - "Nicht die gesuchte Hauptquelle für 1957 ff."
+      - "Nur ein Tabellenblatt gefunden: HistorZR_RV__1891_1956_pub."
+    checksum_or_version: "sha256:afc7a4d147ccdf3b31e3f3120e09559c7241e8ade795bb7690669f2e9a583e71"
+    transformation_status: "inventory_only"
+    used_in_model: false
+    related_assumption_ids: ["SCOPE-001"]
+
+  - dataset_id: WEBSITE_PROTO_ALLG_RV_2026_05_04
+    title: "Prototypdaten: allgemeine RV, Beiträge und Rentenausgaben"
+    publisher: "Projektinterne rekonstruierte Prototypdatei auf Basis DRV-PDF-Stichprobe"
+    source_url: "data/website/prototype-allgemeine-rv.json"
+    source_dataset_id: "DRV_RV_ZEITREIHEN_2025_PDF"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "erstellt 2026-05-04"
+    source_file_planned_path: "data/website/prototype-allgemeine-rv.json"
+    raw_file_committed: true
+    data_years_covered: "Stützjahre 1960-2024; fehlende Jahre werden in der Website linear interpoliert"
+    geography: "Alte Bundesländer bis 1990; ab 1991 Insgesamt, soweit in der geprüften DRV-Tabelle verwendet"
+    population_scope: "allgemeine RV"
+    variables:
+      - "Beiträge in Mio. EUR nominal"
+      - "Rentenausgaben in Mio. EUR nominal"
+    unit: "Mio. EUR"
+    currency: "EUR"
+    nominal_or_real: "nominal"
+    data_status: "rekonstruierte_zahl"
+    license_or_usage_note: "Nur Prototyp; manuelle Transkription aus DRV-PDF-Stichprobe, DRV-Nutzungshinweis noch prüfen"
+    trust_level: "mittel für UI-Prototyp; nicht ausreichend für Veröffentlichung von Headline-Zahlen"
+    known_limitations:
+      - "Keine finale reproduzierbare PDF-Extraktion."
+      - "Keine Daten für 1957-1959."
+      - "Fehlende Jahre werden linear interpoliert."
+      - "Historische Indexrenditen sind noch nicht angebunden."
+      - "Gebietsbruch alte Bundesländer/Insgesamt bleibt ungelöst."
+    checksum_or_version: "git-tracked prototype file"
+    transformation_status: "prototype_manual_transcription"
+    used_in_model: true
+    related_assumption_ids: ["PENSION-001", "FLOW-001", "FLOW-002", "TRANS-001", "INV-001"]
+
+  - dataset_id: BMAS_GRV_EINNAHMEN_AUSGABEN
+    title: "Einnahmen und Ausgaben der Gesetzlichen Rentenversicherung"
+    publisher: "Bundesministerium für Arbeit und Soziales"
+    source_url: "https://www.bmas.de/SharedDocs/Downloads/DE/Soziale-Sicherung/einnahmen-und-ausgaben-der-gesetzlichen-rentenversicherung-grv.html"
+    retrieved_at: null
+    source_version_or_date: null
+    source_file_planned_path: "data/raw/bmas/einnahmen_ausgaben_grv"
+    raw_file_committed: false
+    data_years_covered: "zu prüfen"
+    geography: "Deutschland; genaue Abgrenzung zu prüfen"
+    population_scope: "gesetzliche Rentenversicherung"
+    variables: ["Einnahmen", "Ausgaben"]
+    unit: "zu prüfen"
+    currency: "Euro"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "BMAS-Nutzungshinweis/Open-Data-Status prüfen"
+    trust_level: "hoch"
+    known_limitations: ["Noch nicht extrahiert; voraussichtlich Ergänzung/Plausibilitätscheck zur DRV."]
+    checksum_or_version: null
+    transformation_status: "not_started"
+    used_in_model: false
+    related_assumption_ids: ["FLOW-001", "FLOW-002"]
+
+  - dataset_id: DESTATIS_CPI_LONG_SERIES
+    title: "Verbraucherpreisindex für Deutschland - Lange Reihen ab 1948"
+    publisher: "Statistisches Bundesamt"
+    source_url: "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Publikationen/Downloads-Verbraucherpreise/statistischer-bericht-verbraucherpreisindex-lange-reihen-5611103.html"
+    retrieved_at: null
+    source_version_or_date: null
+    source_file_planned_path: "data/raw/destatis/verbraucherpreisindex_lange_reihen"
+    raw_file_committed: false
+    data_years_covered: "ab 1948 laut Quelle"
+    geography: "Deutschland; frühere Gebietsstände tabellenabhängig"
+    population_scope: "Verbraucherpreise"
+    variables: ["Verbraucherpreisindex", "Jahresdurchschnitt", "Monatswerte"]
+    unit: "Index"
+    currency: null
+    nominal_or_real: "Preisindex zur Realumrechnung"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "Destatis Open Data / Datenlizenz Deutschland 2.0 prüfen und zitieren"
+    trust_level: "sehr hoch"
+    known_limitations: ["Basiswechsel und Gebietsstände dokumentieren."]
+    checksum_or_version: null
+    transformation_status: "not_started"
+    used_in_model: false
+    related_assumption_ids: ["RET-002"]
+
+  - dataset_id: BUNDESBANK_EXCHANGE_RATES
+    title: "Wechselkurse"
+    publisher: "Deutsche Bundesbank"
+    source_url: "https://www.bundesbank.de/de/statistiken/wechselkurse"
+    retrieved_at: null
+    source_version_or_date: null
+    source_file_planned_path: "data/raw/bundesbank/wechselkurse"
+    raw_file_committed: false
+    data_years_covered: "serienabhängig"
+    geography: "Deutschland / Euro-Raum und Ausland"
+    population_scope: "Wechselkurse"
+    variables: ["DEM/USD", "EUR/USD", "weitere Wechselkurse nach Bedarf"]
+    unit: "Währungseinheiten je Bezugswährung"
+    currency: "DEM, EUR, USD"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "Bundesbank-Nutzungshinweis prüfen"
+    trust_level: "hoch"
+    known_limitations: ["DEM/EUR-Übergang und Reihenmethodik dokumentieren."]
+    checksum_or_version: null
+    transformation_status: "not_started"
+    used_in_model: false
+    related_assumption_ids: ["RET-002"]
+
+  - dataset_id: BUNDESBANK_UMLAUFSRENDITEN
+    title: "Umlaufsrenditen"
+    publisher: "Deutsche Bundesbank"
+    source_url: "https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen/umlaufsrenditen/umlaufsrenditen-772416"
+    retrieved_at: null
+    source_version_or_date: null
+    source_file_planned_path: "data/raw/bundesbank/umlaufsrenditen"
+    raw_file_committed: false
+    data_years_covered: "serienabhängig"
+    geography: "Deutschland"
+    population_scope: "Bundeswertpapiere / Kapitalmarkt"
+    variables: ["Umlaufsrenditen", "Laufzeitsegmente"]
+    unit: "Prozent p.a."
+    currency: "DEM/EUR"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "Bundesbank-Nutzungshinweis prüfen"
+    trust_level: "hoch"
+    known_limitations: ["Laufzeitannahme für Übergangsschulden noch festlegen."]
+    checksum_or_version: null
+    transformation_status: "not_started"
+    used_in_model: false
+    related_assumption_ids: ["TRANS-001"]

@@ -26,3 +26,5 @@ Ein hochwertiges visuelles System fuer eine moderne, journalistische Infografik-
 ## Notes
 
 - Zielbild: hochwertig, ruhig, datenjournalistisch, mit interaktiven Momenten statt reiner Zahlenwand.
+- Arbeitsstand 2026-05-04: Erste visuelle Richtung mit journalistischer Hero-Fläche, Methodenkarten, KPI-Kacheln, SVG-Liniengrafik und mobiler Responsiveness angelegt.
+- Issue bleibt offen, bis Designsystem, finale Infografiken, Farb-/Kontrastprüfung und Screenreader-Alternativen systematisch geprüft sind.

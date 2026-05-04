@@ -26,3 +26,4 @@ Das Modell gegen Rechenfehler, Scheingenauigkeit und einseitige Annahmen absiche
 ## Notes
 
 - Besonders wichtig ist die Frage, ob Fondsrenditen ohne Substanzverzehr wirklich laufende Rentenausgaben decken koennten.
+- Arbeitsstand 2026-05-04: Der UI-Prototyp zeigt bereits Brutto-Fondsbestand, Übergangsschuld, fiskalische Nettoposition und Rendite/Rentenausgaben. Die Werte sind noch nicht als Plausibilitätsbefund nutzbar, weil Renditen konstant und DRV-Daten nur prototypisch transkribiert sind.
