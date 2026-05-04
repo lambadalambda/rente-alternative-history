@@ -463,7 +463,7 @@ output {
 
 .kpi span {
   display: block;
-  min-height: 2.6em;
+  min-height: 3.6em;
   color: var(--muted);
   font-size: 0.82rem;
   font-weight: 800;
@@ -475,9 +475,18 @@ output {
   display: block;
   margin-top: 0.65rem;
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-  font-size: clamp(1.45rem, 3vw, 2.5rem);
+  font-size: clamp(1.35rem, 2.65vw, 2.25rem);
   line-height: 0.9;
   letter-spacing: -0.055em;
+}
+
+.kpi small {
+  display: block;
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+  line-height: 1.25;
 }
 
 .chart-card {
@@ -567,7 +576,7 @@ svg {
 
 .axis-label {
   fill: #675f56;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -598,7 +607,7 @@ svg {
 
 .legend text {
   fill: var(--ink);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
 }
 

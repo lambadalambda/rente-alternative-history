@@ -169,8 +169,18 @@ function testProjectionToggleMarkup() {
   assert.ok(checkbox, "index.html must include the fictional projection checkbox");
   assert.equal(/\bchecked\b/.test(checkbox[0]), false, "projection checkbox must be off by default");
   assert.ok(html.includes("Fiktive Fortschreibung bis 2040 einrechnen"));
+  assert.ok(html.includes("Jahresertrag deckt Rentenausgaben 2024"));
+  assert.ok(html.includes("Fondsjahresertrag / Rentenausgaben"));
   assert.ok(html.includes("<title id=\"chartTitle\">"));
   assert.ok(html.includes("<desc id=\"chartDesc\">"));
+}
+
+function testDefaultPresetMarkup() {
+  const html = fs.readFileSync(INDEX_PATH, "utf8");
+
+  assert.ok(html.includes('<option value="dax" selected>DAX-Vergleich</option>'));
+  assert.ok(html.includes('<output id="returnRateValue">5,8 %</output>'));
+  assert.ok(html.includes('<input id="returnRate" name="returnRate" type="range" min="0" max="9" step="0.25" value="5.8">'));
 }
 
 function testChartAccessibilityRenderInvariant() {
@@ -178,6 +188,7 @@ function testChartAccessibilityRenderInvariant() {
 
   assert.ok(app.includes('make("title", { id: "chartTitle" })'), "renderChart must recreate the SVG title after replaceChildren");
   assert.ok(app.includes('make("desc", { id: "chartDesc" })'), "renderChart must recreate the SVG description after replaceChildren");
+  assert.ok(app.includes("Der modellierte Fondsjahresertrag deckt"), "coverage copy must identify the return coverage numerator");
 }
 
 testInterpolation();
@@ -188,6 +199,7 @@ testDefaultHeadlineRegression();
 testProjectionHeadlineRegression();
 testBrowserScriptOrder();
 testProjectionToggleMarkup();
+testDefaultPresetMarkup();
 testChartAccessibilityRenderInvariant();
 
 console.log("model tests ok");

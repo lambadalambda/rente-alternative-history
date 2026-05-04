@@ -82,7 +82,7 @@
                 <option value="mixed">Gemischtes Portfolio</option>
                 <option value="world">Weltaktien-Vergleich</option>
                 <option value="sp500">S&P-500-Vergleich</option>
-                <option value="dax">DAX-Vergleich</option>
+                <option value="dax" selected>DAX-Vergleich</option>
                 <option value="stress">Stressszenario</option>
               </select>
               <p class="field-note">Presets nutzen konstante Beispielrenditen; historische Indexreihen folgen.</p>
@@ -107,8 +107,8 @@
             </div>
 
             <div class="control-group">
-              <label for="returnRate">Nominale Jahresrendite vor Kosten: <output id="returnRateValue">4,0 %</output></label>
-              <input id="returnRate" name="returnRate" type="range" min="0" max="9" step="0.25" value="4">
+              <label for="returnRate">Nominale Jahresrendite vor Kosten: <output id="returnRateValue">5,8 %</output></label>
+              <input id="returnRate" name="returnRate" type="range" min="0" max="9" step="0.25" value="5.8">
             </div>
 
             <div class="control-group">
@@ -137,18 +137,22 @@
               <article class="kpi">
                 <span id="fundKpiLabel">Fondsvermögen 2024</span>
                 <strong id="fundKpi">-</strong>
+                <small>Brutto-Endbestand des Modellfonds</small>
               </article>
               <article class="kpi warning">
                 <span>Kumulierter Aufbaupreis</span>
                 <strong id="buildCostKpi">-</strong>
+                <small>Zusatzbeiträge plus Rentenverzicht</small>
               </article>
               <article class="kpi">
                 <span>Kapitalertrag über Aufbaupreis</span>
                 <strong id="netKpi">-</strong>
+                <small>Fondsvermögen minus Aufbaupreis</small>
               </article>
               <article class="kpi">
-                <span id="coverageKpiLabel">Deckt Rentenausgaben 2024</span>
+                <span id="coverageKpiLabel">Jahresertrag deckt Rentenausgaben 2024</span>
                 <strong id="coverageKpi">-</strong>
+                <small id="coverageKpiNote">Fondsjahresertrag / Rentenausgaben</small>
               </article>
             </div>
 
