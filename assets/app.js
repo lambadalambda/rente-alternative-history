@@ -1,4 +1,5 @@
 const DATA_URL = "data/website/allgemeine-rv-cashflows.json";
+const COMPARISON_URL = "data/website/aum-comparisons.json";
 
 const presets = {
   mixed: { label: "Gemischtes Portfolio", returnRate: 4.0, costRate: 0.35 },
@@ -30,6 +31,8 @@ const output = {
   coverageKpi: document.querySelector("#coverageKpi"),
   chart: document.querySelector("#fundChart"),
   chartSummary: document.querySelector("#chartSummary"),
+  comparisonCards: document.querySelector("#comparisonCards"),
+  comparisonSummary: document.querySelector("#comparisonSummary"),
   dataTableBody: document.querySelector("#dataTableBody")
 };
 
@@ -38,6 +41,7 @@ const percentFormat = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1,
 
 let annualData = [];
 let rawDataset = null;
+let comparisonDataset = null;
 
 function asPercent(value) {
   return `${percentFormat.format(value)} %`;
@@ -54,6 +58,19 @@ function formatMioAsMoney(valueMio) {
 
 function formatTableMoney(valueMio) {
   return `${numberFormat.format(valueMio / 1_000)} Mrd.`;
+}
+
+function formatComparisonRatio(ratio) {
+  if (ratio >= 1) return `${numberFormat.format(ratio)} ×`;
+  return asPercent(ratio * 100);
+}
+
+function appendText(parent, tagName, className, text) {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  element.textContent = text;
+  parent.append(element);
+  return element;
 }
 
 function interpolateRecords(records) {
@@ -230,6 +247,36 @@ function renderTable(rows) {
   });
 }
 
+function renderComparisons(last) {
+  const records = comparisonDataset?.records ?? [];
+  output.comparisonCards.replaceChildren();
+
+  if (!records.length) {
+    output.comparisonSummary.textContent = "Vergleichswerte konnten nicht geladen werden.";
+    return;
+  }
+
+  records.forEach((reference) => {
+    const ratio = last.fundMioEur / reference.valueMioEur;
+    const card = document.createElement("article");
+    card.className = "comparison-card";
+
+    appendText(card, "p", "comparison-kicker", reference.subtitle);
+    appendText(card, "h3", null, reference.label);
+    appendText(card, "strong", "comparison-ratio", formatComparisonRatio(ratio));
+    appendText(card, "p", "comparison-copy", `Der Modellfonds ${last.year} liegt bei ${formatComparisonRatio(ratio)} des Vergleichswerts vom ${reference.date}: ${formatMioAsMoney(reference.valueMioEur)} bzw. ${reference.displayNative}.`);
+    appendText(card, "p", "comparison-note", reference.interpretationNote);
+
+    output.comparisonCards.append(card);
+  });
+
+  const norway = records.find((record) => record.id === "norway-gpfg");
+  const norwayRatio = norway ? last.fundMioEur / norway.valueMioEur : null;
+  output.comparisonSummary.textContent = norwayRatio === null
+    ? "Die Vergleichswerte sind Größenordnungen, keine Aussage über Governance oder Markteinfluss."
+    : `Im Vergleich mit dem norwegischen Staatsfonds liegt der Modellfonds ${last.year} in diesem Szenario bei ${formatComparisonRatio(norwayRatio)} des Fondsvermögens von Ende 2025. Das beantwortet nicht, ob ein solcher Fonds politisch oder marktpraktisch sauber verwaltbar wäre, setzt aber die Größenordnung neben einen real existierenden Staatsfonds.`;
+}
+
 function render() {
   if (!annualData.length) return;
   const scenario = getScenario();
@@ -247,6 +294,7 @@ function render() {
 
   renderChart(rows);
   renderTable(rows);
+  renderComparisons(last);
 }
 
 function bindControls() {
@@ -269,6 +317,16 @@ async function init() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     rawDataset = await response.json();
     annualData = interpolateRecords(rawDataset.records);
+
+    try {
+      const comparisonResponse = await fetch(COMPARISON_URL);
+      if (!comparisonResponse.ok) throw new Error(`HTTP ${comparisonResponse.status}`);
+      comparisonDataset = await comparisonResponse.json();
+    } catch (comparisonError) {
+      comparisonDataset = null;
+      output.comparisonSummary.textContent = `Vergleichswerte konnten nicht geladen werden: ${comparisonError.message}`;
+    }
+
     render();
   } catch (error) {
     output.dataStatus.textContent = "Modelldaten konnten nicht geladen werden. Bitte die Website über einen lokalen Server öffnen.";

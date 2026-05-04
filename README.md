@@ -74,7 +74,9 @@ Einfache Syntaxchecks:
 ```bash
 node --check assets/app.js
 python3 -m py_compile scripts/build_drv_cashflows.py
+python3 scripts/validate_aum_comparisons.py
 python3 -m json.tool data/website/allgemeine-rv-cashflows.json >/dev/null
+python3 -m json.tool data/website/aum-comparisons.json >/dev/null
 ruby -e 'require "yaml"; YAML.load_file("assumptions/register.yaml"); YAML.load_file("data/manifest.yaml")'
 ```
 

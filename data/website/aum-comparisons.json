@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "status": "manual_context_values_from_official_sources",
+  "createdAt": "2026-05-04",
+  "language": "de",
+  "title": "Vergleichswerte: BlackRock AUM und norwegischer Staatsfonds",
+  "warning": "Diese Vergleichswerte sind Kontextdaten, keine Modellinputs. EUR-Werte sind gerundete Umrechnungen mit EZB-Referenzkursen vom 31.12.2025.",
+  "fxReference": {
+    "publisher": "Europäische Zentralbank",
+    "title": "Euro Foreign Exchange Reference Rates 31 December 2025",
+    "sourceUrl": "https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf",
+    "retrievedAt": "2026-05-04",
+    "date": "2025-12-31",
+    "ratesPerEur": {
+      "USD": 1.175,
+      "NOK": 11.843
+    }
+  },
+  "records": [
+    {
+      "id": "blackrock",
+      "label": "BlackRock",
+      "subtitle": "verwaltetes Kundenvermögen",
+      "valueNative": 14000000000000,
+      "currency": "USD",
+      "displayNative": "ca. 14,0 Bio. USD",
+      "valueMioEur": 11914894,
+      "date": "2025-12-31",
+      "source": {
+        "publisher": "BlackRock, Inc.",
+        "title": "BlackRock Reports Full Year 2025 ... Fourth Quarter 2025 ...",
+        "sourceUrl": "https://s24.q4cdn.com/856567660/files/doc_financials/2025/Q4/BLK-4Q25-Earnings-Release.pdf",
+        "retrievedAt": "2026-05-04"
+      },
+      "interpretationNote": "BlackRock ist ein Vermögensverwalter: Das ist Kundengeld unter Verwaltung, kein einzelner Staatsfonds und kein eigenes BlackRock-Vermögen."
+    },
+    {
+      "id": "norway-gpfg",
+      "label": "Norwegischer Staatsfonds",
+      "subtitle": "Government Pension Fund Global",
+      "valueNative": 21268000000000,
+      "currency": "NOK",
+      "displayNative": "21.268 Mrd. NOK",
+      "valueMioEur": 1795829,
+      "date": "2025-12-31",
+      "source": {
+        "publisher": "Norges Bank Investment Management",
+        "title": "Government Pension Fund Global Annual report 2025",
+        "sourceUrl": "https://www.nbim.no/en/news-and-insights/reports/2025/annual-report-2025/",
+        "retrievedAt": "2026-05-04"
+      },
+      "interpretationNote": "Das ist ein echter staatlicher Auslandsfonds; er eignet sich besser als Realismusanker für Governance, Markteinfluss und politische Kontrolle."
+    }
+  ]
+}

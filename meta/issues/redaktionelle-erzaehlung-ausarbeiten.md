@@ -28,3 +28,4 @@ Eine deutschsprachige, journalistische Erzaehlung entwickeln, die die Rentenrefo
 - Arbeitsstand 2026-05-04: Basiswebsite enthält deutsche Prototyptexte, eine frühe Grenzen-Sektion und klare Hinweise auf Hypothese, extrahierte DRV-Stützjahre und fehlende historische Indexrenditen.
 - Issue bleibt offen, bis die vollständige Story-Struktur, Gegenargumente und Quellenhinweise neben allen finalen Claims ausgearbeitet sind.
 - Arbeitsstand 2026-05-04: Nach Advisor-Feedback wurde die Startseite weniger defensiv formuliert. Caveats sind stärker in Methodenlabels und `Methodik & Grenzen` gebündelt; Hero und Rechner führen nun pointierter in den Zielkonflikt Verzicht, Fondsvermögen und Kapitalertrag ein.
+- Arbeitsstand 2026-05-04: Eine Größenordnungssektion vergleicht den Modellfonds mit BlackRock-AUM und dem norwegischen Staatsfonds; BlackRock wird ausdrücklich als verwaltetes Kundengeld und nicht als eigener Fonds markiert.

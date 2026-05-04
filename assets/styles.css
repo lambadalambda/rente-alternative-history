@@ -244,6 +244,7 @@ summary:focus-visible {
 .principles article,
 .controls,
 .results,
+.comparison-card,
 .limits article,
 .table-wrap {
   border: 1px solid rgba(21, 18, 15, 0.12);
@@ -269,6 +270,7 @@ summary:focus-visible {
 }
 
 .model-section,
+.comparison-section,
 .data-section,
 .limits {
   padding: 4rem 0;
@@ -478,6 +480,56 @@ output {
   margin: 0.75rem 0 0;
 }
 
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.comparison-card {
+  padding: 1.2rem;
+}
+
+.comparison-kicker {
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.comparison-ratio {
+  display: block;
+  margin: 1rem 0 0.6rem;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+}
+
+.comparison-copy {
+  color: #332b24;
+  font-weight: 800;
+}
+
+.comparison-note,
+.comparison-summary,
+.source-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.comparison-note {
+  margin-bottom: 0;
+}
+
+.comparison-summary,
+.source-note {
+  max-width: 920px;
+  margin: 1rem 0 0;
+}
+
 svg {
   display: block;
   width: 100%;
@@ -611,6 +663,7 @@ th {
 
   .principles,
   .kpi-grid,
+  .comparison-grid,
   .limit-grid {
     grid-template-columns: 1fr;
   }

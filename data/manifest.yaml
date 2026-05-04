@@ -158,6 +158,114 @@ sources:
     used_in_model: true
     related_assumption_ids: ["PENSION-001", "FLOW-001", "FLOW-002", "TRANS-001", "INV-001"]
 
+  - dataset_id: BLACKROCK_AUM_2025_Q4
+    title: "BlackRock Reports Full Year 2025 ... Fourth Quarter 2025 ..."
+    publisher: "BlackRock, Inc."
+    source_url: "https://s24.q4cdn.com/856567660/files/doc_financials/2025/Q4/BLK-4Q25-Earnings-Release.pdf"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "Pressemitteilung vom 2026-01-15; Wert zum 2025-12-31"
+    source_file_planned_path: "data/raw/context/blackrock_q4_2025_earnings_release.pdf"
+    raw_file_committed: false
+    data_years_covered: "Stichtag 2025-12-31"
+    geography: "global"
+    population_scope: "BlackRock verwaltetes Kundenvermögen"
+    variables: ["Assets under management"]
+    unit: "USD"
+    currency: "USD"
+    nominal_or_real: "nominal"
+    data_status: "unternehmensberichtete_zahl"
+    license_or_usage_note: "Investor-Relations-PDF; Nutzung und Zitatrecht vor Veröffentlichung prüfen"
+    trust_level: "hoch für Unternehmensangabe; nicht unabhängig geprüft für journalistische Einordnung"
+    known_limitations:
+      - "BlackRock-AUM ist verwaltetes Kundengeld, kein eigenes Fondsvermögen und kein Staatsfonds."
+      - "Quelle berichtet gerundet ca. 14 Billionen USD."
+    checksum_or_version: null
+    transformation_status: "manual_context_value"
+    used_in_model: false
+    used_in_website_context: true
+    related_assumption_ids: []
+
+  - dataset_id: NBIM_GPFG_MARKET_VALUE_2025
+    title: "Government Pension Fund Global Annual report 2025"
+    publisher: "Norges Bank Investment Management"
+    source_url: "https://www.nbim.no/en/news-and-insights/reports/2025/annual-report-2025/"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "veröffentlicht 2026-02-27; Wert zum Ende 2025"
+    source_file_planned_path: "data/raw/context/nbim_annual_report_2025"
+    raw_file_committed: false
+    data_years_covered: "Stichtag Ende 2025"
+    geography: "Norwegen / globale Anlagen"
+    population_scope: "Government Pension Fund Global"
+    variables: ["Fund market value"]
+    unit: "NOK"
+    currency: "NOK"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_oder_offizielle_fondsangabe"
+    license_or_usage_note: "NBIM-Webbericht; Nutzung und Zitatrecht vor Veröffentlichung prüfen"
+    trust_level: "hoch"
+    known_limitations:
+      - "Staatsfonds ist ein Governance- und Größenordnungsanker, aber nicht direkt mit einer deutschen Rentenreserve identisch."
+    checksum_or_version: null
+    transformation_status: "manual_context_value"
+    used_in_model: false
+    used_in_website_context: true
+    related_assumption_ids: []
+
+  - dataset_id: ECB_FX_REFERENCE_2025_12_31
+    title: "Euro Foreign Exchange Reference Rates 31 December 2025"
+    publisher: "Europäische Zentralbank"
+    source_url: "https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "Referenzkurse 2025-12-31"
+    source_file_planned_path: "data/raw/context/ecb_eurofxref_2025-12-31.pdf"
+    raw_file_committed: false
+    data_years_covered: "2025-12-31"
+    geography: "Euro-Raum / internationale Wechselkurse"
+    population_scope: "Euro-Referenzkurse"
+    variables: ["USD per EUR", "NOK per EUR"]
+    unit: "Währungseinheiten je EUR"
+    currency: "EUR, USD, NOK"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl"
+    license_or_usage_note: "EZB-Referenzkursveröffentlichung; Nutzungshinweis vor Veröffentlichung prüfen"
+    trust_level: "hoch"
+    known_limitations:
+      - "Stichtagskurs; keine Jahresdurchschnitts- oder Kaufkraftumrechnung."
+    checksum_or_version: null
+    transformation_status: "manual_context_fx_conversion"
+    used_in_model: false
+    used_in_website_context: true
+    related_assumption_ids: ["RET-002"]
+
+  - dataset_id: WEBSITE_AUM_COMPARISONS_2026_05_04
+    title: "Vergleichswerte: BlackRock AUM und norwegischer Staatsfonds"
+    publisher: "Projektinterne Kontextdatei aus offiziellen Quellen"
+    source_url: "data/website/aum-comparisons.json"
+    source_dataset_id: "BLACKROCK_AUM_2025_Q4; NBIM_GPFG_MARKET_VALUE_2025; ECB_FX_REFERENCE_2025_12_31"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "erstellt 2026-05-04"
+    source_file_planned_path: "data/website/aum-comparisons.json"
+    raw_file_committed: true
+    data_years_covered: "Stichtag 2025-12-31 bzw. Ende 2025"
+    geography: "global / Norwegen / Euro-Raum"
+    population_scope: "Kontextvergleich für Fondsgrößen"
+    variables: ["BlackRock AUM", "Government Pension Fund Global market value", "EUR conversion"]
+    unit: "Mio. EUR, USD, NOK"
+    currency: "EUR, USD, NOK"
+    nominal_or_real: "nominal"
+    data_status: "Kontextwert aus offiziellen Quellen"
+    license_or_usage_note: "Nur Kontextvergleich; Quellen und Nutzungsrechte vor Veröffentlichung prüfen"
+    trust_level: "mittel bis hoch; offizielle Quellen, aber manuelle Kontexttranskription"
+    known_limitations:
+      - "Keine Modellinputdaten."
+      - "BlackRock-AUM und Staatsfondsvermögen sind institutionell nicht gleichartig."
+      - "EUR-Werte verwenden Stichtags-FX, keine Jahresdurchschnitte."
+    checksum_or_version: "git-tracked context file"
+    transformation_status: "manual_context_value"
+    used_in_model: false
+    used_in_website_context: true
+    related_assumption_ids: []
+
   - dataset_id: BMAS_GRV_EINNAHMEN_AUSGABEN
     title: "Einnahmen und Ausgaben der Gesetzlichen Rentenversicherung"
     publisher: "Bundesministerium für Arbeit und Soziales"

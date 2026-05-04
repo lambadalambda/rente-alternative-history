@@ -17,6 +17,7 @@
       </a>
       <nav class="top-nav" aria-label="Hauptnavigation">
         <a href="#modell">Rechner</a>
+        <a href="#vergleich">Vergleich</a>
         <a href="#daten">Daten</a>
         <a href="#grenzen">Methodik</a>
       </nav>
@@ -158,6 +159,22 @@
         </div>
       </section>
 
+      <section class="comparison-section" id="vergleich" aria-labelledby="vergleich-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Größenordnung</p>
+          <h2 id="vergleich-title">Wäre so ein Fonds überhaupt noch realistisch verwaltbar?</h2>
+          <p>
+            Die Modellzahl braucht einen Maßstab. Deshalb vergleichen wir das berechnete Fondsvermögen mit zwei echten Größenordnungen: BlackRocks verwaltetem Kundenvermögen und dem norwegischen Staatsfonds.
+          </p>
+        </div>
+
+        <div class="comparison-grid" id="comparisonCards"></div>
+        <p class="comparison-summary" id="comparisonSummary" aria-live="polite">Vergleichswerte werden geladen.</p>
+        <p class="source-note">
+          Quellen: <a href="https://s24.q4cdn.com/856567660/files/doc_financials/2025/Q4/BLK-4Q25-Earnings-Release.pdf" rel="noreferrer">BlackRock Q4/FY 2025 Earnings Release</a>, <a href="https://www.nbim.no/en/news-and-insights/reports/2025/annual-report-2025/" rel="noreferrer">NBIM Annual Report 2025</a>, <a href="https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf" rel="noreferrer">EZB-Referenzkurse vom 31.12.2025</a>. Abruf: 04.05.2026. Der BlackRock-Vergleichswert ist verwaltetes Kundenvermögen, kein eigenes BlackRock-Vermögen und kein Staatsfonds.
+        </p>
+      </section>
+
       <section class="data-section" id="daten" aria-labelledby="daten-title">
         <div class="section-heading compact">
           <p class="eyebrow">Datenbasis</p>
@@ -214,7 +231,7 @@
 
     <footer class="site-footer">
       <p>
-        Quellenbasis dieser Version: Deutsche Rentenversicherung, <em>Rentenversicherung in Zeitreihen 2025</em>, Tabellen „Einnahmen allg. RV“ und „Ausgaben allg. RV“, abgerufen am 04.05.2026. Website-Daten: `data/website/allgemeine-rv-cashflows.json`.
+        Modellquellenbasis dieser Version: Deutsche Rentenversicherung, <em>Rentenversicherung in Zeitreihen 2025</em>, Tabellen „Einnahmen allg. RV“ und „Ausgaben allg. RV“, abgerufen am 04.05.2026. Website-Daten: `data/website/allgemeine-rv-cashflows.json`.
       </p>
       <p>Historisches Gedankenexperiment, keine Anlageberatung. Statische Website ohne Tracking, Cookies, externe Fonts oder CDN.</p>
     </footer>
