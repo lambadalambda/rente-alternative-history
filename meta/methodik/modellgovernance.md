@@ -132,7 +132,7 @@ Vor Veröffentlichung von Modelloutputs sind mindestens diese Checks nötig:
 - Handgerechnete Beispieljahre für Beitragsaufschlag, Rentenverzicht und Fondsakkumulation.
 - Regressionstests für Headline-Zahlen.
 - Tests für nominale und reale Umrechnung.
-- Tests für DEM/EUR/USD-Umrechnung.
+- Tests für DM-/Euro-/USD-Umrechnung mit expliziter Quelleneinheit.
 - Tests für Kosten- und Steuerabzug.
 - Tests für Beitragsaufschlag, Rentenverzicht, Fonds-Einzahlung und kumulierten Aufbaupreis.
 - Datenprovenienzprüfung gegen `data/manifest.yaml`.

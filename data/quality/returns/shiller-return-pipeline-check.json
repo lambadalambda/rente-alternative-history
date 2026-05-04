@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "status": "checked_source_and_return_formula",
+  "qualityArtifactCreatedAt": "2026-05-04",
+  "sourceHashVerifiedAt": "2026-05-04",
+  "sourceDatasetId": "SHILLER_CHAPTER26_ANNUAL_XLSX",
+  "sourceTitle": "Robert J. Shiller, Annual U.S. Stock Price Data, Chapter 26 update",
+  "landingPage": "http://www.econ.yale.edu/~shiller/data.htm",
+  "currentLandingPage": "https://shillerdata.com/",
+  "downloadUrl": "http://www.econ.yale.edu/~shiller/data/chapt26.xlsx",
+  "downloadUrlUsesPlainHttp": true,
+  "sourceSha256": "d255bb1230a9a94c450ee4738d914ec8c6c79ceae58f1cc89559c7f40fa7c9c0",
+  "method": "SHA-256-Prüfung der XLSX-Datei, Headerprüfung der genutzten Spalten, Extraktion der Data-Tabelle mit Python-stdlib und Rekonstruktion jährlicher nominaler sowie realer Total Returns.",
+  "generatedDataLocation": "data/processed/returns/ (nicht versioniert, nicht fuer Veroeffentlichung ohne Lizenzklaerung)",
+  "recordCount": 144,
+  "returnYearRange": [
+    1871,
+    2014
+  ],
+  "formula": {
+    "nominalTotalReturn": "(priceIndex_{t+1} + dividend_t) / priceIndex_t - 1",
+    "realTotalReturn": "((priceIndex_{t+1} + dividend_t) / cpi_{t+1}) / (priceIndex_t / cpi_t) - 1"
+  },
+  "sentinelChecks": [
+    {
+      "year": 1957,
+      "nominalTotalReturn": -0.055469953775038605,
+      "realTotalReturn": -0.08849547986682049,
+      "validatedAgainstWorkbookCache": true
+    },
+    {
+      "year": 1960,
+      "nominalTotalReturn": 0.06272617611580222,
+      "realTotalReturn": 0.04489520000647662,
+      "validatedAgainstWorkbookCache": true
+    },
+    {
+      "year": 2008,
+      "nominalTotalReturn": -0.35161304360439816,
+      "realTotalReturn": -0.3514994224216611,
+      "validatedAgainstWorkbookCache": true
+    },
+    {
+      "year": 2014,
+      "nominalTotalReturn": 0.1345837265962817,
+      "realTotalReturn": 0.135598364578279,
+      "validatedAgainstWorkbookCache": false
+    }
+  ],
+  "formulaOnlyReturnYears": [
+    2013,
+    2014
+  ],
+  "result": {
+    "redistributionStatus": "not_cleared",
+    "fullGeneratedSeriesCommitted": false,
+    "forbiddenPublishedOutputPathsAbsent": true,
+    "gitTrackedForbiddenOutputPathsAbsent": true,
+    "gitTrackedForbiddenOutputPaths": [],
+    "checkedForbiddenOutputPaths": [
+      "data/website/return-series.json",
+      "data/extracted/returns/shiller-sp500-proxy-annual.csv",
+      "data/extracted/returns/shiller-return-series.json"
+    ],
+    "checkedForbiddenOutputPatterns": [
+      "data/website/*return*",
+      "data/extracted/returns/*shiller*.csv",
+      "data/extracted/returns/*shiller*.json"
+    ],
+    "modelIntegrationStatus": "not_integrated",
+    "note": "Die vollstaendige Reihe wird nur lokal unter data/processed/ erzeugt. Vor Website-Nutzung sind Lizenz, DM-/Euro-/USD-Wechselkursbehandlung und eine Plausibilitaetsquelle zu klaeren. Der historische Yale-Download nutzt HTTP; die Datei wird deshalb strikt per SHA-256 geprueft."
+  }
+}

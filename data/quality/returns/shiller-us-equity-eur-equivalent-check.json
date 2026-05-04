@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "status": "checked_combined_return_formula_not_model_ready",
+  "qualityArtifactCreatedAt": "2026-05-04",
+  "sourceDatasetIds": [
+    "SHILLER_CHAPTER26_ANNUAL_XLSX",
+    "BUNDESBANK_LONG_TIME_SERIES_FX_I10_2026_03_05"
+  ],
+  "upstreamSources": {
+    "shillerXlsxSha256": "d255bb1230a9a94c450ee4738d914ec8c6c79ceae58f1cc89559c7f40fa7c9c0",
+    "bundesbankFxPdfSha256": "f1ad66a9dc0501358fa31851066ee698b6fb64f056df725e95aeece2b9f24f15",
+    "shillerQualityArtifactSha256": "ed08db9f15f5d5988dd453b00626960049653902d7f3a263765b93c38926ae2d",
+    "bundesbankFxQualityArtifactSha256": "195af76962889fc179df3fb5567b55c22cd12bba25b58614a2105a20226793f2"
+  },
+  "generatedBy": "scripts/build_us_equity_eur_returns.py",
+  "generatedDataLocation": "data/processed/returns/ (nicht versioniert, nicht modellfreigegeben)",
+  "recordCount": 67,
+  "yearRange": [
+    1948,
+    2014
+  ],
+  "canonicalProcessedCsvSha256": "efe99b9829ac3ec84dd69c643f73526fb57d30a63e4da99396d4a0a505b528db",
+  "formula": "(1 + usdNominalTotalReturn) * (averageFxYearTPlus1ReciprocalEurEquivalentPerUsd / averageFxYearTReciprocalEurEquivalentPerUsd) - 1",
+  "modelReadiness": {
+    "readyForModelIntegration": false,
+    "reason": "FX uses reciprocal-derived annual-average helpers; cashflow timing, return period alignment, German inflation and source usage rights are unresolved.",
+    "returnPeriod": "Shiller year t to t+1",
+    "fxRatePeriod": "Bundesbank calendar-year average",
+    "inverseRateBasis": "reciprocal_of_annual_average_not_average_of_inverse_daily_rates",
+    "allowedWebsiteUse": false
+  },
+  "sentinelChecks": [
+    {
+      "year": 1960,
+      "usdNominalTotalReturn": 0.06272617611580222,
+      "reciprocalFxChange": -0.03539823008849563,
+      "eurEquivalentNominalReturn": 0.025107550412587942
+    },
+    {
+      "year": 1998,
+      "usdNominalTotalReturn": 0.31308129878757684,
+      "reciprocalFxChange": 0.04306039782323112,
+      "eurEquivalentNominalReturn": 0.3696231018876148
+    },
+    {
+      "year": 1999,
+      "usdNominalTotalReturn": 0.15496048111341554,
+      "reciprocalFxChange": 0.1539627544391513,
+      "eurEquivalentNominalReturn": 0.3327813780540043
+    },
+    {
+      "year": 2008,
+      "usdNominalTotalReturn": -0.35161304360439816,
+      "reciprocalFxChange": 0.05448809865213655,
+      "eurEquivalentNominalReturn": -0.316283671159556
+    },
+    {
+      "year": 2014,
+      "usdNominalTotalReturn": 0.1345837265962817,
+      "reciprocalFxChange": 0.1973862100045065,
+      "eurEquivalentNominalReturn": 0.35853490832191093
+    }
+  ],
+  "result": {
+    "fullGeneratedSeriesCommitted": false,
+    "forbiddenPublishedOutputPathsAbsent": true,
+    "gitTrackedForbiddenOutputPathsAbsent": true,
+    "gitTrackedForbiddenOutputPaths": [],
+    "checkedForbiddenOutputPaths": [
+      "data/website/us-equity-eur-returns.json",
+      "data/extracted/returns/shiller-us-equity-eur-equivalent-annual.csv",
+      "data/extracted/returns/shiller-us-equity-eur-equivalent-annual.json"
+    ],
+    "checkedForbiddenOutputPatterns": [
+      "data/website/*return*",
+      "data/extracted/returns/*eur*return*.csv",
+      "data/extracted/returns/*eur*return*.json",
+      "data/extracted/returns/*local*return*.csv",
+      "data/extracted/returns/*local*return*.json"
+    ],
+    "note": "Dieser Check beweist nur, dass die Hilfsrechnung reproduzierbar ist; er gibt keine Modellannahme frei."
+  }
+}

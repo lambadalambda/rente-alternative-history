@@ -9,7 +9,7 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 - Die stärkste Primärquelle für Renten-Zeitreihen ist die Deutsche Rentenversicherung, besonders `Rentenversicherung in Zeitreihen` und die direkte historische XLSX-Datei.
 - Für aktuelle und aggregierte Tabellen sind BMAS-Seiten zu GRV-Einnahmen/Ausgaben und `Daten zur Rente` nützlich, aber wahrscheinlich eher ergänzend zu DRV-Zeitreihen.
 - Für reale Werte ist Destatis mit den Verbraucherpreisindex-Langreihen ab 1948 die belastbare Quelle.
-- Für Wechselkurse, Bundesanleiherenditen, DAX-/Kapitalmarkt-Zeitreihen und SDMX-Zugriff ist die Bundesbank zentral.
+- Für Wechselkurse, Bundesanleiherenditen, DAX-/Kapitalmarkt-Zeitreihen und SDMX-Zugriff ist die Bundesbank zentral. Arbeitsstand 2026-05-04: USD-Jahresdurchschnittskurse gegen DM/EUR sind aus der Bundesbank-Long-Time-Series-PDF reproduzierbar extrahiert.
 - Indexrenditen sind der schwierigste Teil: DAX vor 1987, S&P-500-Total-Return-Daten, MSCI/FTSE-Weltindizes und Lizenzrechte müssen sehr vorsichtig behandelt werden.
 - Der wichtigste Modellhinweis bleibt: Fondsvermögen allein reicht nicht. Aufbaupreis und bei echten Beitragsumleitungen auch Übergangskosten müssen mitgerechnet werden.
 
@@ -28,7 +28,7 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 | Inflation | Verbraucherpreisindex lange Reihen ab 1948 | Destatis | https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Publikationen/Downloads-Verbraucherpreise/statistischer-bericht-verbraucherpreisindex-lange-reihen-5611103.html | Monats- und Jahreswerte, lange Reihen ab 1948 | Destatis Open Data / Datenlizenz Deutschland 2.0 prüfen | Sehr hoch, amtliche Statistik | Basiswechsel und Gebietsstände dokumentieren |
 | Inflation API | GENESIS-Online API | Destatis | https://www.destatis.de/EN/Service/OpenData/api-webservice.html | Automatisierter Zugriff auf amtliche Tabellen | Datenlizenz Deutschland - Namensnennung 2.0 laut Destatis-Kontext | Sehr hoch | Tabellen-IDs und API-Parameter noch festlegen |
 | Open Data | Destatis Open Data | Destatis | https://www.destatis.de/EN/Service/OpenData/_node.html | Lizenz- und API-Hinweise | Open Data / Datenlizenz Deutschland | Sehr hoch | Lizenztext je konkretem Datensatz prüfen |
-| Wechselkurse | Bundesbank Wechselkurse | Deutsche Bundesbank | https://www.bundesbank.de/de/statistiken/wechselkurse | Wechselkurse, Referenzkurse, historische Reihen | Nutzungshinweis prüfen | Hoch | DEM/EUR/USD-Methodik und fixe Euro-Umrechnung dokumentieren |
+| Wechselkurse | Bundesbank Wechselkurse | Deutsche Bundesbank | https://www.bundesbank.de/de/statistiken/wechselkurse | Wechselkurse, Referenzkurse, historische Reihen | Nutzungshinweis prüfen | Hoch | DM-/Euro-/USD-Methodik und fixe Euro-Umrechnung dokumentieren |
 | Bundesbank API | Zeitreihen-Datenbanken / SDMX | Deutsche Bundesbank | https://www.bundesbank.de/de/statistiken/zeitreihen-datenbanken | CSV- und SDMX-Downloads | Nutzungshinweis prüfen | Hoch | Bundesbank weist auf neue Statistik-Infrastruktur hin; Zugriffspfade stabilisieren |
 | Kapitalmarkt Deutschland | Renditen und Indizes deutscher Wertpapiere | Deutsche Bundesbank | https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/wertpapieremissionen/nr-05-renditen-und-indizes-deutscher-wertpapiere-650634 | Deutsche Kapitalmarktindizes, Renditen, DAX/CDAX-Kontext | Nutzungshinweis prüfen | Hoch | Seriencodes und Startdaten noch identifizieren |
 | Bundesanleihen | Umlaufsrenditen | Deutsche Bundesbank | https://www.bundesbank.de/de/statistiken/geld-und-kapitalmaerkte/zinssaetze-und-renditen/umlaufsrenditen/umlaufsrenditen-772416 | Renditen börsennotierter Bundeswertpapiere | Nutzungshinweis prüfen | Hoch | Für Schulden-/Diskontierungsannahmen geeignet, aber Laufzeitwahl definieren |
@@ -55,7 +55,7 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 | Rentnerzahlen / Rentenbestand | DRV Zeitreihen, BMAS Rentenbestandsstatistik | DRV `RV in Zahlen` | Gut auffindbar, lange Reihe prüfen |
 | Nachhaltigkeitsrücklage | DRV Geschäftsberichte / Zeitreihen | Rentenversicherungsbericht | Aktuelle Quelle gefunden, historische Reihe prüfen |
 | Inflation / Realwerte | Destatis CPI lange Reihen ab 1948 | GENESIS API | Sehr gut auffindbar |
-| DEM/USD und EUR/USD | Bundesbank Wechselkurse / SDMX | DBnomics BUBA als Mirror | Quelle gefunden, Seriencodes fehlen |
+| USD je DM/EUR | Bundesbank Wechselkurse / Long-Time-Series-PDF | DBnomics BUBA als Mirror | Erster PDF-Pipelinepfad vorhanden; SDMX-Alternativen offen |
 | Schuldenzins / Diskontierung | Bundesbank Umlaufsrenditen / Termstruktur | Bundesbank Kapitalmarktkennzahlen | Quelle gefunden, Laufzeitannahme fehlt |
 | DAX Total Return | Offizielle DAX-Methodik plus Bundesbank/deutsche Aktienrendite-Backseries | HU Berlin Backseries, CDAX/Commerzbank-Proxys | Kritisch wegen Basisdatum und Lizenz |
 | S&P 500 Total Return | S&P/CRSP bei Lizenzzugang | Shiller-Daten als Forschungsproxy, Yahoo/Slickcharts nur Plausibilität | Kritisch wegen Lizenz und offizieller TR-Serie |
@@ -67,7 +67,7 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 - DAX ist als offizieller Index ab 1987 definiert; ältere Werte müssen als Rückrechnung oder Proxy gekennzeichnet werden.
 - MSCI World und viele globale Reihen starten erst ab 1969 oder sind zurückgerechnet; sie decken 1957 nicht ohne Zusatzannahme ab.
 - S&P-500-Total-Return-Daten sind qualitativ gut verfügbar, aber offizielle Daten und CRSP sind lizenzpflichtig.
-- Shiller-Daten sind ein plausibler Forschungsproxy für US-Aktienrenditen, aber nicht identisch mit einer offiziell investierbaren S&P-500-Total-Return-Reihe.
+- Shiller-Daten sind ein plausibler Forschungsproxy für US-Aktienrenditen, aber nicht identisch mit einer offiziell investierbaren S&P-500-Total-Return-Reihe. Arbeitsstand 2026-05-04: `scripts/build_shiller_returns.py` extrahiert daraus jährliche Renditejahre 1871-2014.
 - Eine echte Umleitung historischer Beitragseinnahmen in einen Fonds erzeugt im Umlagesystem eine Finanzierungslücke; diese muss als Übergangskosten-, Steuer- oder Schuldenpfad modelliert werden. Die aktuelle 5/5-Baseline vermeidet diese Lücke, weil sie zusätzliche Beiträge und niedrigere Rentenausgaben nutzt.
 - Westdeutsche Daten 1957-1990 dürfen nicht ohne Annahme mit gesamtdeutschen Verpflichtungen nach 1990 vermischt werden.
 - Steuer-, Kosten- und Quellensteuerannahmen können den Endwert stark verändern.
@@ -78,8 +78,28 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 - DRV-XLSX `ZR_Historie.xlsx` herunterladen, Tabellenblätter inventarisieren und relevante Spalten für Einnahmen, Ausgaben, Bundesmittel, Beitragssätze, Rentenbestand und Rücklagen identifizieren.
 - BMAS-GRV-Einnahmen/Ausgaben-Seite extrahieren und prüfen, ob CSV/XLSX statt PDF verfügbar ist.
 - Destatis GENESIS-Tabellen-IDs für Verbraucherpreisindex-Jahresdurchschnitte und lange Reihen festlegen.
-- Bundesbank-SDMX-Seriencodes für USD/DEM, USD/EUR, DAX/CDAX und Umlaufsrenditen identifizieren.
+- Bundesbank-SDMX-Seriencodes für DAX/CDAX und Umlaufsrenditen identifizieren; für `USD je DM/EUR` existiert jetzt ein erster PDF-Pipelinepfad aus der Long-Time-Series-Publikation.
 - Prüfen, ob offizielle Indexdaten in der Website überhaupt redistribuiert werden dürfen oder nur abgeleitete, lizenzkonforme Ergebnisse gezeigt werden können.
 - Für DAX vor 1987 eine saubere Proxy-Entscheidung treffen und im Annahmenregister dokumentieren.
 - Für S&P 500 entscheiden, ob CRSP/S&P-Lizenzdaten genutzt werden oder ein transparenter Shiller-Proxy reicht.
 - Für Weltindex-Szenarien entscheiden, ob die Reihe erst 1969 startet oder 1957-1969 mit einem plausiblen Proxy überbrückt wird.
+
+## Arbeitsstand Kapitalmarktdaten
+
+- `scripts/build_shiller_returns.py` lädt `http://www.econ.yale.edu/~shiller/data/chapt26.xlsx`, prüft SHA-256 `d255bb1230a9a94c450ee4738d914ec8c6c79ceae58f1cc89559c7f40fa7c9c0` und erzeugt die vollständige Reihe nur lokal unter `data/processed/returns/`.
+- Die generierte Reihe ist ausdrücklich ein Forschungsproxy: nominale Total-Return-Rekonstruktion aus Preisindex und Dividende sowie reale CPI-deflationierte Rendite. Sie ist keine offizielle S&P-500-Total-Return-Reihe.
+- Versioniert ist nur `data/quality/returns/shiller-return-pipeline-check.json`, weil die Weiterverbreitungsrechte der vollständigen Shiller-Daten noch nicht geklärt sind.
+- Offene Folgearbeit: Lizenzklärung, DM-/Euro-/USD-Wechselkursbehandlung, deutsche Inflation, Daten nach 2014 und mindestens eine unabhängige Plausibilitätsquelle anbinden.
+
+## Arbeitsstand Wechselkurse
+
+- `scripts/build_bundesbank_fx.py` lädt die Bundesbank-PDF `i-10-wechselkurse-data.pdf`, prüft SHA-256 `f1ad66a9dc0501358fa31851066ee698b6fb64f056df725e95aeece2b9f24f15` und extrahiert die USD-Spalte der Jahresdurchschnittstabellen für Deutsche Mark 1948-1998 sowie Euro 1999-2025.
+- Die vollständige FX-Reihe wird nur lokal unter `data/processed/fx/` erzeugt; versioniert ist `data/quality/fx/bundesbank-usd-annual-fx-check.json`.
+- Das Skript berechnet reziproke Hilfswerte zur Quelleneinheit und ein EUR-Äquivalent vor 1999 über den festen Umrechnungskurs `1 EUR = 1,95583 DM`; diese Hilfswerte sind nicht zwingend Jahresdurchschnitte inverser Tageskurse.
+- Offene Folgearbeit: Periodisierung für Shiller-Jahresrenditen klären, Jahresdurchschnitt gegen Jahresendkurse abwägen und Nutzungshinweise prüfen.
+
+## Arbeitsstand kombinierte Rendite-Hilfsrechnung
+
+- `scripts/build_us_equity_eur_returns.py` kombiniert den nominalen Shiller-US-Renditeproxy mit den Bundesbank-FX-Hilfswerten und erzeugt lokal eine EUR-äquivalente nominale Hilfsrendite für 1948-2014.
+- Versioniert ist nur `data/quality/returns/shiller-us-equity-eur-equivalent-check.json`; die vollständige Hilfsreihe bleibt unter `data/processed/returns/`.
+- Diese Hilfsrechnung ist nicht modellfreigegeben. Sie dokumentiert die Formel und prüft Reproduzierbarkeit, ersetzt aber nicht die noch offene Entscheidung über Wechselkursperiodisierung, Cashflow-Timing und deutsche Inflationsumrechnung.

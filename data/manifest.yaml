@@ -389,17 +389,90 @@ sources:
     data_years_covered: "serienabhängig"
     geography: "Deutschland / Euro-Raum und Ausland"
     population_scope: "Wechselkurse"
-    variables: ["DEM/USD", "EUR/USD", "weitere Wechselkurse nach Bedarf"]
+    variables: ["USD je DM/EUR", "reziprok abgeleitet: DM/EUR je USD", "weitere Wechselkurse nach Bedarf"]
     unit: "Währungseinheiten je Bezugswährung"
     currency: "DEM, EUR, USD"
     nominal_or_real: "nominal"
     data_status: "amtliche_zahl"
     license_or_usage_note: "Bundesbank-Nutzungshinweis prüfen"
     trust_level: "hoch"
-    known_limitations: ["DEM/EUR-Übergang und Reihenmethodik dokumentieren."]
+    known_limitations:
+      - "Spezifische USD-Jahresdurchschnittskurse sind als separate Bundesbank-Long-Time-Series-Pipeline dokumentiert."
+      - "DEM/EUR-Übergang und Reihenmethodik müssen vor Modellintegration entschieden werden."
     checksum_or_version: null
-    transformation_status: "not_started"
+    transformation_status: "specific_usd_annual_fx_pipeline_added"
     used_in_model: false
+    related_assumption_ids: ["RET-002"]
+
+  - dataset_id: BUNDESBANK_LONG_TIME_SERIES_FX_I10_2026_03_05
+    title: "Long time series on economic development in Germany, X. Exchange rates"
+    publisher: "Deutsche Bundesbank"
+    source_url: "https://www.bundesbank.de/resource/blob/844844/3c013bcde6fa7164d956999d8d16a761/mL/i-10-wechselkurse-data.pdf"
+    landing_page: "https://www.bundesbank.de/en/statistics/time-series-databases"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "gedruckter Datenstand in der PDF: 05-03-2026"
+    source_file_planned_path: "data/raw/bundesbank/i-10-wechselkurse.pdf"
+    raw_file_committed: false
+    data_years_covered: "USD-Jahresdurchschnittskurse 1948-2025; DM-Tabelle 1948-1998, Euro-Tabelle 1999-2025"
+    geography: "Deutschland / Euro-Raum und USA"
+    population_scope: "Wechselkurse Deutsche Mark beziehungsweise Euro gegenüber US-Dollar"
+    variables:
+      - "1 Deutsche Mark = ... USD, Jahresdurchschnitt"
+      - "1 Euro = ... USD, Jahresdurchschnitt"
+      - "abgeleitet: reziproker Wert lokale Währung je USD"
+      - "abgeleitet: reziproker EUR-Äquivalentwert je USD vor 1999 über 1 EUR = 1,95583 DM"
+    unit: "USD je DM/EUR; abgeleitete reziproke Kurse"
+    currency: "DEM, EUR, USD"
+    nominal_or_real: "nominal"
+    data_status: "amtliche_zahl_pdf_text_extraktion"
+    license_or_usage_note: "Bundesbank-Nutzungshinweis und Weiterverbreitungsstatus vor Veröffentlichung prüfen"
+    trust_level: "hoch; amtliche Quelle, hashgeprüfte PDF-Extraktion mit Sentinelwerten"
+    known_limitations:
+      - "PDF-Layout-Extraktion ist an die geprüfte PDF-Fassung gebunden."
+      - "Reziproke Hilfswerte sind nicht zwingend identisch mit Jahresdurchschnitten inverser Tageskurse."
+      - "Periodisierung für Aktienrenditen von Jahr t bis t+1 ist noch nicht mit dieser Jahresdurchschnittsreihe verbunden."
+      - "Vor Modellintegration muss entschieden werden, ob Jahresdurchschnitte, Jahresendkurse oder Monats-/Tageskurse verwendet werden."
+    checksum_or_version: "sha256:f1ad66a9dc0501358fa31851066ee698b6fb64f056df725e95aeece2b9f24f15"
+    transformation_status: "pdf_text_extraction_pipeline_outputs_processed_not_published"
+    used_in_model: false
+    related_assumption_ids: ["RET-002"]
+
+  - dataset_id: BUNDESBANK_USD_ANNUAL_FX_CHECK_2026_05_04
+    title: "Qualitätsnachweis: Bundesbank USD-Jahresdurchschnittskurse für DM/EUR"
+    publisher: "Projektinterne Qualitätskontrolle auf Basis Bundesbank-PDF"
+    source_url: "data/quality/fx/bundesbank-usd-annual-fx-check.json"
+    source_dataset_id: "BUNDESBANK_LONG_TIME_SERIES_FX_I10_2026_03_05"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "automatisch geprüft am 2026-05-04 gegen Bundesbank-PDF mit gedrucktem Datenstand 05-03-2026"
+    source_file_planned_path: "data/quality/fx/bundesbank-usd-annual-fx-check.json"
+    local_processed_file_paths:
+      - "data/processed/fx/bundesbank-usd-annual-fx.csv"
+      - "data/processed/fx/bundesbank-usd-annual-fx.json"
+    generating_script: "scripts/build_bundesbank_fx.py"
+    raw_file_committed: false
+    quality_file_committed: true
+    data_years_covered: "1948-2025"
+    geography: "Deutschland / Euro-Raum und USA"
+    population_scope: "Wechselkurse Deutsche Mark beziehungsweise Euro gegenüber US-Dollar"
+    variables:
+      - "usdPerLocalCurrency"
+      - "reciprocalLocalCurrencyPerUsd"
+      - "reciprocalEurEquivalentPerUsd"
+    unit: "Wechselkurs als Dezimalzahl"
+    currency: "DEM, EUR, USD"
+    nominal_or_real: "nominal"
+    data_status: "qualitaetskontrolle_automatisierter_fx_abgleich"
+    license_or_usage_note: "Qualitätsnachweis enthält Metadaten, Formeln und Sentinelwerte; vollständige generierte Reihe bleibt bis zur Methodik-/Nutzungsklärung lokal"
+    trust_level: "mittel bis hoch; amtliche Quelle und reproduzierbare Extraktion, aber noch keine Modellperiodisierung"
+    known_limitations:
+      - "Noch nicht an Shiller-Renditen oder interaktives Modell angebunden."
+      - "Noch keine Entscheidung, ob Jahresdurchschnittskurse die richtige Periodisierung für Kapitalmarktjahre sind."
+      - "Reziproke Hilfswerte sind nicht zwingend identisch mit Jahresdurchschnitten inverser Tageskurse."
+      - "Vollständige generierte Reihe wird nicht unter data/website/ versioniert."
+    checksum_or_version: "quality artifact generated by scripts/build_bundesbank_fx.py from source sha256:f1ad66a9dc0501358fa31851066ee698b6fb64f056df725e95aeece2b9f24f15"
+    transformation_status: "generated_fx_pipeline_quality_control"
+    used_in_model: false
+    used_in_website_context: false
     related_assumption_ids: ["RET-002"]
 
   - dataset_id: BUNDESBANK_UMLAUFSRENDITEN
@@ -425,3 +498,118 @@ sources:
     transformation_status: "not_started"
     used_in_model: false
     related_assumption_ids: ["TRANS-001"]
+
+  - dataset_id: SHILLER_CHAPTER26_ANNUAL_XLSX
+    title: "Annual U.S. Stock Price Data, Chapter 26 update"
+    publisher: "Robert J. Shiller / Yale University website"
+    source_url: "http://www.econ.yale.edu/~shiller/data/chapt26.xlsx"
+    landing_page: "http://www.econ.yale.edu/~shiller/data.htm"
+    current_landing_page: "https://shillerdata.com/"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "XLSX Chapter 26 update, file hash pinned on 2026-05-04"
+    source_file_planned_path: "data/raw/returns/shiller_chapt26.xlsx"
+    raw_file_committed: false
+    data_years_covered: "annual source rows 1871-2016; generated return years 1871-2014"
+    geography: "USA"
+    population_scope: "US-Aktienmarkt-Forschungsproxy, S&P Composite / Shiller-Daten"
+    variables:
+      - "S&P Composite Stock Price Index"
+      - "Dividends Accruing to Index"
+      - "Consumer Price Index"
+      - "rekonstruierte nominale und reale jährliche Total Returns"
+    unit: "Indexstände und Renditen als Dezimalzahl"
+    currency: "USD für nominale Quelle; reale Reihe CPI-deflationiert"
+    nominal_or_real: "nominal und real"
+    data_status: "reconstructed_data"
+    license_or_usage_note: "Öffentlich herunterladbare Forschungsdaten; explizite Weiterverbreitungslizenz vor Veröffentlichung prüfen"
+    trust_level: "mittel bis hoch; etablierte Forschungsquelle, aber kein offizieller S&P-500-Total-Return-Index"
+    known_limitations:
+      - "Keine offizielle oder lizenzierte S&P-500-Total-Return-Reihe."
+      - "Historischer Yale-Dateilink ist nur per HTTP erreichbar; Pipeline prüft deshalb SHA-256 strikt."
+      - "Renditejahre laufen von Jahr t bis t+1; Periodisierung muss vor Modellintegration festgelegt werden."
+      - "Quelle reicht für rekonstruierte Renditen nur bis 2014; Modell-Cashflows reichen aktuell bis 2024."
+      - "Für deutsche Rentenrechnung fehlen die freigegebene DM-/Euro-/USD-Wechselkursbehandlung und deutsche Inflationsbehandlung."
+    checksum_or_version: "sha256:d255bb1230a9a94c450ee4738d914ec8c6c79ceae58f1cc89559c7f40fa7c9c0"
+    transformation_status: "xlsx_return_extraction_pipeline_outputs_processed_not_published"
+    used_in_model: false
+    related_assumption_ids: ["INV-002", "RET-001", "RET-002", "COST-001"]
+
+  - dataset_id: SHILLER_RETURN_PIPELINE_CHECK_2026_05_04
+    title: "Qualitätsnachweis: Shiller-US-Aktienmarktproxy"
+    publisher: "Projektinterne Qualitätskontrolle auf Basis Shiller-XLSX"
+    source_url: "data/quality/returns/shiller-return-pipeline-check.json"
+    source_dataset_id: "SHILLER_CHAPTER26_ANNUAL_XLSX"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "Qualitätsartefakt erstellt am 2026-05-04; geprüft gegen Shiller Chapter 26 XLSX mit Hash vom 2026-05-04"
+    source_file_planned_path: "data/quality/returns/shiller-return-pipeline-check.json"
+    local_processed_file_paths:
+      - "data/processed/returns/shiller-sp500-proxy-annual.csv"
+      - "data/processed/returns/shiller-return-series.json"
+    generating_script: "scripts/build_shiller_returns.py"
+    raw_file_committed: false
+    quality_file_committed: true
+    data_years_covered: "Renditejahre 1871-2014; für Rentenmodell aktuell besonders 1960-2014"
+    geography: "USA"
+    population_scope: "US-Aktienmarkt-Forschungsproxy"
+    variables:
+      - "nominalTotalReturn"
+      - "realTotalReturn"
+    unit: "Dezimalrendite, z. B. 0.05 = 5 Prozent"
+    currency: "USD nominal; real CPI-deflationiert"
+    nominal_or_real: "nominal und real"
+    data_status: "generated_reconstructed_research_proxy"
+    license_or_usage_note: "Qualitätsnachweis enthält nur Metadaten, Formeln und Sentinelwerte; vollständige generierte Reihe wird bis zur Lizenzklärung nicht versioniert"
+    trust_level: "mittel; reproduzierbare Extraktion mit Hash-, Header- und Sentinelprüfungen, aber keine unabhängige Plausibilitätsquelle angebunden"
+    known_limitations:
+      - "Noch nicht an das interaktive Modell angebunden."
+      - "Noch keine Wechselkursumrechnung in DEM/EUR."
+      - "Noch keine zweite Plausibilitätsquelle für dieselben Renditejahre."
+      - "Keine Daten nach Renditejahr 2014."
+      - "Renditejahre 2013 und 2014 sind formelbasiert rekonstruiert, aber nicht gegen eine gecachte Workbook-Rendite geprüft."
+      - "Vollständige generierte Reihe darf bis zur Lizenzklärung nicht unter data/website/ oder data/extracted/ versioniert werden."
+    checksum_or_version: "quality artifact generated by scripts/build_shiller_returns.py from source sha256:d255bb1230a9a94c450ee4738d914ec8c6c79ceae58f1cc89559c7f40fa7c9c0"
+    transformation_status: "generated_return_pipeline_quality_control"
+    used_in_model: false
+    used_in_website_context: false
+    related_assumption_ids: ["INV-002", "RET-001", "RET-002", "COST-001"]
+
+  - dataset_id: SHILLER_US_EQUITY_EUR_EQUIVALENT_CHECK_2026_05_04
+    title: "Qualitätsnachweis: Shiller-US-Aktienmarktproxy in EUR-Äquivalent"
+    publisher: "Projektinterne Qualitätskontrolle auf Basis Shiller-XLSX und Bundesbank-FX-PDF"
+    source_url: "data/quality/returns/shiller-us-equity-eur-equivalent-check.json"
+    source_dataset_ids:
+      - "SHILLER_CHAPTER26_ANNUAL_XLSX"
+      - "BUNDESBANK_LONG_TIME_SERIES_FX_I10_2026_03_05"
+    retrieved_at: "2026-05-04"
+    source_version_or_date: "Hilfsrechnung erstellt am 2026-05-04 aus hashgeprüften Shiller- und Bundesbank-Quellen"
+    source_file_planned_path: "data/quality/returns/shiller-us-equity-eur-equivalent-check.json"
+    local_processed_file_paths:
+      - "data/processed/returns/shiller-us-equity-eur-equivalent-annual.csv"
+      - "data/processed/returns/shiller-us-equity-eur-equivalent-annual.json"
+    generating_script: "scripts/build_us_equity_eur_returns.py"
+    raw_file_committed: false
+    quality_file_committed: true
+    data_years_covered: "1948-2014"
+    geography: "USA; Umrechnung in EUR-Äquivalent für deutsche Modellkontexte"
+    population_scope: "US-Aktienmarkt-Forschungsproxy plus Bundesbank-FX-Hilfswerte"
+    variables:
+      - "usdNominalTotalReturn"
+      - "reciprocalFxChange"
+      - "eurEquivalentNominalReturn"
+    unit: "Dezimalrendite, z. B. 0.05 = 5 Prozent"
+    currency: "USD und EUR-Äquivalent"
+    nominal_or_real: "nominal"
+    data_status: "generated_reconstructed_research_proxy_not_model_ready"
+    license_or_usage_note: "Qualitätsnachweis enthält Metadaten, Formel, Checksummen und Sentinelwerte; vollständige Hilfsreihe bleibt bis zur Lizenz- und Methodikklärung lokal"
+    trust_level: "mittel; reproduzierbar, aber Periodisierung und FX-Konvention sind nicht freigegeben"
+    known_limitations:
+      - "Nicht an das interaktive Modell angebunden und nicht modellfreigegeben."
+      - "Nutzt reziprok abgeleitete Jahresdurchschnitts-FX-Hilfswerte; keine Jahresdurchschnitte inverser Tageskurse."
+      - "Keine deutsche Inflationsumrechnung."
+      - "Keine Daten nach Renditejahr 2014."
+      - "Vollständige generierte Reihe wird nicht unter data/website/ versioniert."
+    checksum_or_version: "quality artifact generated by scripts/build_us_equity_eur_returns.py from Shiller sha256:d255bb1230a9a94c450ee4738d914ec8c6c79ceae58f1cc89559c7f40fa7c9c0 and Bundesbank FX sha256:f1ad66a9dc0501358fa31851066ee698b6fb64f056df725e95aeece2b9f24f15"
+    transformation_status: "generated_combined_return_quality_control_not_model_ready"
+    used_in_model: false
+    used_in_website_context: false
+    related_assumption_ids: ["INV-002", "RET-001", "RET-002", "COST-001"]

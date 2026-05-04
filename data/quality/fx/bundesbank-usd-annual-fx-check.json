@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "status": "checked_source_and_usd_fx_columns",
+  "qualityArtifactCreatedAt": "2026-05-04",
+  "sourceRetrievedAt": "2026-05-04",
+  "sourceDatasetId": "BUNDESBANK_LONG_TIME_SERIES_FX_I10_2026_03_05",
+  "sourceTitle": "Long time series on economic development in Germany, X. Exchange rates",
+  "publisher": "Deutsche Bundesbank",
+  "landingPage": "https://www.bundesbank.de/en/statistics/time-series-databases",
+  "pdfUrl": "https://www.bundesbank.de/resource/blob/844844/3c013bcde6fa7164d956999d8d16a761/mL/i-10-wechselkurse-data.pdf",
+  "retrievedAt": "2026-05-04",
+  "printedDate": "05-03-2026",
+  "sourceSha256": "f1ad66a9dc0501358fa31851066ee698b6fb64f056df725e95aeece2b9f24f15",
+  "method": "SHA-256-Prüfung der Bundesbank-PDF, Extraktion mit pdftotext -layout und Auslesen der ersten USD-Spalte in den Tabellen DM-Jahresdurchschnitte 1948-1998 und Euro-Jahresdurchschnitte 1999-2025.",
+  "generatedDataLocation": "data/processed/fx/ (nicht versioniert, nicht fuer Modellnutzung vor Methodikfreigabe)",
+  "recordCount": 78,
+  "recordCountsByCurrency": {
+    "DEM": 51,
+    "EUR": 27
+  },
+  "yearRange": [
+    1948,
+    2025
+  ],
+  "sourceUnit": "1 DM/EUR = ... USD",
+  "canonicalProcessedCsvSha256": "5d9e8e230b1c02da07fe51f8b20b5c63910d6d60f4485ef0feb0a7e2ae327a10",
+  "derivedFields": {
+    "reciprocalLocalCurrencyPerUsd": "1 / usdPerLocalCurrency; reciprocal of an annual average, not an annual average of inverse daily rates",
+    "reciprocalEurEquivalentPerUsd": "DEM je USD / 1.95583 bis 1998; EUR je USD ab 1999; reciprocal-derived"
+  },
+  "modelReadiness": {
+    "readyForModelIntegration": false,
+    "ratePeriod": "calendar_year_average",
+    "quoteBasis": "annual_average_usd_per_local_currency",
+    "inverseRateBasis": "reciprocal_of_annual_average_not_average_of_inverse_daily_rates",
+    "cashflowTiming": "not_decided",
+    "allowedReturnPairing": "not_approved"
+  },
+  "sentinelChecks": [
+    {
+      "year": 1960,
+      "currency": "DEM",
+      "usdPerLocalCurrency": 0.2398,
+      "reciprocalLocalCurrencyPerUsd": 4.170141784820684,
+      "reciprocalEurEquivalentPerUsd": 2.132159638015924
+    },
+    {
+      "year": 1998,
+      "currency": "DEM",
+      "usdPerLocalCurrency": 0.5684,
+      "reciprocalLocalCurrencyPerUsd": 1.7593244194229416,
+      "reciprocalEurEquivalentPerUsd": 0.8995282920412008
+    },
+    {
+      "year": 1999,
+      "currency": "EUR",
+      "usdPerLocalCurrency": 1.0658,
+      "reciprocalLocalCurrencyPerUsd": 0.9382623381497466,
+      "reciprocalEurEquivalentPerUsd": 0.9382623381497466
+    },
+    {
+      "year": 2008,
+      "currency": "EUR",
+      "usdPerLocalCurrency": 1.4708,
+      "reciprocalLocalCurrencyPerUsd": 0.6799020940984498,
+      "reciprocalEurEquivalentPerUsd": 0.6799020940984498
+    },
+    {
+      "year": 2024,
+      "currency": "EUR",
+      "usdPerLocalCurrency": 1.0824,
+      "reciprocalLocalCurrencyPerUsd": 0.9238728750923872,
+      "reciprocalEurEquivalentPerUsd": 0.9238728750923872
+    }
+  ],
+  "result": {
+    "fullGeneratedSeriesCommitted": false,
+    "forbiddenPublishedOutputPathsAbsent": true,
+    "gitTrackedForbiddenOutputPathsAbsent": true,
+    "gitTrackedForbiddenOutputPaths": [],
+    "checkedForbiddenOutputPaths": [
+      "data/website/fx-rates.json",
+      "data/extracted/fx/bundesbank-usd-annual-fx.csv"
+    ],
+    "checkedForbiddenOutputPatterns": [
+      "data/website/*fx*",
+      "data/website/*exchange*",
+      "data/website/*wechsel*",
+      "data/extracted/fx/*.csv",
+      "data/extracted/fx/*.json"
+    ],
+    "modelIntegrationStatus": "not_integrated",
+    "note": "Die Reihe stellt nur den FX-Baustein bereit. Vor Kombination mit Shiller-Renditen sind Periodisierung, Wechselkurskonvention und Lizenz-/Nutzungshinweise zu prüfen."
+  }
+}
