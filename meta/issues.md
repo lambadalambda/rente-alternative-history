@@ -1,7 +1,7 @@
 - [ ] [Zentrale These und Modellgovernance definieren](issues/zentrale-these-und-modellgovernance-definieren.md)
 - [ ] [Datenquellen und Methodik klaeren](issues/datenquellen-und-methodik-klaeren.md)
 - [ ] [Historische Rentenstroeme modellieren](issues/historische-rentenstroeme-modellieren.md)
-- [ ] [Uebergangskosten und fiskalischen Nettoeffekt modellieren](issues/uebergangskosten-und-fiskalischen-nettoeffekt-modellieren.md)
+- [ ] [Aufbaupreis und optionale Uebergangskosten modellieren](issues/uebergangskosten-und-fiskalischen-nettoeffekt-modellieren.md)
 - [ ] [Historisch plausible Investmentpolitik definieren](issues/historisch-plausible-investmentpolitik-definieren.md)
 - [ ] [Kapitalmarkt-Backtesting aufbauen](issues/kapitalmarkt-backtesting-aufbauen.md)
 - [ ] [Interaktives Szenario-Modell entwickeln](issues/interaktives-szenario-modell-entwickeln.md)

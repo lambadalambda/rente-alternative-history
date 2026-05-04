@@ -2,19 +2,19 @@
 
 Stand: 2026-05-04
 
-Status: Arbeitsentwurf vor der ersten Modellrechnung. Dieses Dokument definiert, welche Aussagen das Projekt prüfen darf. Es enthält keine Ergebnisse.
+Status: Arbeitsentwurf mit Prototyprechnung. Dieses Dokument definiert, welche Aussagen das Projekt prüfen darf. Es enthält noch keine veröffentlichungsreifen Ergebnisse.
 
 ## Primärfrage
 
 Wir prüfen, ob und unter welchen Annahmen eine seit der Rentenreform 1957 aufgebaute, teilweise kapitalgedeckte Reserve spätere Rentenausgaben teilweise oder vollständig hätte finanzieren können.
 
-Die 10-Prozent-Idee ist ein Szenarioparameter. Sie ist kein vorab bestätigtes Ergebnis.
+Der 5/5-Verzichtsdeal ist ein Szenarioparameter. Er ist kein vorab bestätigtes Ergebnis.
 
 ## Nebenfragen
 
-- Welche historischen Zahlungsströme der gesetzlichen Rentenversicherung eignen sich als Basis für eine hypothetische Anlagequote?
-- Wie groß wäre der jährliche Finanzierungsbedarf im Umlageverfahren, wenn ein Teil der Beiträge nicht sofort zur Rentenzahlung verfügbar wäre?
-- Wie unterscheiden sich Brutto-Fondsvermögen und fiskalische Nettoposition nach Übergangskosten?
+- Welche historischen Zahlungsströme der gesetzlichen Rentenversicherung eignen sich als Basis für einen hypothetischen Fondsaufbau?
+- Was kauft ein kleiner jährlicher Verzicht, wenn 5 Prozent höhere Beiträge und 5 Prozent niedrigere Rentenausgaben langfristig investiert werden?
+- Wie unterscheiden sich Brutto-Fondsvermögen, kumulierter Aufbaupreis und Kapitalertrag über diesen Aufbaupreis hinaus?
 - Wie sensibel sind Ergebnisse gegenüber Indexwahl, Startjahr, Kosten, Steuern, Wechselkursen, Inflation und Entnahmeregel?
 - Welche Szenarien sind bloße Vergleichsrechnungen mit rückblickenden Indexdaten und welche kommen einer historisch plausibleren öffentlichen Investmentpolitik näher?
 
@@ -26,9 +26,9 @@ Jede spätere Headline-Zahl muss einer dieser Kategorien zugeordnet werden:
 | --- | --- | --- |
 | Historischer Fakt | Direkt aus einer Quelle belegte historische Angabe | "Die DRV weist für Jahr X Beitragseinnahmen von Y aus." |
 | Rekonstruktion | Aus Quellen abgeleiteter Wert mit Transformationsschritt | "Nach Umrechnung in Euro und Preisbasis X ergibt sich Y." |
-| Modellannahme | Nicht beobachtete Setzung für das kontrafaktische Szenario | "Das Szenario setzt eine Anlagequote von 10 Prozent der Beiträge an." |
+| Modellannahme | Nicht beobachtete Setzung für das kontrafaktische Szenario | "Das Szenario setzt 5 Prozent höhere Beiträge und 5 Prozent niedrigere Rentenausgaben an." |
 | Modelloutput | Ergebnis einer definierten Rechnung | "Unter Annahmen A, B und C berechnet das Modell Y." |
-| Interpretation | Einordnung des Outputs | "Das spricht dafür, dass der Befund stark von der Übergangsfinanzierung abhängt." |
+| Interpretation | Einordnung des Outputs | "Das spricht dafür, dass der Befund stark vom Aufbaupreis abhängt." |
 
 ## Nicht-Claims
 
@@ -43,8 +43,8 @@ Diese Aussagen sind ohne weitere Einschränkung verboten:
 Zulässig sind vorsichtige, belegbare Formulierungen:
 
 - "Unter Annahme X ergibt das Modell Y."
-- "Dieses Szenario berücksichtigt Übergangskosten noch nicht und ist deshalb nur eine Bruttorechnung."
-- "Der Befund hängt sichtbar von Indexwahl, Kosten, Steuern und der Definition der investierten Beiträge ab."
+- "Dieses Szenario finanziert den Fonds über höhere Beiträge und niedrigere Rentenausgaben."
+- "Der Befund hängt sichtbar von Indexwahl, Kosten, Steuern und der Definition der investierten Cashflows ab."
 
 ## Definition von Deckung
 
@@ -52,14 +52,15 @@ Zulässig sind vorsichtige, belegbare Formulierungen:
 
 | Metrik | Definition | Einschränkung |
 | --- | --- | --- |
-| Brutto-Fondsvermögen | Fondsbestand am Jahresende ohne Abzug von Übergangskosten | Kein Wohlfahrts- oder Fiskalvergleich |
+| Brutto-Fondsvermögen | Fondsbestand am Jahresende | Kein Wohlfahrts- oder Fiskalvergleich ohne Aufbaupreis |
+| Aufbaupreis | Kumulierte zusätzliche Beiträge plus kumulierte eingesparte Rentenausgaben | Zeigt den jährlichen Verzicht ohne Opportunitätsverzinsung |
+| Kapitalertrag über Aufbaupreis | Fondsbestand minus kumulierter Aufbaupreis | Keine vollständige Wohlfahrtsrechnung, aber verständlicher Vergleichswert |
 | Jahresrendite brutto | Wertänderung des Fonds in einem Jahr vor Kosten/Steuern | Kann in Krisenjahren negativ sein |
 | Jahresrendite netto | Wertänderung nach Kosten, Steuern und Währungseffekten | Braucht explizite Annahmen |
 | Nachhaltige Entnahme | Regelbasierte Entnahme, die den Fonds nicht sofort aufzehrt | Keine Garantie für einzelne Krisenpfade |
-| Fiskalische Nettoposition | Fondsvermögen minus kumulierte Übergangsfinanzierung und Zinsen | Zentrale Metrik für öffentliche Finanzen |
 | Deckungsquote | Zulässige Fondsfinanzierung geteilt durch gewählte Rentenausgaben | Nur interpretierbar mit klarer Ausgabenbasis |
 
-Ein Szenario darf nicht als "vollständig gedeckt" gelten, wenn es nur Brutto-Fondsvermögen zeigt, aber die entgangenen Umlageeinnahmen und deren Finanzierung ausblendet.
+Ein Szenario darf nicht als "vollständig gedeckt" gelten, wenn es nur Brutto-Fondsvermögen zeigt, aber den jährlichen Aufbaupreis aus höheren Beiträgen und niedrigeren Renten ausblendet.
 
 ## Mindestmodell vor öffentlicher Aussage
 
@@ -67,22 +68,23 @@ Vor jeder öffentlichen Ergebniszahl braucht das Modell mindestens diese Baustei
 
 - Historische Jahresreihe für Beitragseinnahmen oder eine andere begründete Cashflow-Basis.
 - Historische Jahresreihe für Rentenausgaben mit klarer Brutto-/Netto-Abgrenzung.
-- Anlagequote und Investmentpolitik mit dokumentiertem Status als Annahme oder Vergleichsrechnung.
-- Übergangsfinanzierung für den Teil der Beiträge, der dem Umlagesystem entzogen wird.
+- Aufbaupfad und Investmentpolitik mit dokumentiertem Status als Annahme oder Vergleichsrechnung.
+- Jährlicher Aufbaupreis durch zusätzliche Beiträge und/oder niedrigere Rentenausgaben.
 - Kosten-, Steuer-, Inflations- und Währungsannahmen oder eine sichtbare Markierung, dass sie noch fehlen.
 - Sensitivitäten für mindestens konservatives, mittleres, optimistisches und adverses Szenario.
 
-## Übergangskostenregel
+## Aufbaupreisregel
 
-Jede Umleitung von Beiträgen in einen Fonds erzeugt im Umlagesystem einen Finanzierungsbedarf. Das Modell muss deshalb je Jahr zeigen:
+Die Baseline leitet keine Beiträge aus der Umlage ab, sondern finanziert den Fonds über einen expliziten Verzichtsdeal. Das Modell muss deshalb je Jahr zeigen:
 
-- entgangene Umlageeinnahmen,
-- Ersatzfinanzierung durch Beiträge, Steuern, Bundeszuschuss, Leistungskürzung oder Schulden,
-- Zinskosten bei Schuldenfinanzierung,
+- zusätzliche Beiträge,
+- eingesparte Rentenausgaben,
+- Fonds-Einzahlung,
+- kumulierten Aufbaupreis,
 - Brutto-Fondsvermögen,
-- fiskalische Nettoposition.
+- Kapitalertrag über den Aufbaupreis hinaus.
 
-Eine Rechnung ohne Übergangskosten ist erlaubt, muss aber sichtbar als unvollständige Brutto-Sparrechnung gekennzeichnet werden.
+Szenarien, die in Zukunft echte Beitragsumleitungen ohne Rentenkürzung modellieren, müssen weiterhin entgangene Umlageeinnahmen, Ersatzfinanzierung und mögliche Schuldenpfade zeigen. Die aktuelle Baseline braucht das nicht, weil keine historischen Beiträge aus der Umlage abgezogen werden; der Fonds entsteht aus zusätzlichen Beiträgen und niedrigeren Rentenausgaben.
 
 ## Index- und Renditeregeln
 
@@ -104,9 +106,9 @@ Moderne Indexbacktests dürfen nicht als automatisch investierbare Politikoption
 
 Die Website muss die Ausgangsthese sichtbar schwächen oder verwerfen, wenn eine der folgenden Bedingungen eintritt:
 
-- Die 10-Prozent-Hypothese trägt nur ohne Übergangskosten.
+- Der Fonds wirkt nur groß, solange der kumulierte Aufbaupreis ausgeblendet wird.
 - Die 10-Prozent-Hypothese trägt nur bei optimistischer Indexwahl, aber nicht bei plausibleren Kosten-, Steuer- oder Portfoliovarianten.
-- Die fiskalische Nettoposition bleibt negativ, obwohl das Brutto-Fondsvermögen groß wirkt.
+- Der Kapitalertrag über Aufbaupreis bleibt klein oder negativ, obwohl das Brutto-Fondsvermögen groß wirkt.
 - Die Datenlage erlaubt keine belastbare Abgrenzung von Beitragseinnahmen, Rentenausgaben oder Gebietsständen.
 - Ein zentraler Indexdatensatz darf nicht reproduzierbar oder lizenzkonform genutzt werden.
 
@@ -127,19 +129,19 @@ Zentrale Annahmen stehen in `assumptions/register.yaml`. Änderungen brauchen:
 
 Vor Veröffentlichung von Modelloutputs sind mindestens diese Checks nötig:
 
-- Handgerechnete Beispieljahre für Beitragumleitung und Fondsakkumulation.
+- Handgerechnete Beispieljahre für Beitragsaufschlag, Rentenverzicht und Fondsakkumulation.
 - Regressionstests für Headline-Zahlen.
 - Tests für nominale und reale Umrechnung.
 - Tests für DEM/EUR/USD-Umrechnung.
 - Tests für Kosten- und Steuerabzug.
-- Tests für Übergangsfinanzierung und fiskalische Nettoposition.
+- Tests für Beitragsaufschlag, Rentenverzicht, Fonds-Einzahlung und kumulierten Aufbaupreis.
 - Datenprovenienzprüfung gegen `data/manifest.yaml`.
 
-## Offene Entscheidungen vor der ersten Rechnung
+## Offene Entscheidungen vor belastbaren Ergebnissen
 
-- Gilt die Anlagequote auf Beitragseinnahmen, Gesamteinnahmen oder nur bestimmte Beitragsarten? Arbeitsannahme 2026-05-04: Beitragseinnahmen.
+- Wie wird der Aufbaupfad definiert? Arbeitsannahme 2026-05-04: 5 Prozent höhere Beiträge auf Beitragseinnahmen plus 5 Prozent niedrigere Rentenausgaben.
 - Soll die Baseline `RV insgesamt` oder `allgemeine RV` verwenden? Arbeitsannahme 2026-05-04: `allgemeine RV` als erste Baseline, `RV insgesamt` als späterer Vergleich.
 - Welche Rentenausgaben sind die Vergleichsgröße: Rentenausgaben ohne KVdR/PVdR-Zuschüsse, Renten plus KVdR/PVdR oder Gesamtausgaben? Arbeitsannahme 2026-05-04: Rentenausgaben.
 - Wie wird der Bruch `Alte Bundesländer bis 1991` und `Insgesamt ab 1992` behandelt?
-- Welche Übergangsfinanzierung ist die konservative Baseline? Arbeitsannahme 2026-05-04: Bei historischen Beitragseinnahmen von 100 werden 105 Beiträge gezahlt, 95 gehen in die Umlage und 10 in den Fonds.
+- Welche Übergangsfinanzierung ist die konservative Baseline? Arbeitsannahme 2026-05-04: Keine Übergangsschuld in der Baseline; der Fonds wird aus zusätzlicher Beitragslast und Rentenverzicht finanziert.
 - Welche Investmentpolitik ist historisch plausibler als reine DAX/S&P-500-Rückblicke?

@@ -1,6 +1,6 @@
 # Renten-Alternative-History
 
-Eine deutschsprachige, datenjournalistische Website über ein kontrafaktisches Gedankenexperiment: Was wäre rechnerisch passiert, wenn seit der Rentenreform 1957 unter Konrad Adenauer ein Teil der Mittel der gesetzlichen Rentenversicherung nicht vollständig im Umlageverfahren ausgegeben, sondern in einen langfristigen Reservefonds investiert worden wäre?
+Eine deutschsprachige, datenjournalistische Website über ein kontrafaktisches Gedankenexperiment: Was wäre rechnerisch passiert, wenn seit der Rentenreform 1957 unter Konrad Adenauer etwas höhere Beiträge und etwas niedrigere Rentenausgaben einen langfristigen Reservefonds aufgebaut hätten?
 
 Die zentrale These wird nicht vorausgesetzt. Das Projekt soll prüfen, ob und unter welchen Annahmen eine teilweise Kapitaldeckung spätere Rentenzahlungen teilweise oder vollständig hätte finanzieren können.
 
@@ -8,7 +8,7 @@ Die zentrale These wird nicht vorausgesetzt. Das Projekt soll prüfen, ob und un
 
 - Eine moderne, statisch hostbare Website auf Deutsch bauen.
 - Historische Rentenfinanzen, Kapitalmarktdaten und Modellannahmen transparent referenzieren.
-- Interaktive Szenarien ermöglichen: Anlagequote, Startjahr, Index/Portfolio, Kosten, reale/nominale Betrachtung und Übergangsfinanzierung.
+- Interaktive Szenarien ermöglichen: Beitragsaufschlag, Rentenverzicht, Startjahr, Index/Portfolio, Kosten sowie reale/nominale Betrachtung.
 - Schöne, zugängliche Infografiken mit journalistischer Einordnung statt generischem Dashboard entwickeln.
 - Auch Ergebnisse zeigen, die die Ausgangsthese schwächen oder widerlegen.
 
@@ -16,13 +16,13 @@ Die zentrale These wird nicht vorausgesetzt. Das Projekt soll prüfen, ob und un
 
 - Historische Fakten, Modellannahmen, Szenarioergebnisse und Interpretation werden sichtbar getrennt.
 - Keine Headline-Zahl ohne Quelle, Annahmenkontext und Hinweis auf Unsicherheit.
-- Brutto-Fondsvermögen wird nie ohne Übergangskosten und fiskalischen Nettoeffekt als Erfolg dargestellt.
+- Brutto-Fondsvermögen wird nie ohne kumulierten Aufbaupreis und Hinweis auf Modellgrenzen als Erfolg dargestellt.
 - DAX, S&P 500 und Weltindex-Szenarien werden als Vergleichsrechnungen behandelt, nicht automatisch als historisch realistische Staatsfondsstrategie.
 - Die Website ist keine Anlageberatung und keine parteipolitische Kampagne.
 
 ## Projektstatus
 
-Dieses Repository befindet sich in der Planungs- und Recherchephase. Der konkrete Static-Site-Stack ist noch nicht gewählt.
+Dieses Repository befindet sich in der Prototyp- und Recherchephase. Die erste Website ist bewusst frameworklos gebaut und statisch hostbar; Datenextraktion, Modelltests und historische Renditeserien folgen noch.
 
 Die offenen Arbeitspakete liegen im repo-lokalen Issue-Tracker:
 
@@ -51,7 +51,7 @@ Jede Datenquelle soll Herausgeber, URL, Abrufdatum, Lizenz-/Nutzungshinweis, Ver
 
 Aktuelle Planungsartefakte:
 
-- `meta/methodik/modellgovernance.md`: Regeln für Claims, Falsifikation, Übergangskosten und Veröffentlichung.
+- `meta/methodik/modellgovernance.md`: Regeln für Claims, Falsifikation, Aufbaupreis, optionale Übergangskosten und Veröffentlichung.
 - `assumptions/register.yaml`: versioniertes Register zentraler Annahmen und offener Entscheidungen.
 - `data/manifest.yaml`: Grundstruktur des Datenmanifests.
 - `meta/research/drv-zeitreihen-inventar.md`: erstes Inventar der DRV-Zeitreihenquelle.

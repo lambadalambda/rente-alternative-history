@@ -9,8 +9,8 @@ Die Kernfrage des Projekts als falsifizierbare Modellhypothese festlegen, bevor 
 - Definieren, welche Hauptclaims die Website machen darf und welche ausdrücklich nicht.
 - Festlegen, was "Rentenzahlungen aus Fondserträgen decken" bedeutet: Bruttoausgaben, Nettoausgaben, laufende Erträge, nachhaltige Entnahme oder Substanzverzehr.
 - Harte Trennung zwischen historischem Fakt, Modellannahme, Szenarioergebnis und Interpretation verlangen.
-- Falsifikationskriterien festlegen: Die Website muss auch veröffentlichen, wenn die 10-Prozent-Hypothese unter plausiblen Annahmen nicht trägt.
-- Ein versioniertes Annahmenregister für zentrale Entscheidungen wie Anlagequote, Cashflow-Basis, Kosten, Steuern und Wechselkurse anlegen.
+- Falsifikationskriterien festlegen: Die Website muss auch veröffentlichen, wenn der 5/5-Verzichtsdeal unter plausiblen Annahmen nicht trägt.
+- Ein versioniertes Annahmenregister für zentrale Entscheidungen wie Aufbaupfad, Cashflow-Basis, Kosten, Steuern und Wechselkurse anlegen.
 
 ## Acceptance Criteria
 

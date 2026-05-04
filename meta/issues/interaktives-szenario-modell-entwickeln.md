@@ -2,11 +2,11 @@
 
 ## Summary
 
-Ein interaktives Modell bereitstellen, mit dem Nutzerinnen und Nutzer Anlagequoten, Indexwahl und zentrale Annahmen veraendern koennen.
+Ein interaktives Modell bereitstellen, mit dem Nutzerinnen und Nutzer Beitragsaufschlag, Rentenverzicht, Indexwahl und zentrale Annahmen veraendern koennen.
 
 ## Requirements
 
-- Regler fuer Anlagequote, Startjahr, Kostenquote und Renditevariante anbieten.
+- Regler fuer Beitragsaufschlag, Rentenverzicht, Startjahr, Kostenquote und Renditevariante anbieten.
 - Auswahl zwischen DAX, S&P 500 und einer globalen Index-Alternative ermoeglichen.
 - Kerngroessen anzeigen: Fondsbestand, Jahresrendite, Rentenausgaben, Deckungsquote und Entnahmebedarf.
 - Unsicherheit und Grenzen des Modells sichtbar machen.
@@ -26,5 +26,5 @@ Ein interaktives Modell bereitstellen, mit dem Nutzerinnen und Nutzer Anlagequot
 ## Notes
 
 - Die Website soll nicht als Anlageberatung wirken, sondern als historisches und fiskalisches Gedankenexperiment.
-- Arbeitsstand 2026-05-04: Erste interaktive Modellwerkstatt mit Reglern für Fondsbeitrag, zusätzliche Beiträge, Rendite, Kosten und Übergangszins angelegt. Die Renditen sind ausdrücklich illustrative Konstanten, keine historischen Indexdaten.
+- Arbeitsstand 2026-05-04: Erste interaktive Modellwerkstatt mit Reglern für höhere Beiträge, niedrigere Rentenausgaben, Rendite und Kosten angelegt. Die Renditen sind ausdrücklich illustrative Konstanten, keine historischen Indexdaten.
 - Issue bleibt offen, bis echte historische Renditeserien, Presets per URL und vollständige Quellenrückführung angebunden sind.

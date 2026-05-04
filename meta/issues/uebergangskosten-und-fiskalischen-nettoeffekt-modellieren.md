@@ -1,26 +1,25 @@
-# Uebergangskosten und fiskalischen Nettoeffekt modellieren
+# Aufbaupreis und optionale Uebergangskosten modellieren
 
 ## Summary
 
-Die Finanzierungslücke modellieren, die entsteht, wenn ein Teil der Rentenbeiträge nicht sofort ausgegeben, sondern investiert wird.
+Den Aufbaupreis der Baseline modellieren und optionale Finanzierungslücken für spätere Beitragsumleitungs-Szenarien vorbereiten.
 
 ## Requirements
 
-- Szenarien definieren, wie der fehlende Umlage-Cashflow finanziert wird: höhere Beiträge, geringere Leistungen, höhere Steuern/Bundeszuschüsse oder Schulden.
-- Fondsvermögen immer auch dem kumulierten Finanzierungsbedarf gegenüberstellen.
-- Bei Schuldenfinanzierung Zinsannahmen und Nettovermögen aus Fonds abzüglich Schulden berechnen.
-- Politische und makroökonomische Grenzen einer jahrzehntelangen Übergangsfinanzierung beschreiben.
-- Deutlich machen, dass ein reiner Brutto-Fondsbestand ohne Übergangskosten kein vollständiger Wohlfahrtsvergleich ist.
+- Baseline-Szenarien definieren, wie viel Fondsaufbau aus höheren Beiträgen und niedrigeren Rentenausgaben stammt.
+- Fondsvermögen immer auch dem kumulierten Aufbaupreis gegenüberstellen.
+- Für spätere echte Beitragsumleitungs-Szenarien festlegen, wie der fehlende Umlage-Cashflow finanziert würde.
+- Bei optionaler Schuldenfinanzierung Zinsannahmen und Nettovermögen aus Fonds abzüglich Schulden berechnen.
+- Deutlich machen, dass ein reiner Brutto-Fondsbestand ohne Aufbaupreis kein vollständiger Wohlfahrtsvergleich ist.
 
 ## Acceptance Criteria
 
-- Für jedes Hauptszenario gibt es Fondsbestand, kumulierte Übergangsfinanzierung und fiskalische Nettoposition.
-- Die Website kann den Unterschied zwischen Brutto-Fondsvermögen und Nettoeffekt erklären.
+- Für jedes Hauptszenario gibt es Fondsbestand, kumulierten Aufbaupreis und Kapitalertrag über Aufbaupreis.
+- Die Website kann den Unterschied zwischen Brutto-Fondsvermögen, Aufbaupreis und Kapitalertrag erklären.
 - Das Modell verhindert implizite "free money"-Annahmen.
 
 ## Notes
 
-- Dieses Thema ist zentral, weil das reale Umlagesystem historische Renten weiterzahlen musste.
-- Arbeitsstand 2026-05-04: `meta/methodik/modellgovernance.md` legt fest, dass jede Umleitung von Beiträgen entgangene Umlageeinnahmen, Ersatzfinanzierung, Zinskosten und fiskalische Nettoposition ausweisen muss.
-- Konkrete Übergangsfinanzierung ist noch offen und steht als `TRANS-001` in `assumptions/register.yaml`.
-- Nutzerentscheidung 2026-05-04: Bei historischen Beitragseinnahmen von 100 werden im Szenario 105 gezahlt, 95 gehen in die Umlage und 10 in den Fonds. Diese Annahme ist als relativer Beitragsanteil dokumentiert, nicht als Beitragssatz-Prozentpunkte.
+- Dieses Thema ist zentral, weil ein Fonds ohne expliziten Aufbaupreis als kostenloser Vermögensaufbau missverstanden werden kann.
+- Arbeitsstand 2026-05-04: Die Baseline baut keine Übergangsschuld auf. Der Fonds wird aus 5 Prozent höheren Beiträgen und 5 Prozent niedrigeren Rentenausgaben finanziert.
+- `TRANS-001` dokumentiert diesen Verzichtsdeal; spätere echte Beitragsumleitungen brauchen weiterhin eine gesonderte Übergangsfinanzierung.

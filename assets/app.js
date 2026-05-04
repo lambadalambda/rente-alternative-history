@@ -10,24 +10,22 @@ const presets = {
 
 const controls = {
   preset: document.querySelector("#preset"),
-  investmentShare: document.querySelector("#investmentShare"),
-  additionalShare: document.querySelector("#additionalShare"),
+  contributionIncrease: document.querySelector("#contributionIncrease"),
+  pensionReduction: document.querySelector("#pensionReduction"),
   returnRate: document.querySelector("#returnRate"),
-  costRate: document.querySelector("#costRate"),
-  debtRate: document.querySelector("#debtRate")
+  costRate: document.querySelector("#costRate")
 };
 
 const output = {
-  investmentShareValue: document.querySelector("#investmentShareValue"),
-  additionalShareValue: document.querySelector("#additionalShareValue"),
+  contributionIncreaseValue: document.querySelector("#contributionIncreaseValue"),
+  pensionReductionValue: document.querySelector("#pensionReductionValue"),
   returnRateValue: document.querySelector("#returnRateValue"),
   costRateValue: document.querySelector("#costRateValue"),
-  debtRateValue: document.querySelector("#debtRateValue"),
-  paygReadout: document.querySelector("#paygReadout"),
-  fundReadout: document.querySelector("#fundReadout"),
+  contributionReadout: document.querySelector("#contributionReadout"),
+  pensionReadout: document.querySelector("#pensionReadout"),
   dataStatus: document.querySelector("#dataStatus"),
   fundKpi: document.querySelector("#fundKpi"),
-  debtKpi: document.querySelector("#debtKpi"),
+  buildCostKpi: document.querySelector("#buildCostKpi"),
   netKpi: document.querySelector("#netKpi"),
   coverageKpi: document.querySelector("#coverageKpi"),
   chart: document.querySelector("#fundChart"),
@@ -82,67 +80,50 @@ function interpolateRecords(records) {
 }
 
 function getScenario() {
-  const investmentShare = Number(controls.investmentShare.value);
-  const additionalMax = investmentShare;
-  controls.additionalShare.max = String(additionalMax);
-  if (Number(controls.additionalShare.value) > additionalMax) {
-    controls.additionalShare.value = String(additionalMax);
-  }
-
-  const additionalShare = Number(controls.additionalShare.value);
-  const divertedShare = Math.max(investmentShare - additionalShare, 0);
-
   return {
-    investmentShare,
-    additionalShare,
-    divertedShare,
-    paygShare: 100 - divertedShare,
+    contributionIncrease: Number(controls.contributionIncrease.value),
+    pensionReduction: Number(controls.pensionReduction.value),
     returnRate: Number(controls.returnRate.value),
     costRate: Number(controls.costRate.value),
-    debtRate: Number(controls.debtRate.value),
     preset: presets[controls.preset.value] ?? presets.mixed
   };
 }
 
 function calculateScenario(data, scenario) {
   let fund = 0;
-  let transitionDebt = 0;
-  let cumulativeExtraContributions = 0;
+  let cumulativeBuildCost = 0;
 
   return data.map((row) => {
     const netReturnRate = Math.max((scenario.returnRate - scenario.costRate) / 100, -0.99);
-    const debtRate = scenario.debtRate / 100;
     const annualReturn = fund * netReturnRate;
-    const deposit = row.contributionsMioEur * (scenario.investmentShare / 100);
-    const transitionGap = row.contributionsMioEur * (scenario.divertedShare / 100);
-    const extraContributions = row.contributionsMioEur * (scenario.additionalShare / 100);
+    const extraContributions = row.contributionsMioEur * (scenario.contributionIncrease / 100);
+    const pensionSavings = row.pensionOutlaysMioEur * (scenario.pensionReduction / 100);
+    const deposit = extraContributions + pensionSavings;
 
     fund = fund + annualReturn + deposit;
-    transitionDebt = transitionDebt * (1 + debtRate) + transitionGap;
-    cumulativeExtraContributions += extraContributions;
+    cumulativeBuildCost += deposit;
 
     return {
       ...row,
       fundDepositMioEur: deposit,
-      transitionGapMioEur: transitionGap,
+      extraContributionsMioEur: extraContributions,
+      pensionSavingsMioEur: pensionSavings,
       annualReturnMioEur: annualReturn,
       fundMioEur: fund,
-      transitionDebtMioEur: transitionDebt,
-      netFiscalPositionMioEur: fund - transitionDebt,
-      cumulativeExtraContributionsMioEur: cumulativeExtraContributions,
+      cumulativeBuildCostMioEur: cumulativeBuildCost,
+      investmentGainMioEur: fund - cumulativeBuildCost,
       returnCoverage: row.pensionOutlaysMioEur > 0 ? annualReturn / row.pensionOutlaysMioEur : 0
     };
   });
 }
 
 function updateControlLabels(scenario) {
-  output.investmentShareValue.textContent = asPercent(scenario.investmentShare);
-  output.additionalShareValue.textContent = asPercent(scenario.additionalShare);
+  output.contributionIncreaseValue.textContent = asPercent(scenario.contributionIncrease);
+  output.pensionReductionValue.textContent = asPercent(scenario.pensionReduction);
   output.returnRateValue.textContent = asPercent(scenario.returnRate);
   output.costRateValue.textContent = asPercent(scenario.costRate);
-  output.debtRateValue.textContent = asPercent(scenario.debtRate);
-  output.paygReadout.textContent = asPercent(scenario.paygShare);
-  output.fundReadout.textContent = asPercent(scenario.investmentShare);
+  output.contributionReadout.textContent = `+${asPercent(scenario.contributionIncrease)}`;
+  output.pensionReadout.textContent = `-${asPercent(scenario.pensionReduction)}`;
 }
 
 function linePath(points, xScale, yScale, key) {
@@ -162,7 +143,7 @@ function renderChart(rows) {
   const years = rows.map((row) => row.year);
   const minYear = Math.min(...years);
   const maxYear = Math.max(...years);
-  const values = rows.flatMap((row) => [row.fundMioEur, row.transitionDebtMioEur, row.netFiscalPositionMioEur]);
+  const values = rows.flatMap((row) => [row.fundMioEur, row.cumulativeBuildCostMioEur, row.investmentGainMioEur]);
   const minValue = Math.min(0, ...values);
   const maxValue = Math.max(...values);
   const span = maxValue - minValue || 1;
@@ -185,15 +166,15 @@ function renderChart(rows) {
   chart.append(zero);
 
   const fundPath = make("path", { d: linePath(rows, xScale, yScale, "fundMioEur"), class: "line-fund" });
-  const debtPath = make("path", { d: linePath(rows, xScale, yScale, "transitionDebtMioEur"), class: "line-debt" });
-  const netPath = make("path", { d: linePath(rows, xScale, yScale, "netFiscalPositionMioEur"), class: "line-net" });
-  chart.append(fundPath, debtPath, netPath);
+  const costPath = make("path", { d: linePath(rows, xScale, yScale, "cumulativeBuildCostMioEur"), class: "line-cost" });
+  const gainPath = make("path", { d: linePath(rows, xScale, yScale, "investmentGainMioEur"), class: "line-net" });
+  chart.append(fundPath, costPath, gainPath);
 
   const legend = make("g", { class: "legend", transform: "translate(68 28)" });
   const items = [
     ["Fonds", "var(--accent)", false],
-    ["Schuld", "var(--danger)", true],
-    ["Netto nach Schulden", "var(--accent-3)", false]
+    ["Aufbaupreis", "var(--accent-2)", true],
+    ["Kapitalertrag", "var(--accent-3)", false]
   ];
   items.forEach(([label, color, dashed], index) => {
     const x = index * 260;
@@ -235,8 +216,9 @@ function renderTable(rows) {
       String(row.year),
       formatTableMoney(row.contributionsMioEur),
       formatTableMoney(row.pensionOutlaysMioEur),
+      formatTableMoney(row.extraContributionsMioEur),
+      formatTableMoney(row.pensionSavingsMioEur),
       formatTableMoney(row.fundDepositMioEur),
-      formatTableMoney(row.transitionGapMioEur),
       row.interpolated ? "interpoliert" : row.scope
     ];
     cells.forEach((text) => {
@@ -256,15 +238,12 @@ function render() {
   const last = rows.at(-1);
 
   output.fundKpi.textContent = formatMioAsMoney(last.fundMioEur);
-  output.debtKpi.textContent = formatMioAsMoney(last.transitionDebtMioEur);
-  output.netKpi.textContent = formatMioAsMoney(last.netFiscalPositionMioEur);
+  output.buildCostKpi.textContent = formatMioAsMoney(last.cumulativeBuildCostMioEur);
+  output.netKpi.textContent = formatMioAsMoney(last.investmentGainMioEur);
   output.coverageKpi.textContent = asPercent(last.returnCoverage * 100);
 
-  const gapText = scenario.divertedShare === 0
-    ? "keine Umlage-Lücke aus der Beitragsumleitung"
-    : `${asPercent(scenario.divertedShare)} der historischen Beiträge als Umlage-Lücke`;
-  output.dataStatus.textContent = `Aktives Szenario: ${scenario.preset.label}, ${asPercent(scenario.investmentShare)} Fondsbeitrag, ${asPercent(scenario.returnRate - scenario.costRate)} nominale Nettorendite p.a., ${gapText}.`;
-  output.chartSummary.textContent = `Im Jahr ${last.year} steht ein Fonds von ${formatMioAsMoney(last.fundMioEur)} einer Übergangsschuld von ${formatMioAsMoney(last.transitionDebtMioEur)} gegenüber. Netto nach Schulden bleiben ${formatMioAsMoney(last.netFiscalPositionMioEur)}. Die Modellrendite des Jahres deckt ${asPercent(last.returnCoverage * 100)} der Rentenausgaben dieses Jahres.`;
+  output.dataStatus.textContent = `Aktives Szenario: ${scenario.preset.label}, +${asPercent(scenario.contributionIncrease)} Beiträge, -${asPercent(scenario.pensionReduction)} Rentenausgaben, ${asPercent(scenario.returnRate - scenario.costRate)} nominale Nettorendite p.a.`;
+  output.chartSummary.textContent = `Im Jahr ${last.year} steht ein Fonds von ${formatMioAsMoney(last.fundMioEur)} einem kumulierten Aufbaupreis von ${formatMioAsMoney(last.cumulativeBuildCostMioEur)} gegenüber. Daraus ergeben sich ${formatMioAsMoney(last.investmentGainMioEur)} Kapitalertrag über den eingezahlten Verzicht hinaus. Die Modellrendite des Jahres deckt ${asPercent(last.returnCoverage * 100)} der Rentenausgaben dieses Jahres.`;
 
   renderChart(rows);
   renderTable(rows);

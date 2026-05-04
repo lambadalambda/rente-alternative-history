@@ -93,8 +93,8 @@ Diese Arbeitsannahme steht in `assumptions/register.yaml` unter `PENSION-001`.
 
 ## Offene Fragen
 
-- Ist `allgemeine RV` oder `RV insgesamt` die bessere journalistische Baseline?
-- Soll die Anlagequote auf `Beiträge` oder auf `Beiträge minus Ausgleichszahlungen` angewendet werden?
+- Wie groß ist der Unterschied zwischen der gesetzten Baseline `allgemeine RV` und einem späteren Vergleich `RV insgesamt`?
+- Welche Beitrags- und Ausgabenunterpositionen gehören zur Fondsaufbau-Basis?
 - Welche Ausgabenbasis entspricht dem Claim `Rentenzahlungen`: Rentenausgaben, Renten plus KVdR/PVdR oder Gesamtausgaben?
 - Wie wird der Sprung 1991/1992 in der Fondsakkumulation und in den Rentenverpflichtungen gezeigt?
 - Reicht die PDF-Extraktion für Reproduzierbarkeit, oder muss eine maschinenlesbare DRV-Quelle gefunden werden?

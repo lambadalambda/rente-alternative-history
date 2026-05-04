@@ -27,4 +27,4 @@ Eine deutschsprachige, journalistische Erzaehlung entwickeln, die die Rentenrefo
 - Ton: modern, sachlich, zugespitzt genug fuer Engagement, aber nicht parteipolitisch platt.
 - Arbeitsstand 2026-05-04: Basiswebsite enthält deutsche Prototyptexte, eine frühe Grenzen-Sektion und klare Hinweise auf Hypothese, Prototypdaten und fehlende historische Indexrenditen.
 - Issue bleibt offen, bis die vollständige Story-Struktur, Gegenargumente und Quellenhinweise neben allen finalen Claims ausgearbeitet sind.
-- Arbeitsstand 2026-05-04: Nach Advisor-Feedback wurde die Startseite weniger defensiv formuliert. Caveats sind stärker in Methodenlabels und `Methodik & Grenzen` gebündelt; Hero und Rechner führen nun pointierter in den Zielkonflikt Fondsvermögen vs. Übergangsschuld ein.
+- Arbeitsstand 2026-05-04: Nach Advisor-Feedback wurde die Startseite weniger defensiv formuliert. Caveats sind stärker in Methodenlabels und `Methodik & Grenzen` gebündelt; Hero und Rechner führen nun pointierter in den Zielkonflikt Verzicht, Fondsvermögen und Kapitalertrag ein.

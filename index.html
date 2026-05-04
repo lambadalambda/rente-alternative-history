@@ -28,7 +28,7 @@
           <p class="eyebrow">Ein Renten-Gedankenexperiment ab 1957</p>
           <h1>Die Rente wurde verteilt. Was, wenn sie auch Vermögen aufgebaut hätte?</h1>
           <p class="lead">
-            Die Rentenreform von 1957 war keine Naturgewalt, sondern eine politische Weichenstellung: sofort zahlbare Renten statt Kapitalstock. Diese Seite rechnet den Zielkonflikt durch: Fondsvermögen, Umlage-Lücke und Netto nach Schulden.
+            Die Rentenreform von 1957 war keine Naturgewalt, sondern eine politische Weichenstellung: sofort zahlbare Renten statt Kapitalstock. Diese Seite rechnet einen einfachen Deal durch: etwas höhere Beiträge, etwas niedrigere Renten, dafür ein öffentlicher Fonds über Jahrzehnte.
           </p>
           <div class="hero-actions" aria-label="Schnelleinstieg">
             <a class="button primary" href="#modell">Jetzt gegenrechnen</a>
@@ -37,10 +37,10 @@
         </div>
 
         <aside class="thesis-card" aria-label="Zentrale Modelllogik">
-          <p class="card-kicker">Der unbequeme Teil</p>
-          <p class="card-number">Ein Fonds wächst nur, wenn vorher Geld fehlt.</p>
+          <p class="card-kicker">Der Deal</p>
+          <p class="card-number">5 Prozent mehr zahlen. 5 Prozent weniger auszahlen.</p>
           <p>
-            Darum zeigt diese Seite nicht nur das Fondsvermögen, sondern auch die Schuld, die durch umgeleitete Beiträge entsteht.
+            Die Frage ist nicht nur, was das kostet. Die Frage ist, was dieser Verzicht nach 60 Jahren Kapitalmarkt kaufen könnte.
           </p>
         </aside>
       </section>
@@ -49,26 +49,26 @@
         <article>
           <span class="pill">1</span>
           <h2>Geld in den Fonds</h2>
-          <p>Baseline: Ein Teil der Beitragseinnahmen der allgemeinen Rentenversicherung wird langfristig angelegt.</p>
+          <p>Baseline: Zusätzliche Beiträge fließen in den Fonds; die zweite Hälfte kommt aus niedrigeren Rentenausgaben.</p>
         </article>
         <article>
           <span class="pill">2</span>
-          <h2>Geld fehlt in der Umlage</h2>
-          <p>Der Fonds ist nicht gratis. Was nicht in die Rentenkasse fließt, muss in der Übergangszeit ersetzt werden.</p>
+          <h2>Rentenausgaben sinken</h2>
+          <p>Die zweite Hälfte kommt aus niedrigeren Rentenausgaben. In der Baseline sind es 5 Prozent weniger Auszahlung.</p>
         </article>
         <article>
           <span class="pill">3</span>
-          <h2>Am Ende zählt Netto</h2>
-          <p>Eine große Fonds-Zahl ist nur die halbe Geschichte. Entscheidend ist Fondsvermögen minus Übergangsschuld.</p>
+          <h2>Am Ende zählt der Ertrag</h2>
+          <p>Eine große Fonds-Zahl allein reicht nicht. Entscheidend ist, was über den kumulierten Aufbaupreis hinaus entsteht.</p>
         </article>
       </section>
 
       <section class="model-section" id="modell" aria-labelledby="modell-title">
         <div class="section-heading">
           <p class="eyebrow">Rechner</p>
-          <h2 id="modell-title">Dreh an den Annahmen und sieh, wann die Idee kippt</h2>
+          <h2 id="modell-title">Was kauft ein kleiner Verzicht über sechs Jahrzehnte?</h2>
           <p>
-            Ändere Fondsquote, Rendite, Kosten und Schuldenzins. Die Rechnung zeigt nicht nur das Fondsvermögen, sondern auch die Lücke, die durch umgeleitete Beiträge entsteht.
+            Ändere Beitragsaufschlag, Rentenverzicht, Rendite und Kosten. Die Rechnung zeigt, welcher Kapitalstock entsteht und wie viel davon reiner Kapitalertrag ist.
           </p>
         </div>
         <p class="method-label">Datenstand: DRV-Stützjahre, lineare Interpolation, konstante Renditeannahmen.</p>
@@ -88,41 +88,36 @@
             </div>
 
             <div class="control-group">
-              <label for="investmentShare">Fondsbeitrag: <output id="investmentShareValue">10,0 %</output></label>
-              <input id="investmentShare" name="investmentShare" type="range" min="1" max="15" step="0.5" value="10">
+              <label for="contributionIncrease">Höhere Beiträge: <output id="contributionIncreaseValue">5,0 %</output></label>
+              <input id="contributionIncrease" name="contributionIncrease" type="range" min="0" max="10" step="0.5" value="5">
             </div>
 
             <div class="control-group">
-              <label for="additionalShare">Davon zusätzliche Beiträge: <output id="additionalShareValue">5,0 %</output></label>
-              <input id="additionalShare" name="additionalShare" type="range" min="0" max="10" step="0.5" value="5">
-              <p class="field-note">Der nicht zusätzlich gezahlte Anteil ist der Preis des Fonds: Er fehlt in der Umlage.</p>
+              <label for="pensionReduction">Niedrigere Rentenausgaben: <output id="pensionReductionValue">5,0 %</output></label>
+              <input id="pensionReduction" name="pensionReduction" type="range" min="0" max="10" step="0.5" value="5">
+              <p class="field-note">Der Fonds wird aus zusätzlicher Beitragslast und eingesparten Rentenausgaben aufgebaut.</p>
             </div>
 
             <div class="split-readout" aria-live="polite">
-              <span>Umlage bekommt</span>
-              <strong id="paygReadout">95,0 %</strong>
-              <span>Fonds bekommt</span>
-              <strong id="fundReadout">10,0 %</strong>
+              <span>Beitragszahler zahlen</span>
+              <strong id="contributionReadout">+5,0 %</strong>
+              <span>Rentenzahlungen sinken</span>
+              <strong id="pensionReadout">-5,0 %</strong>
             </div>
 
             <div class="control-group">
-              <label for="returnRate">Nominale Jahresrendite vor Kosten: <output id="returnRateValue">5,0 %</output></label>
-              <input id="returnRate" name="returnRate" type="range" min="0" max="9" step="0.25" value="5">
+              <label for="returnRate">Nominale Jahresrendite vor Kosten: <output id="returnRateValue">4,0 %</output></label>
+              <input id="returnRate" name="returnRate" type="range" min="0" max="9" step="0.25" value="4">
             </div>
 
             <div class="control-group">
-              <label for="costRate">Kosten/Steuern p.a.: <output id="costRateValue">0,30 %</output></label>
-              <input id="costRate" name="costRate" type="range" min="0" max="1.5" step="0.05" value="0.3">
-            </div>
-
-            <div class="control-group">
-              <label for="debtRate">Zins auf Übergangslücke p.a.: <output id="debtRateValue">3,0 %</output></label>
-              <input id="debtRate" name="debtRate" type="range" min="0" max="7" step="0.25" value="3">
+              <label for="costRate">Kosten/Steuern p.a.: <output id="costRateValue">0,35 %</output></label>
+              <input id="costRate" name="costRate" type="range" min="0" max="1.5" step="0.05" value="0.35">
             </div>
 
             <details class="method-details">
               <summary>Was wird hier angenommen?</summary>
-              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Fehlende Jahre werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen.</p>
+              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Der Fonds wird in der Baseline aus 5 Prozent höheren Beiträgen und 5 Prozent niedrigeren Rentenausgaben finanziert. Fehlende Jahre werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen.</p>
             </details>
           </form>
 
@@ -135,11 +130,11 @@
                 <strong id="fundKpi">-</strong>
               </article>
               <article class="kpi warning">
-                <span>Aufgelaufene Übergangsschuld</span>
-                <strong id="debtKpi">-</strong>
+                <span>Kumulierter Aufbaupreis</span>
+                <strong id="buildCostKpi">-</strong>
               </article>
               <article class="kpi">
-                <span>Netto nach Schulden</span>
+                <span>Kapitalertrag über Aufbaupreis</span>
                 <strong id="netKpi">-</strong>
               </article>
               <article class="kpi">
@@ -150,11 +145,11 @@
 
             <figure class="chart-card">
               <figcaption>
-                <strong>Wann überholt der Fonds die Übergangsschuld?</strong>
+                <strong>Was wird aus dem Verzicht?</strong>
                 <span>Modellwerte in Mrd. Euro: nominal, interpolierte Beitragsdaten, konstante Rendite.</span>
               </figcaption>
               <svg id="fundChart" role="img" aria-labelledby="chartTitle chartDesc" viewBox="0 0 1000 420" preserveAspectRatio="none">
-                <title id="chartTitle">Zeitverlauf von Fondsvermögen, Übergangsschuld und Netto nach Schulden</title>
+                <title id="chartTitle">Zeitverlauf von Fondsvermögen, Aufbaupreis und Kapitalertrag</title>
                 <desc id="chartDesc">Interaktive Liniengrafik. Eine Textzusammenfassung folgt direkt unter der Grafik.</desc>
               </svg>
               <p class="chart-summary" id="chartSummary" aria-live="polite">Noch keine Berechnung.</p>
@@ -180,8 +175,9 @@
                 <th scope="col">Jahr</th>
                 <th scope="col">Beiträge</th>
                 <th scope="col">Rentenausgaben</th>
+                <th scope="col">Zusatzbeiträge</th>
+                <th scope="col">Rentenverzicht</th>
                 <th scope="col">Fonds-Einzahlung</th>
-                <th scope="col">Umlage-Lücke</th>
                 <th scope="col">Status</th>
               </tr>
             </thead>
@@ -202,7 +198,7 @@
           </article>
           <article>
             <h3>Modellannahmen</h3>
-            <p>Fondsquote, Rendite, Kosten, Schuldenzins und Übergangsfinanzierung sind einstellbare Annahmen. Sie sind keine historischen Beobachtungen.</p>
+            <p>Beitragsaufschlag, Rentenverzicht, Rendite und Kosten sind einstellbare Annahmen. Sie sind keine historischen Beobachtungen.</p>
           </article>
           <article>
             <h3>Noch offen</h3>
@@ -210,7 +206,7 @@
           </article>
           <article>
             <h3>Rote Linie</h3>
-            <p>Wer nur den Fonds zeigt, verkauft eine Erfolgsgeschichte. Wer nur die Lücke zeigt, beendet das Experiment zu früh. Diese Seite zeigt beides.</p>
+            <p>Wer nur den Verzicht zeigt, beendet das Experiment zu früh. Wer nur den Fonds zeigt, verkauft eine Erfolgsgeschichte. Diese Seite zeigt, was der Verzicht kauft.</p>
           </article>
         </div>
       </section>

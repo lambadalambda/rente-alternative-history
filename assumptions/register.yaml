@@ -29,7 +29,7 @@ assumptions:
     statement: "Primärfrage des Projekts"
     value: "Wir prüfen, ob und unter welchen Annahmen eine seit 1957 aufgebaute Reserve spätere Rentenausgaben teilweise oder vollständig hätte finanzieren können."
     evidence_type: model_assumption
-    rationale: "Verhindert, dass die 10-Prozent-Idee als bestätigter Ausgangsfakt erscheint."
+    rationale: "Verhindert, dass der 5/5-Verzichtsdeal als bestätigter Ausgangsfakt erscheint."
     alternatives: []
     sensitivity_flag: false
     introduced_at: "2026-05-04"
@@ -81,10 +81,12 @@ assumptions:
   - id: FLOW-001
     category: cashflow_base
     status: proposed_baseline
-    statement: "Basis der hypothetischen Anlagequote"
-    value: "Beitragseinnahmen"
+    statement: "Quellen des Fondsaufbaus"
+    value:
+      contribution_side: "zusätzliche Beiträge auf Basis der Beitragseinnahmen"
+      pension_side: "eingesparte Rentenausgaben auf Basis der Rentenausgaben"
     evidence_type: model_assumption
-    rationale: "Nutzerentscheidung vom 2026-05-04: Die Anlagequote soll auf Beiträge angewendet werden, nicht auf Bundeszuschüsse oder Gesamteinnahmen."
+    rationale: "Nutzerentscheidung vom 2026-05-04, aktualisiert: Der Fonds entsteht nicht durch eine reine Umleitung aus der Umlage, sondern durch höhere Beiträge und niedrigere Rentenausgaben."
     alternatives:
       - "Beitragseinnahmen"
       - "Gesamteinnahmen ohne Bundeszuschüsse"
@@ -113,17 +115,18 @@ assumptions:
   - id: TRANS-001
     category: transition_financing
     status: proposed_baseline
-    statement: "Finanzierung der entgangenen Umlageeinnahmen"
+    statement: "Budgetneutraler Aufbaupfad ohne Übergangsschuld"
     value:
-      interpretation: "relative Anteile an historischen Beitragseinnahmen, keine Beitragssatz-Prozentpunkte"
-      historical_contributions: 1.00
-      counterfactual_total_contributions: 1.05
-      payg_receives: 0.95
-      fund_receives: 0.10
-      additional_contributions: 0.05
-      diverted_from_payg: 0.05
+      interpretation: "relativer Verzichtsdeal; keine Beitragssatz-Prozentpunkte"
+      contribution_increase_rate: 0.05
+      contribution_increase_base: "Beitragseinnahmen"
+      pension_reduction_rate: 0.05
+      pension_reduction_base: "Rentenausgaben"
+      fund_deposit_formula: "0.05 * Beitragseinnahmen + 0.05 * Rentenausgaben"
+      payg_gap: 0
+      debt_path: false
     evidence_type: model_assumption
-    rationale: "Nutzerentscheidung vom 2026-05-04: 5 Prozent höhere Beiträge plus 5 Prozent geringere Einzahlung in die Rentenkasse ergeben 10 Prozent Fondsbeitrag. Dadurch entsteht nur für 5 Prozent der historischen Beiträge eine Umlage-Finanzierungslücke, während 5 Prozent als zusätzliche Beitragslast modelliert werden."
+    rationale: "Nutzerentscheidung vom 2026-05-04, aktualisiert: 5 Prozent höhere Beiträge und 5 Prozent niedrigere Rentenausgaben finanzieren den Fonds direkt. Die laufende Umlage wird dadurch modelllogisch neutral gehalten; es entsteht in der Baseline keine Übergangsschuld."
     alternatives:
       - "Staatsschulden mit Bundesanleiherendite"
       - "Höhere Beiträge"
@@ -136,13 +139,18 @@ assumptions:
 
   - id: INV-001
     category: investment_policy
-    status: sensitivity_only
-    statement: "Hypothetische Anlagequote"
-    value: 0.10
-    unit: share_of_selected_cashflow
+    status: proposed_baseline
+    statement: "Standard-Verzichtsdeal für den Fondsaufbau"
+    value:
+      contribution_increase_rate: 0.05
+      pension_reduction_rate: 0.05
+    unit: share_of_respective_cashflow_base
     evidence_type: model_assumption
-    rationale: "Nutzerhypothese und zentrales Szenario; nicht als bestätigte optimale Quote behandeln."
-    alternatives: [0.01, 0.05, 0.15]
+    rationale: "Nutzerhypothese: 5 Prozent mehr Beiträge und 5 Prozent niedrigere Rentenausgaben zeigen verständlich, was ein kleiner jährlicher Verzicht langfristig kaufen könnte."
+    alternatives:
+      - "1 Prozent mehr Beiträge und 1 Prozent niedrigere Rentenausgaben"
+      - "10 Prozent mehr Beiträge und 0 Prozent niedrigere Rentenausgaben"
+      - "0 Prozent mehr Beiträge und 10 Prozent niedrigere Rentenausgaben"
     sensitivity_flag: true
     introduced_at: "2026-05-04"
     issue_ref: "meta/issues/interaktives-szenario-modell-entwickeln.md"
@@ -214,10 +222,10 @@ assumptions:
   - id: FISC-001
     category: fiscal_position
     status: proposed_baseline
-    statement: "Fiskalische Nettoposition muss neben Brutto-Fondsvermögen berichtet werden"
+    statement: "Fondsvermögen muss neben Aufbaupreis berichtet werden"
     value: true
     evidence_type: model_assumption
-    rationale: "Ein Bruttofonds ohne Übergangskosten kann politisch und fiskalisch irreführend sein."
+    rationale: "Ein Bruttofonds ohne den kumulierten Verzicht durch höhere Beiträge und niedrigere Renten kann politisch und fiskalisch irreführend sein."
     alternatives: [false]
     sensitivity_flag: false
     introduced_at: "2026-05-04"

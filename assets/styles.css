@@ -504,9 +504,9 @@ svg {
   stroke-width: 6;
 }
 
-.line-debt {
+.line-cost {
   fill: none;
-  stroke: var(--danger);
+  stroke: var(--accent-2);
   stroke-dasharray: 12 10;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -534,7 +534,7 @@ svg {
 
 table {
   width: 100%;
-  min-width: 820px;
+  min-width: 920px;
   border-collapse: collapse;
   font-variant-numeric: tabular-nums;
 }

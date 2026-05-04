@@ -245,7 +245,7 @@ sources:
     data_status: "amtliche_zahl"
     license_or_usage_note: "Bundesbank-Nutzungshinweis prüfen"
     trust_level: "hoch"
-    known_limitations: ["Laufzeitannahme für Übergangsschulden noch festlegen."]
+    known_limitations: ["Laufzeitannahme für optionale Schulden- oder Diskontierungspfade noch festlegen."]
     checksum_or_version: null
     transformation_status: "not_started"
     used_in_model: false

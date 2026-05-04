@@ -11,7 +11,7 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 - Für reale Werte ist Destatis mit den Verbraucherpreisindex-Langreihen ab 1948 die belastbare Quelle.
 - Für Wechselkurse, Bundesanleiherenditen, DAX-/Kapitalmarkt-Zeitreihen und SDMX-Zugriff ist die Bundesbank zentral.
 - Indexrenditen sind der schwierigste Teil: DAX vor 1987, S&P-500-Total-Return-Daten, MSCI/FTSE-Weltindizes und Lizenzrechte müssen sehr vorsichtig behandelt werden.
-- Der wichtigste Modellhinweis bleibt: Fondsvermögen allein reicht nicht. Übergangskosten und fiskalische Nettoposition müssen mitgerechnet werden.
+- Der wichtigste Modellhinweis bleibt: Fondsvermögen allein reicht nicht. Aufbaupreis und bei echten Beitragsumleitungen auch Übergangskosten müssen mitgerechnet werden.
 
 ## Empfohlene Kernquellen
 
@@ -68,7 +68,7 @@ Ziel: Quellen identifizieren, die ein kontrafaktisches Modell zur gesetzlichen R
 - MSCI World und viele globale Reihen starten erst ab 1969 oder sind zurückgerechnet; sie decken 1957 nicht ohne Zusatzannahme ab.
 - S&P-500-Total-Return-Daten sind qualitativ gut verfügbar, aber offizielle Daten und CRSP sind lizenzpflichtig.
 - Shiller-Daten sind ein plausibler Forschungsproxy für US-Aktienrenditen, aber nicht identisch mit einer offiziell investierbaren S&P-500-Total-Return-Reihe.
-- Eine 10-Prozent-Anlagequote auf Beitragseinnahmen erzeugt im Umlagesystem eine Finanzierungslücke; diese muss als Übergangskosten-, Steuer- oder Schuldenpfad modelliert werden.
+- Eine echte Umleitung historischer Beitragseinnahmen in einen Fonds erzeugt im Umlagesystem eine Finanzierungslücke; diese muss als Übergangskosten-, Steuer- oder Schuldenpfad modelliert werden. Die aktuelle 5/5-Baseline vermeidet diese Lücke, weil sie zusätzliche Beiträge und niedrigere Rentenausgaben nutzt.
 - Westdeutsche Daten 1957-1990 dürfen nicht ohne Annahme mit gesamtdeutschen Verpflichtungen nach 1990 vermischt werden.
 - Steuer-, Kosten- und Quellensteuerannahmen können den Endwert stark verändern.
 - Bei einem sehr großen öffentlichen Fonds ist die Price-Taker-Annahme unrealistisch; die Website muss das offenlegen.

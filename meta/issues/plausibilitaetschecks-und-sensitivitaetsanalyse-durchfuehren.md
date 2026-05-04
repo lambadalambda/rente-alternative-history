@@ -7,7 +7,7 @@ Das Modell gegen Rechenfehler, Scheingenauigkeit und einseitige Annahmen absiche
 ## Requirements
 
 - Ergebnisse mit offiziellen Aggregaten und unabhaengigen Kapitalmarktquellen abgleichen.
-- Sensitivitaeten fuer Anlagequote, Startjahr, Kosten, reale Rendite, Wechselkurs und Krisenjahre berechnen.
+- Sensitivitaeten fuer Beitragsaufschlag, Rentenverzicht, Startjahr, Kosten, reale Rendite, Wechselkurs und Krisenjahre berechnen.
 - Risiko- und Pfadabhaengigkeit sichtbar machen, nicht nur Endwerte.
 - Mindestens ein konservatives, ein mittleres und ein optimistisches Szenario definieren.
 - Kritische Gegenargumente wie politische Umsetzbarkeit, Uebergangskosten und Marktrisiko behandeln.
@@ -26,4 +26,4 @@ Das Modell gegen Rechenfehler, Scheingenauigkeit und einseitige Annahmen absiche
 ## Notes
 
 - Besonders wichtig ist die Frage, ob Fondsrenditen ohne Substanzverzehr wirklich laufende Rentenausgaben decken koennten.
-- Arbeitsstand 2026-05-04: Der UI-Prototyp zeigt bereits Brutto-Fondsbestand, Übergangsschuld, fiskalische Nettoposition und Rendite/Rentenausgaben. Die Werte sind noch nicht als Plausibilitätsbefund nutzbar, weil Renditen konstant und DRV-Daten nur prototypisch transkribiert sind.
+- Arbeitsstand 2026-05-04: Der UI-Prototyp zeigt bereits Fondsbestand, kumulierten Aufbaupreis, Kapitalertrag über Aufbaupreis und Rendite/Rentenausgaben. Die Werte sind noch nicht als Plausibilitätsbefund nutzbar, weil Renditen konstant und DRV-Daten nur prototypisch transkribiert sind.

@@ -19,7 +19,7 @@ Ein belastbares Backtesting fuer hypothetische Fondsanlagen mit verschiedenen In
 
 - Fuer jeden Index ist klar, ob Total Return, Price Return, nominal oder real gerechnet wird.
 - Backtest-Ergebnisse sind mit mindestens zwei unabhaengigen Plausibilitaetsquellen abgleichbar.
-- Das Modell kann Anlagequoten wie 1 Prozent, 5 Prozent, 10 Prozent und 15 Prozent berechnen.
+- Das Modell kann mehrere Aufbaupfade wie +1/-1, +5/-5 und einseitige Beitrags- oder Rentenszenarien berechnen.
 - Die Darstellung warnt sichtbar, wenn ein Szenario eine rückblickende Vergleichsrechnung statt einer historisch plausiblen Anlagepolitik ist.
 - Jahre mit negativen Renditen und Drawdown-Stress werden nicht geglättet oder ausgeblendet.
 
