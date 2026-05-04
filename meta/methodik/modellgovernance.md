@@ -86,6 +86,10 @@ Die Baseline leitet keine Beiträge aus der Umlage ab, sondern finanziert den Fo
 
 Szenarien, die in Zukunft echte Beitragsumleitungen ohne Rentenkürzung modellieren, müssen weiterhin entgangene Umlageeinnahmen, Ersatzfinanzierung und mögliche Schuldenpfade zeigen. Die aktuelle Baseline braucht das nicht, weil keine historischen Beiträge aus der Umlage abgezogen werden; der Fonds entsteht aus zusätzlichen Beiträgen und niedrigeren Rentenausgaben.
 
+## Projektionsregel
+
+Zukunftsjahre ohne amtliche Cashflow-Quelle dürfen nur als explizite Modellannahme erscheinen. Die aktuelle 2040-Option ist deshalb standardmäßig ausgeschaltet, wird ab 2025 als fiktive Fortschreibung markiert und darf nicht als DRV-, BMAS- oder Regierungsprojektion beschrieben werden.
+
 ## Index- und Renditeregeln
 
 Jede Renditeserie braucht diese Angaben:
@@ -144,4 +148,5 @@ Vor Veröffentlichung von Modelloutputs sind mindestens diese Checks nötig:
 - Welche Rentenausgaben sind die Vergleichsgröße: Rentenausgaben ohne KVdR/PVdR-Zuschüsse, Renten plus KVdR/PVdR oder Gesamtausgaben? Arbeitsannahme 2026-05-04: Rentenausgaben.
 - Wie werden Gebietsbrüche behandelt? Arbeitsstand 2026-05-04: Die aktuelle allg.-RV-Cashflow-Pipeline nutzt `Alte Bundesländer` bis 1990 und `Insgesamt` ab 1991; andere Tabellen können abweichen.
 - Welche Übergangsfinanzierung ist die konservative Baseline? Arbeitsannahme 2026-05-04: Keine Übergangsschuld in der Baseline; der Fonds wird aus zusätzlicher Beitragslast und Rentenverzicht finanziert.
+- Wie sollen Zukunftsjahre nach 2024 behandelt werden? Arbeitsstand 2026-05-04: Nur als zuschaltbare fiktive Fortschreibung nach `PROJ-001`, nicht als belastbare Projektion.
 - Welche Investmentpolitik ist historisch plausibler als reine DAX/S&P-500-Rückblicke?

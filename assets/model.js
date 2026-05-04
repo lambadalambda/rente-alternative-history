@@ -58,8 +58,56 @@
     });
   }
 
+  function compoundAnnualGrowthRate(startValue, endValue, years) {
+    if (years <= 0 || startValue <= 0 || endValue <= 0) return 0;
+    return (endValue / startValue) ** (1 / years) - 1;
+  }
+
+  function extendWithFictionalProjection(records, options = {}) {
+    if (!records.length) return [];
+
+    const endYear = options.endYear ?? 2040;
+    const trendStartYear = options.trendStartYear ?? 2014;
+    const sorted = [...records].sort((a, b) => a.year - b.year).map((row) => ({ ...row }));
+    const last = sorted.at(-1);
+    if (last.year >= endYear) return sorted;
+
+    const trendStart = sorted.find((row) => row.year === trendStartYear) ?? sorted[0];
+    const trendYears = Math.max(last.year - trendStart.year, 1);
+    const contributionGrowthRate = compoundAnnualGrowthRate(
+      trendStart.contributionsMioEur,
+      last.contributionsMioEur,
+      trendYears
+    );
+    const pensionOutlayGrowthRate = compoundAnnualGrowthRate(
+      trendStart.pensionOutlaysMioEur,
+      last.pensionOutlaysMioEur,
+      trendYears
+    );
+    const projectionBasis = `fiktive Fortschreibung mit nominalem ${trendStart.year}-${last.year}-Trend`;
+
+    for (let year = last.year + 1; year <= endYear; year += 1) {
+      const step = year - last.year;
+      sorted.push({
+        year,
+        scope: "Fiktive Fortschreibung",
+        contributionsMioEur: last.contributionsMioEur * (1 + contributionGrowthRate) ** step,
+        pensionOutlaysMioEur: last.pensionOutlaysMioEur * (1 + pensionOutlayGrowthRate) ** step,
+        interpolated: false,
+        projected: true,
+        projectionBasis,
+        contributionGrowthRate,
+        pensionOutlayGrowthRate,
+        dataStatus: "model_assumption"
+      });
+    }
+
+    return sorted;
+  }
+
   return {
     calculateScenario,
+    extendWithFictionalProjection,
     interpolateRecords
   };
 });

@@ -18,3 +18,4 @@ Dieses Log dokumentiert Änderungen an zentralen Modellannahmen aus `assumptions
 - `TRANS-001` wurde geändert: 5 Prozent höhere Beiträge plus 5 Prozent niedrigere Rentenausgaben ergeben die Fonds-Einzahlung; `payg_gap` ist in der Baseline `0`.
 - `INV-001` wurde von einer abstrakten 10-Prozent-Anlagequote auf den konkreten Standarddeal `+5 Prozent Beiträge / -5 Prozent Rentenausgaben` umgestellt.
 - `FISC-001` berichtet nun Fondsvermögen neben kumuliertem Aufbaupreis statt neben Übergangsschuld.
+- `PROJ-001` ergänzt: Die Website kann 2025-2040 als ausgeschaltete Standardoption fiktiv fortschreiben. Die Fortschreibung nutzt die geometrische durchschnittliche jährliche nominale Wachstumsrate (CAGR) von Beiträgen und Rentenausgaben 2014-2024 und ist keine amtliche Projektion.

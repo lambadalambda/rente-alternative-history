@@ -2,9 +2,10 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const { calculateScenario, interpolateRecords } = require("../assets/model.js");
+const { calculateScenario, extendWithFictionalProjection, interpolateRecords } = require("../assets/model.js");
 
 const ROOT = path.resolve(__dirname, "..");
+const APP_PATH = path.join(ROOT, "assets/app.js");
 const CASHFLOW_PATH = path.join(ROOT, "data/website/allgemeine-rv-cashflows.json");
 const INDEX_PATH = path.join(ROOT, "index.html");
 
@@ -81,6 +82,29 @@ function testNegativeReturnFloor() {
   approx(rows[1].fundMioEur, 1);
 }
 
+function testFictionalProjection() {
+  assert.deepEqual(extendWithFictionalProjection([]), []);
+
+  const records = [
+    { year: 2020, scope: "Test", contributionsMioEur: 100, pensionOutlaysMioEur: 200 },
+    { year: 2022, scope: "Test", contributionsMioEur: 121, pensionOutlaysMioEur: 242 }
+  ];
+  const extended = extendWithFictionalProjection(records, { trendStartYear: 2020, endYear: 2024 });
+
+  assert.equal(extended.length, 4);
+  assert.equal(extended[0].projected, undefined);
+  assert.equal(extended[2].year, 2023);
+  assert.equal(extended[2].scope, "Fiktive Fortschreibung");
+  assert.equal(extended[2].projected, true);
+  assert.equal(extended[2].dataStatus, "model_assumption");
+  approx(extended[2].contributionGrowthRate, 0.1);
+  approx(extended[2].pensionOutlayGrowthRate, 0.1);
+  approx(extended[2].contributionsMioEur, 133.1);
+  approx(extended[2].pensionOutlaysMioEur, 266.2);
+  approx(extended[3].contributionsMioEur, 146.41);
+  approx(extended[3].pensionOutlaysMioEur, 292.82);
+}
+
 function testDefaultHeadlineRegression() {
   const dataset = JSON.parse(fs.readFileSync(CASHFLOW_PATH, "utf8"));
   const annualData = interpolateRecords(dataset.records);
@@ -104,6 +128,30 @@ function testDefaultHeadlineRegression() {
   approx(last.returnCoverage, 0.1828362003042807, 1e-9);
 }
 
+function testProjectionHeadlineRegression() {
+  const dataset = JSON.parse(fs.readFileSync(CASHFLOW_PATH, "utf8"));
+  const annualData = interpolateRecords(dataset.records);
+  const projectedData = extendWithFictionalProjection(annualData);
+  const rows = calculateScenario(projectedData, {
+    contributionIncrease: 5,
+    pensionReduction: 5,
+    returnRate: 4,
+    costRate: 0.35
+  });
+  const firstProjected = rows.find((row) => row.projected);
+  const last = rows.at(-1);
+
+  assert.equal(rows.length, 81);
+  assert.equal(firstProjected.year, 2025);
+  assert.equal(last.year, 2040);
+  assert.equal(last.projected, true);
+  approx(firstProjected.contributionsMioEur, 318382.8056877517, 0.01);
+  approx(firstProjected.pensionOutlaysMioEur, 359201.6498165075, 0.01);
+  approx(last.fundMioEur, 4203117.833129523, 0.01);
+  approx(last.cumulativeBuildCostMioEur, 1564402.0979806855, 0.01);
+  approx(last.investmentGainMioEur, 2638715.735148838, 0.01);
+}
+
 function testBrowserScriptOrder() {
   const html = fs.readFileSync(INDEX_PATH, "utf8");
   const modelIndex = html.indexOf('src="assets/model.js"');
@@ -114,10 +162,32 @@ function testBrowserScriptOrder() {
   assert.ok(modelIndex < appIndex, "assets/model.js must load before assets/app.js");
 }
 
+function testProjectionToggleMarkup() {
+  const html = fs.readFileSync(INDEX_PATH, "utf8");
+  const checkbox = html.match(/<input id="fictionalProjection"[^>]*>/);
+
+  assert.ok(checkbox, "index.html must include the fictional projection checkbox");
+  assert.equal(/\bchecked\b/.test(checkbox[0]), false, "projection checkbox must be off by default");
+  assert.ok(html.includes("Fiktive Fortschreibung bis 2040 einrechnen"));
+  assert.ok(html.includes("<title id=\"chartTitle\">"));
+  assert.ok(html.includes("<desc id=\"chartDesc\">"));
+}
+
+function testChartAccessibilityRenderInvariant() {
+  const app = fs.readFileSync(APP_PATH, "utf8");
+
+  assert.ok(app.includes('make("title", { id: "chartTitle" })'), "renderChart must recreate the SVG title after replaceChildren");
+  assert.ok(app.includes('make("desc", { id: "chartDesc" })'), "renderChart must recreate the SVG description after replaceChildren");
+}
+
 testInterpolation();
 testHandCalculatedScenario();
 testNegativeReturnFloor();
+testFictionalProjection();
 testDefaultHeadlineRegression();
+testProjectionHeadlineRegression();
 testBrowserScriptOrder();
+testProjectionToggleMarkup();
+testChartAccessibilityRenderInvariant();
 
 console.log("model tests ok");

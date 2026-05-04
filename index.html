@@ -72,7 +72,7 @@
             Ändere Beitragsaufschlag, Rentenverzicht, Rendite und Kosten. Die Rechnung zeigt, welcher Kapitalstock entsteht und wie viel davon reiner Kapitalertrag ist.
           </p>
         </div>
-        <p class="method-label">Datenstand: DRV-PDF-Extraktion 1960-2024, lineare Interpolation, konstante Renditeannahmen.</p>
+        <p class="method-label">Datenstand: DRV-PDF-Extraktion 1960-2024, lineare Interpolation, konstante Renditeannahmen; optionale fiktive Fortschreibung bis 2040.</p>
 
         <div class="model-grid">
           <form class="controls" aria-label="Szenario-Parameter">
@@ -116,9 +116,17 @@
               <input id="costRate" name="costRate" type="range" min="0" max="1.5" step="0.05" value="0.35">
             </div>
 
+            <div class="control-group">
+              <label class="toggle-label" for="fictionalProjection">
+                <input id="fictionalProjection" name="fictionalProjection" type="checkbox">
+                <span>Fiktive Fortschreibung bis 2040 einrechnen</span>
+              </label>
+              <p class="field-note">Keine neue Quelle: Ab 2025 werden Beiträge und Rentenausgaben mit ihrem nominalen 2014-2024-Trend fortgeschrieben.</p>
+            </div>
+
             <details class="method-details">
               <summary>Was wird hier angenommen?</summary>
-              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Die aktuelle Datenrechnung beginnt 1960; 1957-1959 sind noch nicht modelliert. Der Fonds wird in der Baseline aus 5 Prozent höheren Beiträgen und 5 Prozent niedrigeren Rentenausgaben finanziert. Lücken zwischen vorhandenen Stützjahren werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen.</p>
+              <p>Beiträge und Rentenausgaben stammen aus DRV-Stützjahren der allgemeinen RV. Die aktuelle Datenrechnung beginnt 1960; 1957-1959 sind noch nicht modelliert. Der Fonds wird in der Baseline aus 5 Prozent höheren Beiträgen und 5 Prozent niedrigeren Rentenausgaben finanziert. Lücken zwischen vorhandenen Stützjahren werden interpoliert. Renditen sind in dieser Version konstante Annahmen, keine historischen Total-Return-Reihen. Die 2040-Option ist eine ausdrücklich fiktive Fortschreibung, keine amtliche Projektion.</p>
             </details>
           </form>
 
@@ -127,7 +135,7 @@
 
             <div class="kpi-grid">
               <article class="kpi">
-                <span>Fondsvermögen 2024</span>
+                <span id="fundKpiLabel">Fondsvermögen 2024</span>
                 <strong id="fundKpi">-</strong>
               </article>
               <article class="kpi warning">
@@ -139,7 +147,7 @@
                 <strong id="netKpi">-</strong>
               </article>
               <article class="kpi">
-                <span>Deckt Rentenausgaben 2024</span>
+                <span id="coverageKpiLabel">Deckt Rentenausgaben 2024</span>
                 <strong id="coverageKpi">-</strong>
               </article>
             </div>
@@ -147,7 +155,7 @@
             <figure class="chart-card">
               <figcaption>
                 <strong>Was wird aus dem Verzicht?</strong>
-                <span>Modellwerte in Mrd. Euro: nominal, interpolierte Beitragsdaten, konstante Rendite.</span>
+                <span>Modellwerte in Mrd. Euro: nominal, interpolierte Beitragsdaten, konstante Rendite, optional fiktiv fortgeschrieben.</span>
               </figcaption>
               <svg id="fundChart" role="img" aria-labelledby="chartTitle chartDesc" viewBox="0 0 1000 420" preserveAspectRatio="none">
                 <title id="chartTitle">Zeitverlauf von Fondsvermögen, Aufbaupreis und Kapitalertrag</title>
@@ -180,7 +188,7 @@
           <p class="eyebrow">Datenbasis</p>
           <h2 id="daten-title">Welche Zahlen in das Modell fließen</h2>
           <p>
-            Die aktuelle Rechnung nutzt per Skript extrahierte Stützjahre aus DRV-Zeitreihen zur allgemeinen RV und interpoliert Lücken zwischen vorhandenen Stützjahren. Korrekturseiten und manuelle Stichprobenkontrollen stehen noch aus.
+            Die aktuelle Rechnung nutzt per Skript extrahierte Stützjahre aus DRV-Zeitreihen zur allgemeinen RV und interpoliert Lücken zwischen vorhandenen Stützjahren. Korrekturseiten und manuelle Stichprobenkontrollen sind dokumentiert; die 2040-Zeilen erscheinen nur, wenn die fiktive Fortschreibung aktiv ist.
           </p>
         </div>
 
@@ -215,11 +223,11 @@
           </article>
           <article>
             <h3>Modellannahmen</h3>
-            <p>Beitragsaufschlag, Rentenverzicht, Rendite und Kosten sind einstellbare Annahmen. Sie sind keine historischen Beobachtungen.</p>
+            <p>Beitragsaufschlag, Rentenverzicht, Rendite, Kosten und die optionale 2040-Fortschreibung sind einstellbare oder zuschaltbare Annahmen. Sie sind keine historischen Beobachtungen.</p>
           </article>
           <article>
             <h3>Noch offen</h3>
-            <p>Historische DAX-, S&P-500- und Weltindex-Reihen, die Jahre 1957-1959, reale Werte und Lizenzprüfungen fehlen noch.</p>
+            <p>Historische DAX-, S&P-500- und Weltindex-Reihen, die Jahre 1957-1959, reale Werte, amtliche Zukunftsprojektionen und Lizenzprüfungen fehlen noch.</p>
           </article>
           <article>
             <h3>Rote Linie</h3>

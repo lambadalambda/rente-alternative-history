@@ -7,7 +7,7 @@ if (!globalThis.RentenModel) {
   throw new Error("Missing assets/model.js before assets/app.js");
 }
 
-const { calculateScenario, interpolateRecords } = globalThis.RentenModel;
+const { calculateScenario, extendWithFictionalProjection, interpolateRecords } = globalThis.RentenModel;
 
 const presets = {
   mixed: { label: "Gemischtes Portfolio", returnRate: 4.0, costRate: 0.35 },
@@ -22,7 +22,8 @@ const controls = {
   contributionIncrease: document.querySelector("#contributionIncrease"),
   pensionReduction: document.querySelector("#pensionReduction"),
   returnRate: document.querySelector("#returnRate"),
-  costRate: document.querySelector("#costRate")
+  costRate: document.querySelector("#costRate"),
+  fictionalProjection: document.querySelector("#fictionalProjection")
 };
 
 const output = {
@@ -33,9 +34,11 @@ const output = {
   contributionReadout: document.querySelector("#contributionReadout"),
   pensionReadout: document.querySelector("#pensionReadout"),
   dataStatus: document.querySelector("#dataStatus"),
+  fundKpiLabel: document.querySelector("#fundKpiLabel"),
   fundKpi: document.querySelector("#fundKpi"),
   buildCostKpi: document.querySelector("#buildCostKpi"),
   netKpi: document.querySelector("#netKpi"),
+  coverageKpiLabel: document.querySelector("#coverageKpiLabel"),
   coverageKpi: document.querySelector("#coverageKpi"),
   chart: document.querySelector("#fundChart"),
   chartSummary: document.querySelector("#chartSummary"),
@@ -87,6 +90,7 @@ function getScenario() {
     pensionReduction: Number(controls.pensionReduction.value),
     returnRate: Number(controls.returnRate.value),
     costRate: Number(controls.costRate.value),
+    fictionalProjection: controls.fictionalProjection.checked,
     preset: presets[controls.preset.value] ?? presets.mixed
   };
 }
@@ -107,7 +111,7 @@ function linePath(points, xScale, yScale, key) {
   }).join(" ");
 }
 
-function renderChart(rows) {
+function renderChart(rows, projectionContext) {
   const chart = output.chart;
   chart.replaceChildren();
 
@@ -129,6 +133,14 @@ function renderChart(rows) {
     return node;
   };
 
+  const title = make("title", { id: "chartTitle" });
+  title.textContent = "Zeitverlauf von Fondsvermögen, Aufbaupreis und Kapitalertrag";
+  const desc = make("desc", { id: "chartDesc" });
+  desc.textContent = projectionContext.hasProjection
+    ? `Interaktive Liniengrafik bis ${projectionContext.lastYear}; ab ${projectionContext.historicalEndYear + 1} fiktive Fortschreibung. Eine Textzusammenfassung folgt direkt unter der Grafik.`
+    : "Interaktive Liniengrafik. Eine Textzusammenfassung folgt direkt unter der Grafik.";
+  chart.append(title, desc);
+
   const zero = make("line", {
     x1: padding.left,
     x2: width - padding.right,
@@ -138,6 +150,34 @@ function renderChart(rows) {
     "stroke-width": "2"
   });
   chart.append(zero);
+
+  const firstProjected = rows.find((row) => row.projected);
+  if (firstProjected) {
+    const projectionStartX = xScale(firstProjected.year - 0.5);
+    chart.append(make("rect", {
+      x: projectionStartX,
+      y: padding.top,
+      width: width - padding.right - projectionStartX,
+      height: height - padding.top - padding.bottom,
+      fill: "rgba(198, 107, 45, 0.08)"
+    }));
+    chart.append(make("line", {
+      x1: projectionStartX,
+      x2: projectionStartX,
+      y1: padding.top,
+      y2: height - padding.bottom,
+      stroke: "rgba(155, 53, 45, 0.72)",
+      "stroke-dasharray": "10 8",
+      "stroke-width": "3"
+    }));
+    const projectionLabel = make("text", {
+      class: "projection-label",
+      x: projectionStartX + 14,
+      y: padding.top + 28
+    });
+    projectionLabel.textContent = `Fiktiv ab ${firstProjected.year}`;
+    chart.append(projectionLabel);
+  }
 
   const fundPath = make("path", { d: linePath(rows, xScale, yScale, "fundMioEur"), class: "line-fund" });
   const costPath = make("path", { d: linePath(rows, xScale, yScale, "cumulativeBuildCostMioEur"), class: "line-cost" });
@@ -178,7 +218,7 @@ function renderChart(rows) {
 }
 
 function renderTable(rows) {
-  const selectedYears = [1960, 1970, 1990, 2000, 2010, 2024];
+  const selectedYears = [1960, 1970, 1990, 2000, 2010, 2024, 2030, 2040];
   const rowsByYear = new Map(rows.map((row) => [row.year, row]));
   output.dataTableBody.replaceChildren();
 
@@ -193,7 +233,7 @@ function renderTable(rows) {
       formatTableMoney(row.extraContributionsMioEur),
       formatTableMoney(row.pensionSavingsMioEur),
       formatTableMoney(row.fundDepositMioEur),
-      row.interpolated ? "interpoliert" : row.scope
+      row.projected ? "fiktive Fortschreibung" : row.interpolated ? "interpoliert" : row.scope
     ];
     cells.forEach((text) => {
       const td = document.createElement("td");
@@ -204,7 +244,7 @@ function renderTable(rows) {
   });
 }
 
-function renderComparisons(last) {
+function renderComparisons(last, hasProjection) {
   const records = comparisonDataset?.records ?? [];
   output.comparisonCards.replaceChildren();
 
@@ -215,13 +255,14 @@ function renderComparisons(last) {
 
   records.forEach((reference) => {
     const ratio = last.fundMioEur / reference.valueMioEur;
+    const modelYearLabel = hasProjection ? `fiktiv fortgeschriebene Modellfonds ${last.year}` : `Modellfonds ${last.year}`;
     const card = document.createElement("article");
     card.className = "comparison-card";
 
     appendText(card, "p", "comparison-kicker", reference.subtitle);
     appendText(card, "h3", null, reference.label);
     appendText(card, "strong", "comparison-ratio", formatComparisonRatio(ratio));
-    appendText(card, "p", "comparison-copy", `Der Modellfonds ${last.year} liegt bei ${formatComparisonRatio(ratio)} des Vergleichswerts vom ${reference.date}: ${formatMioAsMoney(reference.valueMioEur)} bzw. ${reference.displayNative}.`);
+    appendText(card, "p", "comparison-copy", `Der ${modelYearLabel} liegt bei ${formatComparisonRatio(ratio)} des Vergleichswerts vom ${reference.date}: ${formatMioAsMoney(reference.valueMioEur)} bzw. ${reference.displayNative}.`);
     appendText(card, "p", "comparison-note", reference.interpretationNote);
 
     output.comparisonCards.append(card);
@@ -229,29 +270,41 @@ function renderComparisons(last) {
 
   const norway = records.find((record) => record.id === "norway-gpfg");
   const norwayRatio = norway ? last.fundMioEur / norway.valueMioEur : null;
+  const projectionNote = hasProjection ? " Die Jahre ab 2025 sind dabei eine fiktive Trendfortschreibung, keine DRV-Beobachtung." : "";
+  const modelLabel = hasProjection ? `der fiktiv fortgeschriebene Modellfonds ${last.year}` : `der Modellfonds ${last.year}`;
   output.comparisonSummary.textContent = norwayRatio === null
     ? "Die Vergleichswerte sind Größenordnungen, keine Aussage über Governance oder Markteinfluss."
-    : `Im Vergleich mit dem norwegischen Staatsfonds liegt der Modellfonds ${last.year} in diesem Szenario bei ${formatComparisonRatio(norwayRatio)} des Fondsvermögens von Ende 2025. Das beantwortet nicht, ob ein solcher Fonds politisch oder marktpraktisch sauber verwaltbar wäre, setzt aber die Größenordnung neben einen real existierenden Staatsfonds.`;
+    : `Im Vergleich mit dem norwegischen Staatsfonds liegt ${modelLabel} in diesem Szenario bei ${formatComparisonRatio(norwayRatio)} des Fondsvermögens von Ende 2025.${projectionNote} Das beantwortet nicht, ob ein solcher Fonds politisch oder marktpraktisch sauber verwaltbar wäre, setzt aber die Größenordnung neben einen real existierenden Staatsfonds.`;
 }
 
 function render() {
   if (!annualData.length) return;
   const scenario = getScenario();
   updateControlLabels(scenario);
-  const rows = calculateScenario(annualData, scenario);
+  const activeData = scenario.fictionalProjection ? extendWithFictionalProjection(annualData) : annualData;
+  const rows = calculateScenario(activeData, scenario);
   const last = rows.at(-1);
+  const historicalEndYear = annualData.at(-1).year;
+  const hasProjection = rows.some((row) => row.projected);
+  const projectionText = hasProjection
+    ? ` Fiktive Fortschreibung ${historicalEndYear + 1}-${last.year} aktiv: Beiträge und Rentenausgaben werden mit dem nominalen 2014-2024-Trend fortgeschrieben.`
+    : ` Historische DRV-Daten enden ${historicalEndYear}; die fiktive Fortschreibung ist aus.`;
 
+  output.fundKpiLabel.textContent = hasProjection ? `Fiktives Fondsvermögen ${last.year}` : `Fondsvermögen ${last.year}`;
+  output.coverageKpiLabel.textContent = hasProjection ? `Deckt fiktiv fortgeschriebene Rentenausgaben ${last.year}` : `Deckt Rentenausgaben ${last.year}`;
   output.fundKpi.textContent = formatMioAsMoney(last.fundMioEur);
   output.buildCostKpi.textContent = formatMioAsMoney(last.cumulativeBuildCostMioEur);
   output.netKpi.textContent = formatMioAsMoney(last.investmentGainMioEur);
   output.coverageKpi.textContent = asPercent(last.returnCoverage * 100);
 
-  output.dataStatus.textContent = `Aktives Szenario: ${scenario.preset.label}, Datenreihe ab ${rows[0].year}, +${asPercent(scenario.contributionIncrease)} Beiträge, -${asPercent(scenario.pensionReduction)} Rentenausgaben, ${asPercent(scenario.returnRate - scenario.costRate)} nominale Nettorendite p.a.`;
-  output.chartSummary.textContent = `Im Jahr ${last.year} steht ein Fonds von ${formatMioAsMoney(last.fundMioEur)} einem kumulierten Aufbaupreis von ${formatMioAsMoney(last.cumulativeBuildCostMioEur)} gegenüber. Daraus ergeben sich ${formatMioAsMoney(last.investmentGainMioEur)} Kapitalertrag über den eingezahlten Verzicht hinaus. Die Modellrendite des Jahres deckt ${asPercent(last.returnCoverage * 100)} der Rentenausgaben dieses Jahres.`;
+  output.dataStatus.textContent = `Aktives Szenario: ${scenario.preset.label}, Datenreihe ab ${rows[0].year}, +${asPercent(scenario.contributionIncrease)} Beiträge, -${asPercent(scenario.pensionReduction)} Rentenausgaben, ${asPercent(scenario.returnRate - scenario.costRate)} nominale Nettorendite p.a.${projectionText}`;
+  output.chartSummary.textContent = hasProjection
+    ? `Unter der fiktiven Fortschreibung bis ${last.year} ergäbe sich ein Fonds von ${formatMioAsMoney(last.fundMioEur)}; der kumulierte Aufbaupreis läge bei ${formatMioAsMoney(last.cumulativeBuildCostMioEur)}. Daraus ergäben sich ${formatMioAsMoney(last.investmentGainMioEur)} Kapitalertrag über den eingezahlten Verzicht hinaus. Die Modellrendite des Jahres deckt ${asPercent(last.returnCoverage * 100)} der fiktiv fortgeschriebenen Rentenausgaben. Die Jahre ${historicalEndYear + 1}-${last.year} sind keine DRV-Daten, sondern eine fiktive Trendfortschreibung.`
+    : `Im Jahr ${last.year} steht ein Fonds von ${formatMioAsMoney(last.fundMioEur)} einem kumulierten Aufbaupreis von ${formatMioAsMoney(last.cumulativeBuildCostMioEur)} gegenüber. Daraus ergeben sich ${formatMioAsMoney(last.investmentGainMioEur)} Kapitalertrag über den eingezahlten Verzicht hinaus. Die Modellrendite des Jahres deckt ${asPercent(last.returnCoverage * 100)} der Rentenausgaben dieses Jahres.`;
 
-  renderChart(rows);
+  renderChart(rows, { hasProjection, historicalEndYear, lastYear: last.year });
   renderTable(rows);
-  renderComparisons(last);
+  renderComparisons(last, hasProjection);
 }
 
 function bindControls() {

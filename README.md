@@ -109,6 +109,8 @@ python3 scripts/validate_drv_corrections.py --check --no-download
 
 Manuelle DRV-Stichproben gegen die Originaltabellen liegen in `data/quality/drv/allgemeine-rv-cashflow-spotchecks.json` und werden mit `python3 scripts/validate_drv_spotchecks.py` gegen die extrahierte CSV und die Website-JSON geprüft. Der automatische Korrekturseitencheck liegt unter `data/quality/drv/rv-in-zeitreihen-korrekturseiten-check.json`; er prüft, dass die bekannten Korrekturseiten v=3 die aktuell modellierten Inhaltsseiten `244` und `245` nicht betreffen.
 
+Die Website kann die Cashflow-Basis optional fiktiv bis 2040 fortschreiben. Diese Option ist standardmäßig aus, nutzt die geometrische durchschnittliche jährliche nominale Wachstumsrate (CAGR) von Beiträgen und Rentenausgaben 2014-2024 und ist in `assumptions/register.yaml` als `PROJ-001` dokumentiert. Sie ist keine amtliche Projektion.
+
 Die erste Kapitalmarkt-Pipeline erzeugt einen Robert-Shiller-Forschungsproxy für jährliche US-Aktienmarktrenditen:
 
 ```bash

@@ -112,6 +112,29 @@ assumptions:
     introduced_at: "2026-05-04"
     issue_ref: "meta/issues/historische-rentenstroeme-modellieren.md"
 
+  - id: PROJ-001
+    category: projection_scope
+    status: sensitivity_only
+    statement: "Optionale fiktive Fortschreibung der Cashflow-Basis bis 2040"
+    value:
+      enabled_by_default: false
+      historical_end_year: 2024
+      projection_start_year: 2025
+      projection_end_year: 2040
+      trend_start_year: 2014
+      contribution_growth_basis: "geometrische durchschnittliche jährliche nominale Wachstumsrate (CAGR) der Beitragseinnahmen 2014-2024"
+      pension_outlay_growth_basis: "geometrische durchschnittliche jährliche nominale Wachstumsrate (CAGR) der Rentenausgaben 2014-2024"
+    evidence_type: model_assumption
+    rationale: "Nutzerwunsch vom 2026-05-04: Eine zuschaltbare Zukunftsverlängerung soll zeigen, wie stark Endwerte von einer einfachen Fortschreibung abhängen. Sie ist ausdrücklich fiktiv und keine DRV-, BMAS- oder Bundesregierung-Projektion. Die 2014-2024-Trendbasis nutzt die letzten zehn beobachteten Jahre, ersetzt aber keine demografische oder politische Modellierung. Erwarteter Effekt: Bei positivem Trend verlängert die Option Einzahlungen, Rentenausgabenbasis und Zinseszins bis 2040 und erhöht daher Bruttofonds, Aufbaupreis und Kapitalertrag gegenüber dem historischen Endjahr 2024."
+    alternatives:
+      - "keine Zukunftsfortschreibung"
+      - "amtliche Vorausberechnung aus Rentenversicherungsbericht/BMAS"
+      - "konservative Nullwachstums-Fortschreibung"
+      - "separate Regler für Beitrags- und Ausgabenwachstum"
+    sensitivity_flag: true
+    introduced_at: "2026-05-04"
+    issue_ref: "meta/issues/interaktives-szenario-modell-entwickeln.md"
+
   - id: TRANS-001
     category: transition_financing
     status: proposed_baseline

@@ -27,4 +27,5 @@ Ein interaktives Modell bereitstellen, mit dem Nutzerinnen und Nutzer Beitragsau
 
 - Die Website soll nicht als Anlageberatung wirken, sondern als historisches und fiskalisches Gedankenexperiment.
 - Arbeitsstand 2026-05-04: Erste interaktive Modellwerkstatt mit Reglern für höhere Beiträge, niedrigere Rentenausgaben, Rendite und Kosten angelegt. Die Renditen sind ausdrücklich illustrative Konstanten, keine historischen Indexdaten.
+- Arbeitsstand 2026-05-04: Zuschaltbare fiktive Fortschreibung 2025-2040 ergänzt. Sie nutzt die geometrische durchschnittliche jährliche nominale Wachstumsrate (CAGR) der Cashflow-Reihen 2014-2024 und ist standardmäßig ausgeschaltet.
 - Issue bleibt offen, bis echte historische Renditeserien, Presets per URL und vollständige Quellenrückführung angebunden sind.
