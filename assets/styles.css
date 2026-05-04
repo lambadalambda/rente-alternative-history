@@ -215,6 +215,10 @@ summary:focus-visible {
   padding: 1.4rem;
 }
 
+.thesis-card > * {
+  position: relative;
+}
+
 .thesis-card::before {
   content: "";
   position: absolute;
@@ -227,12 +231,58 @@ summary:focus-visible {
 
 .card-number {
   position: relative;
-  margin-bottom: 1rem;
+  max-width: 8.5ch;
+  margin-bottom: 0.85rem;
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-  font-size: 2.4rem;
-  font-weight: 800;
-  line-height: 0.92;
+  font-size: clamp(2.15rem, 3.45vw, 3.25rem);
+  font-weight: 850;
+  line-height: 0.9;
   letter-spacing: -0.06em;
+}
+
+.card-copy {
+  max-width: 28rem;
+  margin-bottom: 1rem;
+  color: #332b24;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.deal-examples {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.deal-examples div {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, auto) minmax(0, 1fr);
+  gap: 0.18rem 0.75rem;
+  border-top: 1px solid rgba(21, 18, 15, 0.12);
+  padding-top: 0.55rem;
+}
+
+.deal-examples dt {
+  grid-row: span 2;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.deal-examples dd {
+  margin: 0;
+  color: #332b24;
+  font-size: 0.94rem;
+  font-weight: 760;
+  line-height: 1.25;
+}
+
+.deal-examples dd + dd {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
 }
 
 .principles {
@@ -746,6 +796,18 @@ th {
 
   h1 {
     font-size: clamp(2.8rem, 18vw, 4.2rem);
+  }
+
+  .card-number {
+    font-size: clamp(2.15rem, 12vw, 3.05rem);
+  }
+
+  .deal-examples div {
+    grid-template-columns: 1fr;
+  }
+
+  .deal-examples dt {
+    grid-row: auto;
   }
 
   svg {
